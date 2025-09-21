@@ -1,83 +1,103 @@
-# Technical Architecture - 50Data MVP
+# Technical Architecture - 50Data EU Compliance Deadline Service
 
 *Blinktank GmbH | Simple MVP Architecture*
-*Three-Phase Evolution: MVP → Mid-state → End-state*
+*Three-Phase Evolution: Free MVP → Paid Tiers → API Platform*
 
 ## 🏗️ MVP System Overview
 
-### Simplified MVP Architecture
+### Simple MVP Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│              50DATA MVP (FREE)               │
-├─────────────────────────────────────────────┤
-│                                             │
-│  ┌─────────────┐    ┌─────────────────────┐ │
-│  │  SOURCES    │───▶│     PROCESSING      │ │
-│  │             │    │                     │ │
-│  │ • EUR-Lex   │    │ • Date Extraction   │ │
-│  │ • German    │    │ • Basic Validation  │ │
-│  │   Sources   │    │ • Static ICS Gen    │ │
-│  └─────────────┘    └─────────────────────┘ │
-│                              ▼               │
-│  ┌─────────────────────────────────────────┐ │
-│  │         STATIC DELIVERY                 │ │
-│  │  [50data.eu] → [ICS Download]          │ │
-│  └─────────────────────────────────────────┘ │
-└─────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                   50DATA EU DEADLINE SERVICE MVP                     │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────┐    ┌─────────────────────┐    ┌─────────────────┐   │
+│  │DATA SOURCES │───▶│  DEADLINE EXTRACTION│───▶│  CALENDAR & EMAIL│   │
+│  │             │    │                     │    │                 │   │
+│  │ • EUR-Lex   │    │ • Date Parsing      │    │ • ICS Generation│   │
+│  │ • German    │    │ • Legal Text NLP    │    │ • Kit/ConvertKit│   │
+│  │   Sources   │    │ • Manual Validation │    │   Integration   │   │
+│  │ • RSS Feeds │    │ • Quality Control   │    │ • Paddle Billing│   │
+│  └─────────────┘    └─────────────────────┘    └─────────────────┘   │
+│          │                      │                        │           │
+│          ▼                      ▼                        ▼           │
+│  ┌─────────────┐    ┌─────────────────────┐    ┌─────────────────┐   │
+│  │API ACCESS   │    │   DEADLINE ENGINE   │    │  NOTIFICATION   │   │
+│  │LAYER        │    │                     │    │    SYSTEM       │   │
+│  │             │    │ • Date Validation   │    │ • Email Alerts  │   │
+│  │• EUR-Lex API│    │ • Change Detection  │    │ • Calendar Sync │   │
+│  │• Manual     │    │ • Deadline Tracking │    │ • Pure Data     │   │
+│  │  Research   │    │ • No Commentary     │    │ • No Editorial  │   │
+│  │• RSS Parsing│    │ • Pure Dates Only   │    │ • Kit/ConvertKit│   │
+│  └─────────────┘    └─────────────────────┘    └─────────────────┘   │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
-**MVP Scope**: No user accounts, no payments, no real-time updates
-**Goal**: Prove value with free static calendar downloads
+**MVP Scope**: Deadline extraction, calendar generation, email notifications, simple billing
+**Goal**: Simple deadline service with Kit/ConvertKit + Paddle integration
 
-### MVP Technology Stack (Simplified)
+### MVP Technology Stack (Simple)
 
-**Backend (Basic)**
-- **Python**: Simple scripts for data processing
-- **Flask**: Minimal web framework for static site
-- **Requests**: HTTP client for API calls
-- **BeautifulSoup**: HTML parsing if needed
+**Backend (Simple & Reliable)**
+- **Python Flask**: Lightweight web framework for API and website
+- **SQLite**: Simple database for deadline storage
+- **BeautifulSoup**: HTML parsing for legal documents
+- **Requests**: HTTP client for EUR-Lex API calls
 
 **Database (Minimal)**
-- **SQLite**: Local database for processed deadlines
-- **JSON files**: Configuration and data storage
-- **No user data**: No accounts, no personal information
+- **SQLite**: Local database for deadlines and user info
+- **JSON files**: Configuration and simple data storage
+- **No complex schemas**: Basic deadline tracking only
+- **Manual backups**: Simple file-based backup strategy
 
 **Processing (Basic)**
-- **Regex**: Pattern matching for date extraction
-- **Basic Python**: Simple deadline classification
-- **Manual validation**: Quality control for MVP
-- **Static generation**: Pre-built calendar files
+- **Python NLP**: Simple date extraction with regex patterns
+- **Manual validation**: Quality control for extracted deadlines
+- **Cron jobs**: Scheduled updates from legal sources
+- **Basic logging**: Simple error tracking and monitoring
 
-**Infrastructure (Simple)**
-- **Hetzner VPS**: €5/month basic server
-- **Static hosting**: Simple website + file downloads
+**Email & Billing Integration**
+- **Kit/ConvertKit API**: Email list management and notifications
+- **Paddle API**: EU-compliant billing and subscription management
+- **Webhook handling**: Basic webhook receivers for Paddle events
+- **Email templates**: Pure deadline notifications (no commentary)
+
+**Infrastructure (EU-Compliant)**
+- **Hetzner VPS**: €10/month basic EU server
+- **Simple hosting**: Static website + Flask API
 - **Domain**: 50data.eu with basic SSL
-- **No CDN**: Direct file serving for MVP
-- **Basic monitoring**: Uptime checks only
+- **Manual deployment**: Simple git-based deployment
+- **Basic monitoring**: Uptime checks + log files
 
-## 📥 MVP Data Sources (Simplified)
+## 📥 EU Legal Data Sources (Deadline-Focused)
 
-### MVP Source 1: EUR-Lex (EU-wide)
+### Source 1: EUR-Lex API (EU-wide)
 
 ```python
-class SimpleEURLexCollector:
-    """Minimal EUR-Lex integration for MVP"""
+class EURLexDeadlineExtractor:
+    """
+    Simple EUR-Lex integration for deadline extraction
+    """
 
     BASE_URL = "https://eur-lex.europa.eu/api"
 
-    def collect_key_documents(self):
+    def __init__(self):
+        self.session = requests.Session()
+
+    def extract_deadlines_from_document(self, celex_number: str):
         """
-        MVP strategy:
-        1. Target specific high-value documents (AI Act, eRechnung directives)
-        2. Manual document selection for MVP
-        3. Simple regex date extraction
-        4. Manual validation of results
+        MVP approach for EUR-Lex:
+        1. Fetch specific high-value documents
+        2. Simple regex date extraction
+        3. Manual validation of results
+        4. Pure deadline data only - no analysis
         """
 
-    MVP_TARGET_DOCUMENTS = [
+    TARGET_DOCUMENTS = [
         "32024R1689",  # AI Act
         "32014L0055",  # eRechnung directive
+        "32016R0679",  # GDPR
         # Add more manually as needed
     ]
 
@@ -88,21 +108,31 @@ class SimpleEURLexCollector:
             r"(\d{1,2} \w+ \d{4})",  # General date pattern
             r"(\d{4}-\d{2}-\d{2})"   # ISO format
         ]
+
+        # Extract dates without commentary
+        deadlines = []
+        for pattern in patterns:
+            matches = re.findall(pattern, text)
+            deadlines.extend(matches)
+
+        return deadlines
 ```
 
-### MVP Source 2: German Sources (eRechnung Focus)
+### Source 2: German Legal Sources (eRechnung Focus)
 
 ```python
-class SimpleGermanCollector:
-    """Basic German compliance info for MVP"""
+class GermanDeadlineCollector:
+    """
+    Basic German compliance deadline collection
+    """
 
     def collect_erechnung_deadlines(self):
         """
-        MVP approach for German eRechnung:
+        MVP approach for German deadlines:
         1. Manual research of key dates
         2. Official government sources
-        3. Simple deadline list for MVP
-        4. No complex API integration needed
+        3. Simple deadline list - no commentary
+        4. Focus on eRechnung B2G/B2B deadlines
         """
 
     KNOWN_GERMAN_DEADLINES = [
@@ -110,601 +140,448 @@ class SimpleGermanCollector:
             "date": "2025-01-01",
             "title": "eRechnung B2G mandatory",
             "description": "Electronic invoicing mandatory for B2G transactions",
-            "source": "German government"
+            "source": "German Federal Ministry of Finance",
+            "type": "implementation_deadline"
         },
+        {
+            "date": "2028-01-01",
+            "title": "eRechnung B2B mandatory",
+            "description": "Electronic invoicing mandatory for B2B transactions",
+            "source": "German Federal Ministry of Finance",
+            "type": "implementation_deadline"
+        }
         # Add more manually researched deadlines
     ]
 
-## 🔄 MVP Processing Pipeline (Simplified)
+    def validate_deadline_accuracy(self, deadline: dict):
+        """Manual validation workflow for quality control"""
+        # Always manual verification for MVP
+        # No automated acceptance of deadline data
+        pass
 
-### Static Calendar Generation
+## 🔄 Simple Processing Pipeline (Deadline-Focused)
+
+### Deadline Data Processing
 
 ```python
-class MVPCalendarGenerator:
-    """Generate static ICS files for MVP"""
+class DeadlineProcessingPipeline:
+    """
+    Simple deadline processing for compliance calendar
+    """
 
-    def generate_static_calendar(self, deadlines):
+    def __init__(self):
+        self.kit_client = KitConvertKitClient()
+        self.paddle_client = PaddleClient()
+
+    def process_legal_sources(self):
         """
         Simple MVP approach:
-        1. Combine EU + German deadline data
-        2. Generate single ICS file
-        3. Manual quality check
-        4. Upload to 50data.eu for download
+        1. Fetch data from EUR-Lex and German sources
+        2. Extract dates using regex patterns
+        3. Manual validation for accuracy
+        4. Generate calendar and email notifications
         """
 
-    def create_ics_event(self, deadline):
-        """Basic ICS event creation"""
-        return f"""
-BEGIN:VEVENT
+    def extract_and_validate_deadlines(self, source_data: str):
+        # Step 1: Simple date extraction
+        raw_deadlines = self.extract_dates(source_data)
+
+        # Step 2: Manual validation (always required for MVP)
+        validated_deadlines = self.manual_validation(raw_deadlines)
+
+        # Step 3: Store validated deadlines
+        self.store_deadlines(validated_deadlines)
+
+        # Step 4: Generate notifications
+        self.generate_notifications(validated_deadlines)
+
+        return {
+            "success": True,
+            "deadlines_processed": len(validated_deadlines),
+            "validation_required": len(raw_deadlines),
+            "notifications_sent": self.get_notification_count()
+        }
+
+    def generate_notifications(self, deadlines: List[dict]):
+        """
+        Generate calendar and email notifications
+        - ICS calendar file generation
+        - Kit/ConvertKit email notifications
+        - Pure deadline data only - no commentary
+        """
+
+        # Generate ICS calendar
+        ics_content = self.generate_ics_calendar(deadlines)
+
+        # Send Kit/ConvertKit notifications (pure data only)
+        for deadline in deadlines:
+            self.kit_client.send_deadline_notification(
+                deadline_date=deadline['date'],
+                title=deadline['title'],
+                # NO commentary or analysis ever sent
+                pure_data_only=True
+            )
+
+    def manual_validation(self, deadlines: List[dict]):
+        """Always require manual validation for deadline accuracy"""
+        # MVP: All deadlines must be manually verified
+        # No automated acceptance of extracted dates
+        return []  # Return only manually verified deadlines
+
+## 📅 Calendar & Email System (Simple)
+
+### ICS Calendar Generation
+
+```python
+class SimpleCalendarGenerator:
+  """
+  Basic ICS calendar generation for compliance deadlines
+  """
+
+  def __init__(self):
+    self.timezone = pytz.timezone('Europe/Berlin')
+
+  def generate_compliance_calendar(self, deadlines: List[dict]):
+    """
+    Simple MVP approach:
+    1. Generate standard ICS calendar format
+    2. Include all validated deadlines
+    3. Add basic reminders (7 days, 1 day)
+    4. No commentary - pure deadline data only
+    """
+
+    ics_content = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//50Data//EU Compliance Deadlines//EN",
+      "METHOD:PUBLISH"
+    ]
+
+    for deadline in deadlines:
+      event = self.create_deadline_event(deadline)
+      ics_content.append(event)
+
+    ics_content.append("END:VCALENDAR")
+    return "\n".join(ics_content)
+
+  def create_deadline_event(self, deadline: dict):
+    """
+    Basic ICS event for compliance deadline
+    - Pure deadline data only
+    - No analysis or commentary
+    - Standard reminders
+    """
+
+    return f"""BEGIN:VEVENT
 UID:{deadline['id']}@50data.eu
 DTSTART;VALUE=DATE:{deadline['date']}
 SUMMARY:{deadline['title']}
-DESCRIPTION:{deadline['description']}
-END:VEVENT
-"""
+DESCRIPTION:{deadline['description']}\\n\\nSource: {deadline['source']}\\n\\nPowered by 50Data
+CATEGORIES:EU_COMPLIANCE
+URL:{deadline.get('source_url', '')}
+
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:EU Compliance deadline in 7 days: {deadline['title']}
+END:VALARM
+
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:EU Compliance deadline tomorrow: {deadline['title']}
+END:VALARM
+
+END:VEVENT"""
 ```
 
-## 📦 MVP Website (Simple)
-
-### Basic Static Website
+### Kit/ConvertKit Email Integration
 
 ```python
-class SimpleMVPSite:
-    """Basic Flask website for MVP"""
+class KitConvertKitClient:
+  """
+  Simple Kit/ConvertKit integration for deadline notifications
+  """
 
-    def __init__(self):
-        self.app = Flask(__name__)
+  def __init__(self, api_key: str):
+    self.api_key = api_key
+    self.base_url = "https://api.convertkit.com/v3"
 
-    def setup_routes(self):
-        """Simple MVP routes"""
+  def send_deadline_notification(self, deadline_date: str, title: str):
+    """
+    Send pure deadline notification via Kit/ConvertKit
+    - NO commentary or analysis ever
+    - Pure deadline data only
+    - Simple email template
+    """
 
-        @self.app.route('/')
-        def home():
-            return """
-            <h1>50Data - Free EU Compliance Calendar</h1>
-            <p>Download free EU compliance deadlines calendar</p>
-            <a href="/download/calendar.ics">Download Calendar</a>
-            """
+    email_content = f"""
+EU Compliance Deadline: {title}
 
-        @self.app.route('/download/calendar.ics')
-        def download_calendar():
-            """Serve static ICS file"""
-            return send_file('static/eu-compliance-calendar.ics',
-                           as_attachment=True,
-                           download_name='50data-eu-compliance.ics')
+Date: {deadline_date}
+Source: Official EU/German legal sources
 
-## 🚀 MVP Deployment (Hetzner)
+---
+50Data - Pure EU compliance deadline data
+Unsubscribe: [link]
+"""
 
-### Simple VPS Setup
+    # Kit/ConvertKit API call to send email
+    # Pure data delivery - no editorial content
+
+  def add_subscriber(self, email: str):
+    """Add subscriber to deadline notification list"""
+    # Simple Kit/ConvertKit subscription
+
+  def segment_by_country(self, subscriber_email: str, countries: List[str]):
+    """Tag subscribers by country interest for targeted notifications"""
+    # Kit/ConvertKit tagging for segmentation
+
+## 🚀 Simple Deployment (EU Compliant)
+
+### Basic Infrastructure Setup
 
 ```bash
-# Hetzner VPS setup for MVP
-# €5/month CX11 instance
-apt update && apt upgrade -y
-apt install python3 python3-pip nginx -y
+# Simple Hetzner VPS setup for MVP
+# €10/month CX11 instance (EU region)
 
-# Simple nginx config for static files + Flask
-# SSL via Let's Encrypt
-# Domain: 50data.eu
+# Basic server setup
+apt update && apt upgrade -y
+apt install python3 python3-pip nginx sqlite3 -y
+
+# Install Python dependencies
+pip3 install flask requests beautifulsoup4 icalendar pytz
+
+# Simple Flask application structure
+/var/www/50data/
+├── app.py              # Main Flask application
+├── deadline_extractor.py # EUR-Lex integration
+├── calendar_generator.py # ICS generation
+├── kit_client.py       # Kit/ConvertKit integration
+├── paddle_client.py    # Paddle billing integration
+├── deadlines.db       # SQLite database
+└── static/            # Website assets
+```
+
+### Paddle Billing Integration
+
+```python
+class PaddleBillingClient:
+  """
+  Simple Paddle integration for EU-compliant billing
+  """
+
+  def __init__(self, vendor_id: str, auth_code: str):
+    self.vendor_id = vendor_id
+    self.auth_code = auth_code
+    self.base_url = "https://vendors.paddle.com/api/2.0"
+
+  def create_subscription_checkout(self, plan_id: str, customer_email: str):
+    """
+    Create Paddle checkout for EU subscription
+    - Automatic VAT calculation
+    - EU payment methods
+    - GDPR compliant billing
+    """
+
+    checkout_data = {
+      "vendor_id": self.vendor_id,
+      "product_id": plan_id,
+      "customer_email": customer_email,
+      "marketing_consent": False,  # No marketing by default
+      "return_url": "https://50data.eu/success",
+      "webhook_url": "https://50data.eu/paddle-webhook"
+    }
+
+    # Paddle handles all EU compliance automatically
+
+  def handle_webhook(self, webhook_data: dict):
+    """
+    Handle Paddle subscription webhooks
+    - Subscription created/updated/cancelled
+    - Update Kit/ConvertKit subscription status
+    - Grant/revoke access to premium countries
+    """
+
+    if webhook_data['alert_name'] == 'subscription_created':
+      # Add to premium Kit/ConvertKit segment
+      # Enable multi-country calendar access
+      pass
+
+    elif webhook_data['alert_name'] == 'subscription_cancelled':
+      # Remove from premium segment
+      # Revert to basic calendar access
+      pass
+
+### Production Configuration (Simple & EU-Compliant)
+
+production_setup = {
+  "hosting": "Hetzner Cloud VPS (Nuremberg, Germany - EU)",
+  "database": "SQLite (simple file-based database)",
+  "domain": "50data.eu with Let's Encrypt SSL",
+  "email": "Kit/ConvertKit (GDPR compliant email service)",
+  "billing": "Paddle (automatic EU VAT compliance)",
+  "monitoring": "Basic log files + uptime monitoring",
+  "backup": "Daily SQLite backup to Hetzner storage",
+  "deployment": "Simple git-based deployment"
+}
 ```
 
 ## 🛣️ Evolution Roadmap
 
 ### Mid-state Architecture (Months 6-12)
-- Add user accounts and basic authentication
-- Implement country filtering and preferences
-- Add Poland, Austria, Netherlands APIs
-- Basic subscription tiers with Stripe
-- Deduplication and improved UX
+- **Multi-Country APIs**: Poland, Austria, Netherlands legal sources
+- **Paddle Tiers**: Subscription billing for premium country coverage
+- **Advanced Kit/ConvertKit**: Segmented notifications by country/topic
+- **API Access**: Basic API for developers and legal tech companies
+- **Webhook System**: Real-time deadline change notifications
 
 ### End-state Architecture (Year 2+)
-- Full EU-27 country coverage
-- Advanced NLP processing
-- Real-time updates and webhooks
-- API access for integrations
-- White-label solutions
-- Advanced analytics and reporting
+- **Complete EU Coverage**: All EU-27 countries with deadline tracking
+- **Real-time Updates**: Live monitoring of legal source changes
+- **White-label Platform**: Calendar embedding for legal software
+- **Enterprise API**: High-volume access for legal tech ecosystem
+- **Advanced Filtering**: Granular deadline categorization and search
+- **Mobile Optimization**: Responsive design for mobile deadline alerts
 
 ## 🔧 MVP Development Requirements
 
-### Immediate MVP Tasks (4 weeks)
+### Simple MVP Tasks (4 weeks)
 ```python
-MVP_IMPLEMENTATION = {
-    "week_1": "EUR-Lex API integration + German deadline research",
-    "week_2": "Basic date extraction + ICS generation",
-    "week_3": "Simple Flask website + Hetzner deployment",
-    "week_4": "Testing, quality control, launch preparation"
+mvp_implementation = {
+  "week1": {
+    "backend": "Flask application + SQLite database setup",
+    "sources": "EUR-Lex API integration + German manual research",
+    "infrastructure": "Hetzner VPS deployment"
+  },
+  "week2": {
+    "processing": "Simple deadline extraction + manual validation",
+    "calendar": "ICS calendar generation + download system",
+    "email": "Kit/ConvertKit integration for notifications"
+  },
+  "week3": {
+    "billing": "Paddle integration for future subscriptions",
+    "website": "Simple website with download functionality",
+    "validation": "Manual quality control of all deadlines"
+  },
+  "week4": {
+    "testing": "Calendar compatibility testing across platforms",
+    "content": "Pure deadline data validation (no commentary)",
+    "launch": "Production deployment + initial user acquisition"
+  }
 }
 ```
 
-### Stage 3: Compliance Classification
-
-```python
-class ComplianceClassifier:
-    """Classify extracted dates by compliance type and urgency"""
-
-    def __init__(self):
-        # Fine-tuned BERT model for compliance classification
-        self.classifier = AutoModelForSequenceClassification.from_pretrained(
-            "compliance-bert-classifier"
-        )
-
-    async def classify_deadline(self, text_chunk: str, extracted_date: str):
-        """
-        Classification categories:
-        - implementation_deadline
-        - compliance_deadline
-        - reporting_deadline
-        - transposition_deadline
-        - phase_in_date
-        - exemption_expiry
-        """
-
-    CONTEXT_PATTERNS = {
-        "implementation": {
-            "keywords": ["shall apply", "comes into force", "takes effect"],
-            "scope": "legal_framework",
-            "urgency": "high"
-        },
-        "compliance": {
-            "keywords": ["must comply", "shall ensure", "compliance with"],
-            "scope": "business_obligation",
-            "urgency": "high"
-        },
-        "reporting": {
-            "keywords": ["report by", "submit by", "notify"],
-            "scope": "reporting_obligation",
-            "urgency": "medium"
-        }
-    }
-```
-
-### Stage 4: Scope & Entity Recognition
-
-```python
-class ScopeRecognizer:
-    """Identify geographic and business scope of compliance deadlines"""
-
-    def extract_compliance_scope(self, text: str, date: str):
-        """
-        Scope extraction:
-        - Geographic: EU-wide, specific countries, regions
-        - Sector: Financial, healthcare, manufacturing, etc.
-        - Size: SME thresholds, employee counts, revenue limits
-        - Entity type: Private companies, public sector, etc.
-        """
-
-    SCOPE_PATTERNS = {
-        "geographic": [
-            r"in\s+(?:all|each)\s+Member\s+State[s]?",
-            r"throughout\s+the\s+(?:European\s+)?Union",
-            r"in\s+([A-Z][a-z]+(?:,\s*[A-Z][a-z]+)*)"
-        ],
-        "sector": [
-            r"financial\s+institution[s]?",
-            r"credit\s+institution[s]?",
-            r"payment\s+service\s+provider[s]?",
-            r"AI\s+system\s+provider[s]?"
-        ],
-        "size": [
-            r"SMEs?|small\s+and\s+medium\s+enterprises?",
-            r"undertakings\s+with\s+(?:more\s+than|over)\s+(\d+)\s+employees",
-            r"turnover\s+exceeding\s+EUR\s+(\d+(?:,\d+)*)\s+(?:million|billion)"
-        ]
-    }
-```
-
-## 💾 Data Layer Architecture
-
-### Database Schema
+### Database Schema for Deadline Service
 
 ```sql
--- Core compliance deadlines table
-CREATE TABLE compliance_deadlines (
-    id UUID PRIMARY KEY,
-    source_document_id UUID NOT NULL,
-    extracted_date DATE NOT NULL,
-    deadline_type VARCHAR(50) NOT NULL,
+-- Simple SQLite database for EU compliance deadlines
+CREATE TABLE deadlines (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    -- Deadline information
+    deadline_date DATE NOT NULL,
     title VARCHAR(500) NOT NULL,
     description TEXT,
+    deadline_type VARCHAR(50), -- implementation, compliance, reporting
 
-    -- Scope information
-    geographic_scope JSONB,  -- Countries, regions
-    sector_scope JSONB,      -- Industries affected
-    size_scope JSONB,        -- Company size criteria
+    -- Source information
+    source VARCHAR(200) NOT NULL, -- EUR-Lex, German Ministry, etc.
+    source_url VARCHAR(500),
+    country VARCHAR(5), -- DE, EU, FR, etc.
 
-    -- Metadata
-    confidence_score FLOAT,
-    extraction_method VARCHAR(50),
-    context_snippet TEXT,
+    -- Processing metadata
+    extraction_method VARCHAR(50), -- manual, api, regex
+    manually_validated BOOLEAN DEFAULT FALSE,
 
-    -- Tracking
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW(),
-    is_active BOOLEAN DEFAULT TRUE,
-
-    CONSTRAINT valid_confidence CHECK (confidence_score BETWEEN 0 AND 1)
+    -- No commentary fields - pure data only
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Source documents table
-CREATE TABLE source_documents (
-    id UUID PRIMARY KEY,
-    source_type VARCHAR(50) NOT NULL,  -- eur_lex, france_api, rss
-    document_identifier VARCHAR(200),   -- CELEX number, etc.
-    title VARCHAR(1000),
-    publication_date DATE,
-    language VARCHAR(5),
-    raw_content TEXT,
-    processed_content TEXT,
-    metadata JSONB,
+-- Kit/ConvertKit subscribers (minimal data)
+CREATE TABLE subscribers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(200) NOT NULL UNIQUE,
 
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    last_processed_at TIMESTAMPTZ
+    -- Subscription preferences
+    countries TEXT, -- JSON array of country interests
+    kit_subscriber_id VARCHAR(50), -- Kit/ConvertKit ID
+
+    -- Paddle billing (when applicable)
+    paddle_subscription_id VARCHAR(50),
+    subscription_status VARCHAR(20) DEFAULT 'free', -- free, basic, premium
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- User subscriptions
-CREATE TABLE subscriptions (
-    id UUID PRIMARY KEY,
-    user_id UUID NOT NULL,
-    plan_type VARCHAR(50) NOT NULL,
-
-    -- Filter preferences
-    countries TEXT[],
-    sectors TEXT[],
-    deadline_types TEXT[],
-    company_size VARCHAR(20),
-    lead_time_days INTEGER DEFAULT 30,
-
-    -- Feed configuration
-    feed_url VARCHAR(500) UNIQUE,
-    api_key VARCHAR(100) UNIQUE,
-    webhook_url VARCHAR(500),
-
-    -- Billing
-    stripe_subscription_id VARCHAR(100),
-    status VARCHAR(20) DEFAULT 'active',
-
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Performance indexes
-CREATE INDEX idx_deadlines_date ON compliance_deadlines(extracted_date);
-CREATE INDEX idx_deadlines_type ON compliance_deadlines(deadline_type);
-CREATE INDEX idx_deadlines_scope ON compliance_deadlines USING GIN(geographic_scope);
-CREATE INDEX idx_documents_source ON source_documents(source_type, document_identifier);
+-- Simple indexes for basic queries
+CREATE INDEX idx_deadlines_date ON deadlines(deadline_date);
+CREATE INDEX idx_deadlines_country ON deadlines(country);
+CREATE INDEX idx_subscribers_email ON subscribers(email);
 ```
 
-### Caching Strategy
+## 📊 MVP Success Metrics
 
+### Technical Performance Metrics
 ```python
-class CacheManager:
-    """Redis-based caching for performance optimization"""
+technical_metrics = {
+  "deadline_processing": {
+    "extraction_accuracy": "90%+ manual validation success",
+    "calendar_generation": "Sub-10 second ICS file creation",
+    "email_delivery": "99%+ Kit/ConvertKit delivery rate",
+    "source_coverage": "EUR-Lex + German sources"
+  },
 
-    def __init__(self):
-        self.redis = redis.Redis()
-        self.ttl_config = {
-            "feed_generation": 3600,      # 1 hour
-            "api_responses": 900,         # 15 minutes
-            "compliance_queries": 1800,   # 30 minutes
-            "user_preferences": 86400     # 24 hours
-        }
+  "website": {
+    "load_time": "Sub-3 second page loading",
+    "calendar_download": "One-click ICS download",
+    "mobile_responsive": "Works on all devices",
+    "uptime": "99%+ Hetzner hosting reliability"
+  },
 
-    async def cache_compliance_feed(self, subscription_id: str, ics_content: str):
-        """Cache generated ICS feeds to reduce processing load"""
-
-    async def invalidate_cache(self, pattern: str):
-        """Invalidate cache when new deadlines are processed"""
-```
-
-## 📅 ICS Feed Generation
-
-### Feed Generator Architecture
-
-```python
-class ComplianceICSGenerator:
-    """Generate RFC 5545 compliant ICS calendar feeds"""
-
-    def __init__(self):
-        self.timezone_handler = pytz.timezone('Europe/Brussels')
-
-    async def generate_feed(self, subscription_config: dict):
-        """
-        Feed generation pipeline:
-        1. Query deadlines based on user filters
-        2. Transform to ICS VEVENT format
-        3. Add configurable reminders (VALARM)
-        4. Set proper timezone information
-        5. Generate unique feed URL
-        """
-
-    def create_compliance_event(self, deadline: ComplianceDeadline):
-        """
-        ICS Event structure:
-        - DTSTART/DTEND: Deadline date
-        - SUMMARY: Compliance requirement title
-        - DESCRIPTION: Detailed requirements + source
-        - CATEGORIES: Compliance type classification
-        - PRIORITY: Based on urgency and scope
-        - URL: Link to source document
-        - VALARM: Configurable reminders
-        """
-
-    ICS_EVENT_TEMPLATE = """
-BEGIN:VEVENT
-UID:{unique_id}@50data.eu
-DTSTART;VALUE=DATE:{deadline_date}
-DTEND;VALUE=DATE:{deadline_date}
-SUMMARY:{compliance_title}
-DESCRIPTION:{detailed_description}\\n\\nSource: {source_url}\\n\\nScope: {scope_details}\\n\\nPowered by 50Data
-CATEGORIES:{compliance_category}
-PRIORITY:{urgency_level}
-URL:{source_document_url}
-LOCATION:{applicable_regions}
-
-BEGIN:VALARM
-TRIGGER:-P{reminder_days}D
-ACTION:DISPLAY
-DESCRIPTION:EU Compliance deadline in {reminder_days} days: {compliance_title}
-END:VALARM
-
-END:VEVENT
-"""
-```
-
-### Real-time Update System
-
-```python
-class FeedUpdateManager:
-    """Handle real-time feed updates and notifications"""
-
-    async def detect_deadline_changes(self):
-        """
-        Change detection:
-        1. New deadlines discovered
-        2. Existing deadlines modified
-        3. Deadlines cancelled or postponed
-        4. Source document updates
-        """
-
-    async def propagate_updates(self, change_events: List[ChangeEvent]):
-        """
-        Update propagation:
-        1. Regenerate affected ICS feeds
-        2. Send webhook notifications
-        3. Update CDN cached feeds
-        4. Trigger email notifications
-        """
-
-    def calculate_affected_subscriptions(self, deadline_change: DeadlineChange):
-        """Determine which user feeds need regeneration"""
-```
-
-## 🔌 API Layer
-
-### REST API Design
-
-```python
-from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security import HTTPBearer
-
-app = FastAPI(title="Compliance Calendar API", version="1.0.0")
-
-@app.get("/api/v1/deadlines")
-async def get_deadlines(
-    countries: List[str] = Query(None),
-    sectors: List[str] = Query(None),
-    deadline_types: List[str] = Query(None),
-    from_date: date = Query(None),
-    to_date: date = Query(None),
-    limit: int = Query(100, le=1000),
-    api_key: str = Depends(verify_api_key)
-):
-    """
-    Get compliance deadlines with filtering
-
-    Response format:
-    {
-        "deadlines": [
-            {
-                "id": "uuid",
-                "date": "2025-01-15",
-                "title": "AI Act Classification Compliance",
-                "type": "compliance_deadline",
-                "scope": {
-                    "countries": ["EU-wide"],
-                    "sectors": ["AI_providers"]
-                },
-                "urgency": "high",
-                "source": "eur-lex/32024R1689"
-            }
-        ],
-        "total": 150,
-        "page": 1
-    }
-    """
-
-@app.get("/feeds/{subscription_id}/calendar.ics")
-async def get_calendar_feed(subscription_id: str):
-    """Generate personalized ICS calendar feed"""
-
-@app.post("/api/v1/webhooks")
-async def register_webhook(webhook_config: WebhookConfig):
-    """Register webhook for real-time deadline updates"""
-```
-
-### Webhook System
-
-```python
-class WebhookManager:
-    """Manage webhook notifications for real-time updates"""
-
-    async def send_webhook(self, webhook_url: str, event: WebhookEvent):
-        """
-        Webhook payload:
-        {
-            "event_type": "deadline_added|deadline_updated|deadline_cancelled",
-            "timestamp": "2024-01-15T10:30:00Z",
-            "deadline": {
-                "id": "uuid",
-                "date": "2025-01-15",
-                "title": "Compliance requirement",
-                "changes": ["date_updated", "scope_expanded"]
-            }
-        }
-        """
-
-    async def validate_webhook_endpoint(self, url: str):
-        """Validate webhook URL responds correctly"""
-
-    async def handle_webhook_failures(self, failed_webhook: FailedWebhook):
-        """Retry logic with exponential backoff"""
-```
-
-## 📊 Monitoring & Analytics
-
-### Application Monitoring
-
-```python
-class MonitoringSystem:
-    """Comprehensive system monitoring and alerting"""
-
-    def __init__(self):
-        self.sentry = sentry_sdk
-        self.metrics = prometheus_client
-
-    async def track_extraction_accuracy(self, extraction_result):
-        """Monitor NLP extraction accuracy over time"""
-
-    async def monitor_api_performance(self, endpoint: str, response_time: float):
-        """Track API response times and error rates"""
-
-    async def alert_on_source_failures(self, source: str, failure_count: int):
-        """Alert when legal data sources become unavailable"""
-
-    ALERT_THRESHOLDS = {
-        "extraction_accuracy": 0.85,  # Alert if accuracy drops below 85%
-        "api_response_time": 2.0,     # Alert if response time > 2 seconds
-        "source_failure_rate": 0.1,   # Alert if 10% of sources fail
-        "feed_generation_time": 30.0  # Alert if feed generation > 30 seconds
-    }
-```
-
-### Business Analytics
-
-```python
-class AnalyticsEngine:
-    """Track business metrics and user behavior"""
-
-    async def track_compliance_coverage(self):
-        """Monitor percentage of compliance deadlines captured"""
-
-    async def analyze_user_engagement(self):
-        """Track feed usage patterns and user retention"""
-
-    async def measure_deadline_accuracy(self):
-        """Validate extracted deadlines against manual verification"""
-
-    BUSINESS_METRICS = {
-        "compliance_coverage": "% of known deadlines captured",
-        "extraction_accuracy": "% of dates correctly extracted",
-        "user_retention": "% of users active after 30 days",
-        "feed_usage": "Average feed accesses per user",
-        "api_adoption": "% of enterprise users using API"
-    }
-```
-
-## 🔧 Development & Deployment
-
-### Local Development Setup
-
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/compliance
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - db
-      - redis
-
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: compliance
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7-alpine
-
-  celery:
-    build: .
-    command: celery -A app.celery worker --loglevel=info
-    depends_on:
-      - db
-      - redis
-
-volumes:
-  postgres_data:
-```
-
-### Production Deployment (Hetzner Cloud EU)
-
-```python
-# 50Data Production configuration (EU data sovereignty)
-PRODUCTION_CONFIG = {
-    "hosting": "Hetzner Cloud (EU data centers - Nuremberg/Falkenstein)",
-    "database": "Hetzner Managed PostgreSQL with read replicas",
-    "caching": "Hetzner Redis Cluster",
-    "cdn": "CloudFlare for feed caching (EU edge locations)",
-    "monitoring": "Sentry (EU instance) + Custom metrics",
-    "ci_cd": "GitHub Actions → Hetzner deployment",
-    "secrets": "Hetzner Cloud secrets management"
-}
-
-# EU-focused scaling considerations
-SCALING_PLAN = {
-    "horizontal": "Multiple Hetzner instances behind load balancer",
-    "database": "Read replicas across EU data centers",
-    "background": "Separate Celery workers on Hetzner",
-    "caching": "EU CDN for frequently accessed feeds",
-    "monitoring": "Auto-scaling based on EU traffic patterns",
-    "compliance": "GDPR data residency guaranteed"
+  "integrations": {
+    "kit_convertkit": "Real-time email notifications",
+    "paddle_billing": "EU-compliant subscription handling",
+    "calendar_compatibility": "Works with Outlook, Google, Apple",
+    "gdpr_compliance": "EU data residency + privacy"
+  }
 }
 ```
 
-### MVP Success Metrics
+### Business Success Metrics
 ```python
-MVP_SUCCESS_CRITERIA = {
-    "technical": {
-        "deadline_extraction": "50+ deadlines captured",
-        "accuracy": "80% manual validation success",
-        "uptime": "99% website availability"
-    },
-    "adoption": {
-        "downloads": "100 calendar downloads in Month 3",
-        "feedback": "Collect 20+ user feedback responses",
-        "engagement": "Track repeat downloads and usage"
-    },
-    "business": {
-        "cost": "<€500/month total investment",
-        "learning": "Validate demand before monetization",
-        "roadmap": "User feedback drives mid-state features"
-    }
+business_metrics = {
+  "mvp_phase": {
+    "calendar_downloads": "100 downloads in Month 3",
+    "email_subscribers": "50 Kit/ConvertKit subscribers",
+    "user_feedback": "Collect validation for monetization",
+    "deadline_accuracy": "90%+ user-reported accuracy"
+  },
+
+  "growth": {
+    "seo_ranking": "Top 10 for 'EU compliance deadlines'",
+    "email_growth": "20% monthly Kit/ConvertKit growth",
+    "word_of_mouth": "Organic referrals from compliance teams",
+    "paddle_conversion": "10-20% free to paid conversion"
+  },
+
+  "content_policy": {
+    "pure_data_only": "Never publish commentary or analysis",
+    "deadline_changes": "Only dates/deadlines/changes notifications",
+    "no_editorial": "No blog posts, opinions, or market analysis",
+    "simple_messaging": "Basic deadline notifications via Kit/ConvertKit"
+  }
 }
 ```
 
 ---
 
-**Company**: Blinktank GmbH, Berlin | **Product**: 50Data MVP
-**Strategy**: Free MVP → Basic Monetization → Full Platform
-**Timeline**: 4 weeks to MVP launch | **Investment**: <€500/month
-**Domain**: 50data.eu | **Next**: Simple MVP development and user validation
+**Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
+**Product**: 50Data EU Compliance Deadline Service | **Domain**: 50data.eu
+**Strategy**: Three-phase evolution (Free MVP → Paid Tiers → API Platform)
+**MVP**: Simple deadline service with Kit/ConvertKit + Paddle integration
+**Investment**: €500/month basic hosting + APIs | **Risk**: Low risk, proven approach
+**Next Steps**: Build simple deadline service in 4 weeks, target 100 downloads Month 3
+**Content Policy**: Pure deadline data only - never editorial content or commentary

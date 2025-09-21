@@ -1,309 +1,222 @@
-# Implementation Roadmap - 50Data EU Compliance Platform
+# Implementation Roadmap - 50Data EU Compliance Deadline Service
 
-*Blinktank GmbH | Hetzner Cloud EU Deployment*
+*Blinktank GmbH | Simple MVP for EU Compliance Teams*
 
-## 🎯 4-Week MVP Development Plan (Free Version)
+## 🎯 4-Week Simple MVP Development Plan
 
 ### Overview & Success Criteria
 
-**50Data MVP Goal**: Launch free EU compliance calendar with user adoption validation
+**50Data MVP Goal**: Launch simple deadline service with pure compliance data
 
 **50Data Technical Targets:**
-- 80% date extraction accuracy (MVP threshold)
-- 50+ EU compliance deadlines captured
-- 99% website uptime via 50data.eu
-- Basic Hetzner hosting (€5/month)
+- 90%+ deadline extraction accuracy from EU legal sources
+- ICS calendar generation and download functionality
+- Kit/ConvertKit email integration for pure deadline notifications
+- Basic Hetzner hosting with SQLite database
 
-**50Data Adoption Targets:**
+**50Data Business Targets:**
 - 100 calendar downloads by Month 3
-- 500 downloads by Month 6
-- User feedback collection for roadmap
-- No revenue target (free MVP)
+- 50 Kit/ConvertKit email subscribers by Month 3
+- User feedback collection for monetization validation
+- Email-first growth approach with compliance professionals
 
 ---
 
-## 📅 Simplified 4-Week Implementation
+## 📅 Simple 4-Week Implementation
 
-### Week 1: Setup & Data Research
+### Week 1: Foundation & Data Sources
 
-**Primary Focus**: Basic setup and manual deadline research
+**Primary Focus**: Basic setup and EU legal source integration
 
 #### Day 1-2: Project Foundation
-- [ ] Set up basic Python project structure
-- [ ] Register for EUR-Lex API access (free tier)
-- [ ] Register 50data.eu domain and basic Hetzner VPS
-- [ ] Create simple development environment
+- [ ] Set up basic Python Flask project with simple architecture
+- [ ] Configure SQLite database schema for deadline storage
+- [ ] Deploy basic Hetzner VPS (€10/month) with EU hosting
+- [ ] Set up 50data.eu domain with Let's Encrypt SSL
 
-#### Day 3-4: Manual Research
-- [ ] Research German eRechnung deadlines manually
-- [ ] Identify 20-30 key EU compliance deadlines
-- [ ] Test EUR-Lex API for specific documents (AI Act, etc.)
-- [ ] Create basic deadline database (SQLite or JSON)
+#### Day 3-4: EU Data Source Integration
+- [ ] Register for EUR-Lex API access and test basic queries
+- [ ] Implement simple EUR-Lex document fetching
+- [ ] Research and compile German eRechnung deadline data manually
+- [ ] Create basic legal source parsing with regex patterns
 
-#### Day 5-7: Basic Processing
-- [ ] Create simple scripts for data processing
-- [ ] Basic regex date extraction from legal texts
-- [ ] Manual validation of extracted deadlines
-- [ ] Generate first test ICS calendar file
+#### Day 5-7: Deadline Extraction Engine
+- [ ] Build simple date extraction from legal documents
+- [ ] Implement manual validation workflow for deadline accuracy
+- [ ] Create basic deadline storage in SQLite database
+- [ ] Set up simple logging and error handling
 
 **Week 1 Deliverables:**
-- 50data.eu domain with basic hosting
-- 30+ manually researched compliance deadlines
-- Basic EUR-Lex API integration
-- First test ICS calendar file
+- Basic Flask application deployed on 50data.eu
+- EUR-Lex API integration with simple document fetching
+- Manual deadline database with 20+ validated deadlines
+- Simple deadline extraction and validation workflow
 
 ---
 
-### Week 2: Calendar Generation
+### Week 2: Calendar Generation & Email Integration
 
-**Primary Focus**: ICS generation and basic website
+**Primary Focus**: ICS calendar system and Kit/ConvertKit integration
 
 #### Day 1-2: ICS Calendar Generation
-- [ ] Create simple ICS file generation script
-- [ ] Add proper RFC 5545 compliance
-- [ ] Include deadline reminders (7 days, 1 day)
-- [ ] Test calendar compatibility (Outlook, Google Calendar)
+- [ ] Build RFC 5545 compliant ICS calendar generator
+- [ ] Implement basic calendar event creation for deadlines
+- [ ] Add reminder functionality (7 days, 1 day before)
+- [ ] Test calendar compatibility (Outlook, Google Calendar, Apple)
 
-#### Day 3-4: Basic Website
-- [ ] Create simple Flask website
-- [ ] Basic HTML page with download link
-- [ ] Add SSL certificate to 50data.eu
-- [ ] Test file download functionality
+#### Day 3-4: Kit/ConvertKit Integration
+- [ ] Set up Kit/ConvertKit account and API access
+- [ ] Implement email subscriber management
+- [ ] Create simple email templates for deadline notifications
+- [ ] Build webhook system for subscriber management
 
-#### Day 5-7: Content & Polish
-- [ ] Add 50+ compliance deadlines to calendar
-- [ ] Create basic website content (description, instructions)
-- [ ] Manual quality control of all deadlines
-- [ ] Basic analytics setup (download tracking)
+#### Day 5-7: Website & Download System
+- [ ] Create simple website with calendar download functionality
+- [ ] Implement one-click ICS file download
+- [ ] Add basic email capture form for Kit/ConvertKit
+- [ ] Set up simple analytics for download tracking
 
 **Week 2 Deliverables:**
-- Working ICS calendar with 50+ deadlines
-- Basic 50data.eu website
-- Download tracking functionality
-- Manual validation of all deadlines
+- Working ICS calendar generation with 50+ deadlines
+- Kit/ConvertKit integration for email notifications
+- Basic website with download functionality
+- Email capture system for subscriber growth
 
 ---
 
-### Week 3: Testing & Polish
+### Week 3: Testing & Paddle Integration
 
-**Primary Focus**: Quality control and soft launch
+**Primary Focus**: Quality assurance and billing system setup
 
-#### Day 1-2: Testing & Validation
-- [ ] Test calendar in multiple applications (Outlook, Apple, Google)
-- [ ] Validate all deadline dates and descriptions
-- [ ] Check website functionality across browsers
-- [ ] Test download analytics and tracking
+#### Day 1-2: Calendar Testing
+- [ ] Test ICS calendar compatibility across all major platforms
+- [ ] Validate deadline accuracy with manual verification
+- [ ] Test email delivery rates via Kit/ConvertKit
+- [ ] Check mobile responsiveness and download functionality
 
-#### Day 3-4: Content Creation
-- [ ] Write clear website copy and instructions
-- [ ] Create user guide for calendar import
-- [ ] Add feedback collection form
-- [ ] Set up basic user support email
+#### Day 3-4: Paddle Billing Setup
+- [ ] Set up Paddle account for EU billing compliance
+- [ ] Create subscription products for future monetization
+- [ ] Implement Paddle webhook handling for subscription events
+- [ ] Test Paddle checkout process and payment flows
 
-#### Day 5-7: Soft Launch
-- [ ] Launch to small test group (friends, colleagues)
-- [ ] Collect initial feedback and fix issues
-- [ ] Monitor download patterns and usage
-- [ ] Prepare for public launch
+#### Day 5-7: Content & Quality Control
+- [ ] Manual validation of all 50+ deadlines in calendar
+- [ ] Create pure deadline email templates (no commentary)
+- [ ] Set up basic monitoring and uptime alerts
+- [ ] Prepare user feedback collection system
 
 **Week 3 Deliverables:**
-- Fully tested and validated calendar
-- Complete website with clear instructions
-- Feedback collection system
-- Initial user testing completed
+- Fully tested calendar compatibility across platforms
+- Paddle billing system ready for future monetization
+- 50+ manually validated deadlines with pure data approach
+- Basic monitoring and quality control processes
 
 ---
 
-### Week 4: Launch & Marketing
+### Week 4: Launch & User Acquisition
 
-**Primary Focus**: Public launch and user acquisition
+**Primary Focus**: Simple launch and email-first growth
 
 #### Day 1-2: Launch Preparation
-- [ ] Final quality check of all deadlines
-- [ ] Set up basic monitoring and uptime alerts
-- [ ] Prepare launch announcement content
-- [ ] Create social media accounts (LinkedIn, Twitter)
+- [ ] Final testing of calendar download and email systems
+- [ ] Set up basic SEO for "EU compliance deadlines" keywords
+- [ ] Create simple marketing copy focused on pure deadline data
+- [ ] Prepare Kit/ConvertKit email sequences for new subscribers
 
 #### Day 3-4: Public Launch
-- [ ] Announce on LinkedIn with compliance focus
-- [ ] Post in German compliance communities
-- [ ] Create basic SEO content for German eRechnung
-- [ ] Start collecting user emails for updates
+- [ ] Launch basic website with free calendar download
+- [ ] Begin SEO content targeting compliance professionals
+- [ ] Start Kit/ConvertKit lead magnets for calendar downloads
+- [ ] Create social media presence (LinkedIn focus)
 
-#### Day 5-7: Feedback & Iteration
-- [ ] Monitor downloads and user feedback
-- [ ] Fix any issues discovered post-launch
-- [ ] Plan next iteration based on user feedback
-- [ ] Document lessons learned for mid-state phase
+#### Day 5-7: Initial User Acquisition
+- [ ] Monitor downloads and Kit/ConvertKit subscriber growth
+- [ ] Collect user feedback on deadline accuracy and usefulness
+- [ ] Iterate based on user feedback and usage patterns
+- [ ] Plan next iteration for additional EU countries
 
 **Week 4 Deliverables:**
 - Live 50data.eu with free calendar download
-- Initial marketing and user acquisition
-- User feedback collection system
-- MVP validation and next phase planning
+- Initial user base with calendar downloads and email subscribers
+- User feedback collection and validation
+- Foundation for growth with Kit/ConvertKit and Paddle integration
 
 ## 🛣️ Post-MVP Evolution
 
 ### Mid-state Phase (Months 3-8)
 
-**Goal**: Monetization and country expansion
+**Goal**: Multi-country expansion and Paddle monetization
 
 **Key Milestones:**
-- Add user accounts and basic authentication
-- Implement Poland, Austria, Netherlands APIs
-- Create basic subscription tiers (€19-49/month)
-- Add deduplication and filtering features
-- Target: €2-5K MRR
+- Add Poland, Austria, Netherlands legal sources
+- Launch Paddle subscription tiers (€9-29/month)
+- Advanced Kit/ConvertKit segmentation by country
+- Basic API access for developers
+- Target: €10-50K MRR with 200+ subscribers
 
 ### End-state Phase (Year 2+)
 
-**Goal**: Full EU platform
+**Goal**: Complete EU coverage and API platform
 
 **Key Milestones:**
-- Complete EU-27 country coverage
-- Advanced API access and integrations
-- White-label solutions for consultancies
-- Manual deadline entry if APIs unavailable
-- Target: €20-50K MRR
+- Complete EU-27 deadline coverage
+- Enterprise API access via Paddle (€99-199/month)
+- White-label calendar embedding for legal software
+- Real-time webhook notifications for system integrations
+- Target: €100K+ MRR with enterprise API customers
 
----
+## 🚀 Month 2-6: Scaling Deadline Service Platform
 
-### Week 6: Monitoring & Optimization
-
-**Primary Focus**: System reliability and performance
-
-#### Day 1-2: Monitoring Setup
-- [ ] Implement application performance monitoring (APM)
-- [ ] Add business metrics tracking (feed usage, extraction accuracy)
-- [ ] Create alerting for system failures and performance issues
-- [ ] Set up log aggregation and analysis
-
-#### Day 3-4: Performance Optimization
-- [ ] Optimize database queries and indexing
-- [ ] Implement CDN for feed caching (CloudFlare)
-- [ ] Add database connection pooling and read replicas
-- [ ] Optimize NLP processing pipeline performance
-
-#### Day 5-7: Security & Compliance
-- [ ] Implement security headers and HTTPS
-- [ ] Add input validation and SQL injection protection
-- [ ] Create data backup and disaster recovery procedures
-- [ ] Implement GDPR compliance (data export/deletion)
-
-**Week 6 Deliverables:**
-- Comprehensive monitoring and alerting
-- Performance optimizations (sub-2s response times)
-- Security hardening and GDPR compliance
-- Automated backup and recovery procedures
-
----
-
-### Week 7: Pilot Customer Preparation
-
-**Primary Focus**: Customer-facing features and onboarding
-
-#### Day 1-2: Landing Page & Documentation
-- [ ] Create marketing landing page with value proposition
-- [ ] Write comprehensive user documentation
-- [ ] Create API documentation and integration guides
-- [ ] Implement customer onboarding flow
-
-#### Day 3-4: Customer Support System
-- [ ] Set up customer support ticket system
-- [ ] Create knowledge base and FAQ
-- [ ] Implement user feedback collection
-- [ ] Add customer communication tools (email, chat)
-
-#### Day 5-7: Pilot Program Setup
-- [ ] Create pilot customer registration process
-- [ ] Implement feedback collection and analytics
-- [ ] Set up customer success tracking
-- [ ] Create pilot customer communication materials
-
-**Week 7 Deliverables:**
-- Professional landing page and documentation
-- Customer support infrastructure
-- Pilot program registration and tracking
-- Customer onboarding materials
-
----
-
-### Week 8: Launch & Customer Acquisition
-
-**Primary Focus**: Go-to-market execution and customer acquisition
-
-#### Day 1-2: Pre-Launch Testing
-- [ ] Complete end-to-end system testing
-- [ ] Perform load testing with simulated user traffic
-- [ ] Validate data accuracy with manual compliance checks
-- [ ] Test customer onboarding and payment flows
-
-#### Day 3-4: Marketing Launch
-- [ ] Launch landing page and marketing materials
-- [ ] Begin outreach to target compliance consultancies
-- [ ] Create content marketing (LinkedIn posts, compliance articles)
-- [ ] Start SEO optimization for compliance keywords
-
-#### Day 5-7: Customer Acquisition
-- [ ] Onboard first 5 pilot customers
-- [ ] Collect customer feedback and iterate
-- [ ] Monitor system performance with real user traffic
-- [ ] Create customer success stories and case studies
-
-**Week 8 Deliverables:**
-- 5-10 pilot customers actively using the system
-- Customer feedback and product iteration
-- System running stably under real user load
-- Foundation for scaling and growth
-
----
-
-## 🔄 Post-MVP Roadmap (Months 2-6)
-
-### Month 2: EU Geographic Expansion
-**Focus**: Add Netherlands and Poland APIs to 50Data
+### Month 2: User Growth & Kit/ConvertKit Optimization
+**Focus**: Grow email subscribers and optimize notification system
 
 **Key Deliverables:**
-- Netherlands Overheid.nl API integration
-- Poland ISAP/Sejm API integration
-- Additional EU compliance frameworks (DORA, CSRD)
-- 50+ EU customers, €10K MRR
+- Reach 100+ Kit/ConvertKit email subscribers
+- Implement country-based segmentation for targeted notifications
+- Add RSS feeds for additional deadline sources
+- Optimize SEO for "EU compliance deadlines" keywords
+- Target: 200+ calendar downloads, 100+ email subscribers
 
-### Month 3: Advanced Features
-**Focus**: Enhanced filtering and notifications
-
-**Key Deliverables:**
-- Advanced filtering (company size, industry-specific)
-- Mobile application (iOS/Android)
-- Slack/Teams integrations
-- Custom compliance tracking
-
-### Month 4: Enterprise Features
-**Focus**: White-label and enterprise tools
+### Month 3: Multi-Country Expansion (Poland)
+**Focus**: Add first additional country with manual research
 
 **Key Deliverables:**
-- White-label feed customization
-- Advanced analytics and reporting
-- Enterprise SSO integration
-- Bulk API operations
+- Research and add Polish compliance deadlines manually
+- Create Poland-specific calendar filtering
+- Segment Kit/ConvertKit subscribers by country interest
+- Prepare Paddle subscription tiers for testing
+- Target: 300+ downloads, 150+ subscribers, Poland coverage
 
-### Month 5: AI Enhancement
-**Focus**: Machine learning improvements
-
-**Key Deliverables:**
-- Fine-tuned BERT models for compliance classification
-- Automated compliance impact analysis
-- Predictive deadline modeling
-- Natural language query interface
-
-### Month 6: Full EU Coverage
-**Focus**: Complete EU-27 implementation
+### Month 4: Paddle Monetization Launch
+**Focus**: Launch first paid subscription tiers via Paddle
 
 **Key Deliverables:**
-- All EU member state coverage
-- Complete compliance framework support
-- Partnership channel development
-- €50K+ MRR target
+- Launch Basic Plan (€9/month) for multi-country access
+- Implement Paddle billing integration fully
+- Create Premium Plan (€29/month) with advanced notifications
+- Add Austria and Netherlands deadline coverage
+- Target: 500+ downloads, 200+ subscribers, 20+ Paddle customers
+
+### Month 5: API Development & Developer Access
+**Focus**: Basic API for legal tech companies
+
+**Key Deliverables:**
+- Build simple REST API for deadline access
+- Create developer documentation and pricing
+- Launch API access via Paddle (€99/month)
+- Partnership outreach to legal software companies
+- Target: €5K MRR, 10+ API customers, 4 countries covered
+
+### Month 6: Enterprise Features & White-label
+**Focus**: Enterprise calendar embedding and white-label solutions
+
+**Key Deliverables:**
+- White-label calendar embedding for legal software
+- Enterprise API plans with higher rate limits
+- Real-time webhook notifications for deadline changes
+- Partnership agreements with 2-3 legal tech companies
+- Target: €10K+ MRR, 50+ Paddle customers, enterprise traction
 
 ---
 
@@ -311,57 +224,57 @@
 
 ### Technical Metrics
 
-**Data Quality:**
-- Date extraction accuracy: >90%
-- Compliance deadline coverage: >80%
-- False positive rate: <5%
-- Data freshness: <24 hours for new deadlines
+**Deadline Processing:**
+- Deadline extraction accuracy: >90% manual validation success
+- Calendar generation speed: <10 seconds for ICS file creation
+- Website load time: <3 seconds for calendar download
+- Email delivery rate: >99% via Kit/ConvertKit
 
 **Performance:**
-- API response time: <2 seconds
-- Feed generation time: <5 seconds
-- System uptime: >99.5%
-- Database query performance: <100ms
+- Calendar download response: <2 seconds
+- Email notification delivery: Real-time via Kit/ConvertKit
+- System uptime: >99% (basic Hetzner hosting SLA)
+- Database query performance: <100ms (SQLite)
 
-**Scalability:**
-- Support 1000+ concurrent users
-- Process 10K+ documents daily
-- Generate 100K+ feed requests daily
-- Handle 10K+ API calls per hour
+**Compatibility:**
+- Calendar compatibility: Outlook, Google Calendar, Apple Calendar
+- Mobile responsive: Works on all devices and screen sizes
+- Email client support: All major email clients via Kit/ConvertKit
+- Browser support: Chrome, Firefox, Safari, Edge
 
 ### Business Metrics
 
-**Customer Acquisition:**
-- Month 1: 5 pilot customers
-- Month 2: 25 customers
-- Month 3: 50 customers
-- Month 6: 200 customers
+**User Growth:**
+- Month 1: 50 calendar downloads
+- Month 2: 100 downloads, 25 Kit/ConvertKit subscribers
+- Month 3: 200 downloads, 50 subscribers
+- Month 6: 500 downloads, 100 subscribers, 20 Paddle customers
 
-**Revenue Growth:**
-- Month 1: €500 MRR
-- Month 2: €2K MRR
-- Month 3: €10K MRR
-- Month 6: €50K MRR
+**Revenue Growth (Post-Monetization):**
+- Month 4: €200 MRR (first Paddle subscriptions)
+- Month 5: €1K MRR (basic tier adoption)
+- Month 6: €3K MRR (premium tier + API access)
+- Year 1: €10K+ MRR target
 
-**Customer Success:**
-- Customer retention: >80% after 3 months
-- Net Promoter Score: >50
-- Support ticket resolution: <24 hours
-- Customer satisfaction: >8/10
+**Content Quality:**
+- Pure deadline accuracy: >95% user-reported accuracy
+- Email engagement: >40% open rate for Kit/ConvertKit emails
+- Calendar usage: >70% of downloads result in actual calendar imports
+- User feedback: Positive validation for monetization approach
 
 ### Product Metrics
 
-**Feature Adoption:**
-- Feed usage: >80% of customers use feeds weekly
-- API adoption: >30% of enterprise customers use API
-- Webhook usage: >50% of professional customers
-- Mobile usage: >40% of customers (post mobile launch)
+**Coverage:**
+- Countries covered: EU + Germany (MVP), Poland/Austria (Month 3-4)
+- Deadline sources: EUR-Lex + German government sources
+- Update frequency: Weekly manual validation + monthly source checks
+- Language support: English only (MVP), German/Polish (future)
 
-**Data Coverage:**
-- EU compliance frameworks: 100% of major frameworks
-- Geographic coverage: 27 EU member states
-- Language support: EN, FR, DE, ES, IT, PL
-- Update frequency: Real-time for critical deadlines
+**Integration Success:**
+- Kit/ConvertKit: Real-time email notifications for deadline changes
+- Paddle: EU-compliant billing with automatic VAT handling
+- Calendar sync: Works with all major calendar applications
+- API usage: Developer adoption and partnership growth
 
 ---
 
@@ -369,75 +282,83 @@
 
 ### Technical Risks
 
-**Data Source Failures:**
-- Risk: API access revoked or rate limited
-- Mitigation: Multiple backup sources, graceful degradation
-- Contingency: RSS/scraping fallback methods
+**Deadline Accuracy:**
+- Risk: Incorrect deadline data impacts compliance decisions
+- Mitigation: Manual validation workflow, multiple source verification
+- Contingency: User feedback system, immediate correction process
 
-**Extraction Accuracy:**
-- Risk: NLP fails to capture complex deadline language
-- Mitigation: Manual validation workflow, confidence scoring
-- Contingency: Human-in-the-loop verification system
+**Legal Source Access:**
+- Risk: EUR-Lex API access revoked or rate limited
+- Mitigation: Multiple source approach, RSS backup feeds
+- Contingency: Manual monitoring, direct government source relationships
 
-**Performance Issues:**
-- Risk: System overwhelmed by user growth
-- Mitigation: Auto-scaling, performance monitoring
-- Contingency: Temporary usage limits, infrastructure upgrade
+**Kit/ConvertKit & Paddle Dependencies:**
+- Risk: Third-party service disruption affects core functionality
+- Mitigation: Service monitoring, backup email systems, alternative billing
+- Contingency: Direct email system, manual billing processes
 
 ### Business Risks
 
 **Competition:**
-- Risk: Large legal tech company launches competing product
-- Mitigation: Speed to market, customer lock-in via integrations
-- Contingency: Differentiation through specialization and accuracy
+- Risk: Legal publishers launch free compliance calendars
+- Mitigation: Speed to market, pure data focus, no editorial overhead
+- Contingency: API platform pivot, white-label differentiation
 
 **Market Validation:**
-- Risk: Target customers don't value automated compliance calendars
-- Mitigation: Early pilot feedback, rapid iteration
-- Contingency: Pivot to adjacent markets (legal research, consulting tools)
+- Risk: Compliance teams don't value simple deadline calendars
+- Mitigation: Free MVP approach, user feedback collection, rapid iteration
+- Contingency: Pivot to legal tech API, enterprise integration focus
 
-**Regulatory Changes:**
-- Risk: EU changes legal publication methods or access
-- Mitigation: Diverse data sources, regulatory monitoring
-- Contingency: Direct relationships with national authorities
+**Content Policy Compliance:**
+- Risk: Pressure to add commentary or analysis to compete
+- Mitigation: Strict pure data policy, user validation of approach
+- Contingency: Market education on pure data value vs commentary overload
 
 ### Operational Risks
 
-**Team Capacity:**
-- Risk: Development scope exceeds available resources
-- Mitigation: MVP focus, phased delivery, outsourcing options
-- Contingency: Scope reduction, timeline extension
+**Manual Validation Scaling:**
+- Risk: Manual deadline validation becomes bottleneck as sources grow
+- Mitigation: Systematic validation workflows, quality control processes
+- Contingency: Semi-automated validation tools, outsourced verification
 
-**Customer Support:**
-- Risk: Support burden exceeds capacity as customers grow
-- Mitigation: Self-service tools, comprehensive documentation
-- Contingency: Support team hiring, chatbot implementation
+**EU Legal Complexity:**
+- Risk: Complex legal language makes deadline extraction difficult
+- Mitigation: Legal expertise consultation, manual research approach
+- Contingency: Partnership with legal research services, expert validation
 
 ---
 
 ## 📊 MVP Success Metrics
 
 **Technical Goals:**
-- 50+ compliance deadlines in calendar
-- 80% date extraction accuracy
-- 99% website uptime
-- Compatible with all major calendar apps
+- 90%+ deadline extraction accuracy from EU legal sources
+- ICS calendar generation and compatibility with all major platforms
+- Kit/ConvertKit email integration with >99% delivery rate
+- Basic website with <3 second load time for calendar downloads
 
-**Adoption Goals:**
-- 100 downloads by Month 3
-- 500 downloads by Month 6
-- 20+ user feedback responses
-- Clear user demand validation
+**Business Goals:**
+- 100 calendar downloads by Month 3
+- 50 Kit/ConvertKit email subscribers by Month 3
+- User feedback collection for monetization validation
+- SEO ranking for "EU compliance deadlines" keywords
 
-**Investment Goals:**
-- <€500/month operating costs
-- <€2K total development investment
-- Validate market before monetization
+**Content Goals:**
+- 50+ manually validated EU compliance deadlines in calendar
+- Pure deadline data approach (no commentary or analysis ever)
+- Email notifications focused only on deadline changes
+- Quality control with manual verification of all deadline data
+
+**Platform Goals:**
+- Works with Outlook, Google Calendar, Apple Calendar
+- Mobile-responsive download and email experience
+- Paddle billing integration ready for future monetization
+- EU data residency and GDPR compliance via Hetzner hosting
 
 ---
 
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
-**Product**: 50Data MVP (Free EU Compliance Calendar)
-**Strategy**: Free MVP → Basic Monetization → Full Platform
-**Timeline**: 4 weeks to launch | **Investment**: <€500/month
-**Next Steps**: Begin Week 1 with basic setup and deadline research
+**Product**: 50Data EU Compliance Deadline Service
+**Strategy**: Free MVP → Paid Tiers → API Platform
+**Timeline**: 4 weeks to simple deadline service | **Investment**: €500/month
+**Next Steps**: Build simple deadline calendar with Kit/ConvertKit + Paddle integration
+**Content Policy**: Pure deadline data only - never editorial content or commentary
