@@ -1,224 +1,220 @@
-# Technical Architecture - 50Data EU Compliance Platform
+# Technical Architecture - 50Data MVP
 
-*Blinktank GmbH | Hetzner Cloud EU Infrastructure*
+*Blinktank GmbH | Simple MVP Architecture*
+*Three-Phase Evolution: MVP → Mid-state → End-state*
 
-## 🏗️ System Overview
+## 🏗️ MVP System Overview
 
-### High-Level Architecture
+### Simplified MVP Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    COMPLIANCE CALENDAR SYSTEM               │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌──────────────┐    ┌─────────────────┐    ┌─────────────┐ │
-│  │   INGESTION   │───▶│    PROCESSING    │───▶│   DELIVERY  │ │
-│  │              │    │                 │    │             │ │
-│  │ • EUR-Lex    │    │ • Date Extract  │    │ • ICS Feeds │ │
-│  │ • National   │    │ • NLP Analysis  │    │ • REST API  │ │
-│  │ • RSS Feeds  │    │ • Classification│    │ • Webhooks  │ │
-│  │ • Scheduled  │    │ • Validation    │    │ • Dashboard │ │
-│  └──────────────┘    └─────────────────┘    └─────────────┘ │
-│                                                             │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │                    DATA LAYER                           │ │
-│  │ [Raw Documents] [Processed Data] [User Configs] [Feeds] │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│              50DATA MVP (FREE)               │
+├─────────────────────────────────────────────┤
+│                                             │
+│  ┌─────────────┐    ┌─────────────────────┐ │
+│  │  SOURCES    │───▶│     PROCESSING      │ │
+│  │             │    │                     │ │
+│  │ • EUR-Lex   │    │ • Date Extraction   │ │
+│  │ • German    │    │ • Basic Validation  │ │
+│  │   Sources   │    │ • Static ICS Gen    │ │
+│  └─────────────┘    └─────────────────────┘ │
+│                              ▼               │
+│  ┌─────────────────────────────────────────┐ │
+│  │         STATIC DELIVERY                 │ │
+│  │  [50data.eu] → [ICS Download]          │ │
+│  └─────────────────────────────────────────┘ │
+└─────────────────────────────────────────────┘
 ```
 
-### Technology Stack (EU-Focused)
+**MVP Scope**: No user accounts, no payments, no real-time updates
+**Goal**: Prove value with free static calendar downloads
 
-**Backend Framework**
-- **FastAPI**: High-performance async Python framework
-- **Pydantic**: Data validation and serialization (GDPR-compliant)
-- **SQLAlchemy**: ORM with async support
-- **Alembic**: Database migrations
+### MVP Technology Stack (Simplified)
 
-**Database & Storage (EU Data Centers)**
-- **PostgreSQL**: Primary database (compliance data, users) - Hetzner managed
-- **Redis**: Caching and background job queue - Hetzner
-- **Hetzner Object Storage**: Raw document storage (EU data residency)
-- **TimescaleDB**: Time-series data for analytics
+**Backend (Basic)**
+- **Python**: Simple scripts for data processing
+- **Flask**: Minimal web framework for static site
+- **Requests**: HTTP client for API calls
+- **BeautifulSoup**: HTML parsing if needed
 
-**Processing & NLP (Multi-language EU)**
-- **spaCy**: Multi-language NLP (DE, FR, EN, ES, IT, PL support)
-- **Transformers**: Fine-tuned BERT for EU compliance classification
-- **Celery**: Asynchronous task processing
-- **scikit-learn**: Machine learning pipelines
+**Database (Minimal)**
+- **SQLite**: Local database for processed deadlines
+- **JSON files**: Configuration and data storage
+- **No user data**: No accounts, no personal information
 
-**Infrastructure & Deployment (Hetzner Cloud)**
-- **Docker**: Containerization
-- **Hetzner Cloud**: Primary hosting (EU data sovereignty)
-- **Hetzner Load Balancer**: High availability
-- **GitHub Actions**: CI/CD pipeline
-- **Sentry**: Error monitoring (EU instance)
+**Processing (Basic)**
+- **Regex**: Pattern matching for date extraction
+- **Basic Python**: Simple deadline classification
+- **Manual validation**: Quality control for MVP
+- **Static generation**: Pre-built calendar files
 
-## 📥 Data Ingestion Layer
+**Infrastructure (Simple)**
+- **Hetzner VPS**: €5/month basic server
+- **Static hosting**: Simple website + file downloads
+- **Domain**: 50data.eu with basic SSL
+- **No CDN**: Direct file serving for MVP
+- **Basic monitoring**: Uptime checks only
 
-### Priority 1: EUR-Lex API Collector
+## 📥 MVP Data Sources (Simplified)
+
+### MVP Source 1: EUR-Lex (EU-wide)
 
 ```python
-class EURLexCollector:
-    """Primary source for EU-level legislation"""
+class SimpleEURLexCollector:
+    """Minimal EUR-Lex integration for MVP"""
 
     BASE_URL = "https://eur-lex.europa.eu/api"
-    RATE_LIMIT = "10 requests/second"
 
-    async def collect_compliance_documents(self, since_date: str):
+    def collect_key_documents(self):
         """
-        Collection strategy:
-        1. Search by document type and date
-        2. Filter for compliance-relevant documents
-        3. Extract full text and metadata
-        4. Queue for processing
+        MVP strategy:
+        1. Target specific high-value documents (AI Act, eRechnung directives)
+        2. Manual document selection for MVP
+        3. Simple regex date extraction
+        4. Manual validation of results
         """
 
-    FOCUS_DOCUMENT_TYPES = {
-        "directives": "32{year}L{number}",  # EU Directives
-        "regulations": "32{year}R{number}", # EU Regulations
-        "decisions": "32{year}D{number}",   # EU Decisions
-        "recommendations": "32{year}H{number}"
-    }
-
-    COMPLIANCE_KEYWORDS = [
-        "implementation date", "application date", "compliance",
-        "deadline", "transposition", "effective date", "reporting"
+    MVP_TARGET_DOCUMENTS = [
+        "32024R1689",  # AI Act
+        "32014L0055",  # eRechnung directive
+        # Add more manually as needed
     ]
-```
 
-### Priority 2: National API Collectors
-
-```python
-class NationalCollectorManager:
-    """Manages country-specific legal data sources"""
-
-    def __init__(self):
-        self.collectors = {
-            "france": LegifranCollector(),    # OAuth 2.0 API
-            "poland": PolandCollector(),      # Open API
-            "austria": AustriaRISCollector(), # Open API
-            "netherlands": NetherlandsCollector(),
-            "czech": CzechCollector(),        # SPARQL endpoint
-            "luxembourg": LuxembourgCollector()
-        }
-
-    async def collect_all_updates(self):
-        """Run all collectors in parallel with rate limiting"""
-        tasks = []
-        for country, collector in self.collectors.items():
-            task = asyncio.create_task(
-                collector.collect_with_backoff()
-            )
-            tasks.append(task)
-
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-        return self.process_collection_results(results)
-```
-
-### Priority 3: RSS/XML Monitoring
-
-```python
-class RSSMonitor:
-    """Monitor RSS feeds for compliance updates"""
-
-    FEEDS = {
-        "erechnung": "https://www.inoreader.com/stream/user/1005663366/tag/eRechnung",
-        "vida": "https://www.inoreader.com/stream/user/1005663366/tag/ViDA"
-    }
-
-    async def monitor_feeds(self):
-        """
-        Monitoring strategy:
-        1. Check feeds every hour
-        2. Parse new entries
-        3. Extract links to legal documents
-        4. Queue for full document retrieval
-        """
-
-    def extract_compliance_signals(self, feed_entry):
-        """
-        Signal detection:
-        - Keywords: deadline, implementation, compliance
-        - Date patterns in titles/descriptions
-        - Links to official legal sources
-        """
-```
-
-## 🧠 NLP Processing Pipeline
-
-### Stage 1: Document Preprocessing
-
-```python
-class DocumentPreprocessor:
-    """Clean and prepare legal documents for analysis"""
-
-    def __init__(self):
-        self.language_detector = langdetect.detect
-        self.cleaners = {
-            "html": BeautifulSoup,
-            "pdf": PyPDF2,
-            "xml": lxml
-        }
-
-    async def preprocess_document(self, raw_document):
-        """
-        Preprocessing steps:
-        1. Detect language and document format
-        2. Extract clean text from HTML/PDF/XML
-        3. Segment into logical sections
-        4. Identify compliance-relevant sections
-        """
-
-    def segment_document(self, text: str):
-        """
-        Segmentation strategy:
-        - Article/section boundaries
-        - Implementation date sections
-        - Compliance requirement sections
-        - Deadline and timeline sections
-        """
-```
-
-### Stage 2: Date Extraction Engine
-
-```python
-class ComplianceDateExtractor:
-    """Extract and classify compliance dates from legal text"""
-
-    def __init__(self):
-        self.nlp_models = {
-            "en": spacy.load("en_core_web_lg"),
-            "fr": spacy.load("fr_core_news_lg"),
-            "de": spacy.load("de_core_news_lg")
-        }
-
-    async def extract_dates(self, text: str, language: str):
-        """
-        Multi-stage extraction:
-        1. Regex pattern matching
-        2. Named entity recognition
-        3. Dependency parsing for context
-        4. Relative date resolution
-        """
-
-    DATE_PATTERNS = {
-        "absolute": [
-            r"(\d{1,2}\s+\w+\s+\d{4})",      # "15 January 2025"
-            r"(\d{4}-\d{2}-\d{2})",          # "2025-01-15"
-            r"(\d{1,2}/\d{1,2}/\d{4})"       # "15/01/2025"
-        ],
-        "relative": [
-            r"(\d+)\s+months?\s+after\s+(.+)",
-            r"not\s+later\s+than\s+(\d+\s+\w+\s+\d{4})",
-            r"(\d+)\s+days?\s+from\s+(.+)"
-        ],
-        "contextual": [
-            r"shall\s+apply\s+from\s+(\d+\s+\w+\s+\d{4})",
-            r"comes?\s+into\s+force\s+on\s+(\d+\s+\w+\s+\d{4})",
-            r"transpose\s+.*\s+by\s+(\d+\s+\w+\s+\d{4})"
+    def simple_date_extraction(self, text: str):
+        """Basic regex patterns for MVP"""
+        patterns = [
+            r"shall apply from (\d{1,2} \w+ \d{4})",
+            r"(\d{1,2} \w+ \d{4})",  # General date pattern
+            r"(\d{4}-\d{2}-\d{2})"   # ISO format
         ]
-    }
+```
+
+### MVP Source 2: German Sources (eRechnung Focus)
+
+```python
+class SimpleGermanCollector:
+    """Basic German compliance info for MVP"""
+
+    def collect_erechnung_deadlines(self):
+        """
+        MVP approach for German eRechnung:
+        1. Manual research of key dates
+        2. Official government sources
+        3. Simple deadline list for MVP
+        4. No complex API integration needed
+        """
+
+    KNOWN_GERMAN_DEADLINES = [
+        {
+            "date": "2025-01-01",
+            "title": "eRechnung B2G mandatory",
+            "description": "Electronic invoicing mandatory for B2G transactions",
+            "source": "German government"
+        },
+        # Add more manually researched deadlines
+    ]
+
+## 🔄 MVP Processing Pipeline (Simplified)
+
+### Static Calendar Generation
+
+```python
+class MVPCalendarGenerator:
+    """Generate static ICS files for MVP"""
+
+    def generate_static_calendar(self, deadlines):
+        """
+        Simple MVP approach:
+        1. Combine EU + German deadline data
+        2. Generate single ICS file
+        3. Manual quality check
+        4. Upload to 50data.eu for download
+        """
+
+    def create_ics_event(self, deadline):
+        """Basic ICS event creation"""
+        return f"""
+BEGIN:VEVENT
+UID:{deadline['id']}@50data.eu
+DTSTART;VALUE=DATE:{deadline['date']}
+SUMMARY:{deadline['title']}
+DESCRIPTION:{deadline['description']}
+END:VEVENT
+"""
+```
+
+## 📦 MVP Website (Simple)
+
+### Basic Static Website
+
+```python
+class SimpleMVPSite:
+    """Basic Flask website for MVP"""
+
+    def __init__(self):
+        self.app = Flask(__name__)
+
+    def setup_routes(self):
+        """Simple MVP routes"""
+
+        @self.app.route('/')
+        def home():
+            return """
+            <h1>50Data - Free EU Compliance Calendar</h1>
+            <p>Download free EU compliance deadlines calendar</p>
+            <a href="/download/calendar.ics">Download Calendar</a>
+            """
+
+        @self.app.route('/download/calendar.ics')
+        def download_calendar():
+            """Serve static ICS file"""
+            return send_file('static/eu-compliance-calendar.ics',
+                           as_attachment=True,
+                           download_name='50data-eu-compliance.ics')
+
+## 🚀 MVP Deployment (Hetzner)
+
+### Simple VPS Setup
+
+```bash
+# Hetzner VPS setup for MVP
+# €5/month CX11 instance
+apt update && apt upgrade -y
+apt install python3 python3-pip nginx -y
+
+# Simple nginx config for static files + Flask
+# SSL via Let's Encrypt
+# Domain: 50data.eu
+```
+
+## 🛣️ Evolution Roadmap
+
+### Mid-state Architecture (Months 6-12)
+- Add user accounts and basic authentication
+- Implement country filtering and preferences
+- Add Poland, Austria, Netherlands APIs
+- Basic subscription tiers with Stripe
+- Deduplication and improved UX
+
+### End-state Architecture (Year 2+)
+- Full EU-27 country coverage
+- Advanced NLP processing
+- Real-time updates and webhooks
+- API access for integrations
+- White-label solutions
+- Advanced analytics and reporting
+
+## 🔧 MVP Development Requirements
+
+### Immediate MVP Tasks (4 weeks)
+```python
+MVP_IMPLEMENTATION = {
+    "week_1": "EUR-Lex API integration + German deadline research",
+    "week_2": "Basic date extraction + ICS generation",
+    "week_3": "Simple Flask website + Hetzner deployment",
+    "week_4": "Testing, quality control, launch preparation"
+}
 ```
 
 ### Stage 3: Compliance Classification
@@ -685,8 +681,30 @@ SCALING_PLAN = {
 }
 ```
 
+### MVP Success Metrics
+```python
+MVP_SUCCESS_CRITERIA = {
+    "technical": {
+        "deadline_extraction": "50+ deadlines captured",
+        "accuracy": "80% manual validation success",
+        "uptime": "99% website availability"
+    },
+    "adoption": {
+        "downloads": "100 calendar downloads in Month 3",
+        "feedback": "Collect 20+ user feedback responses",
+        "engagement": "Track repeat downloads and usage"
+    },
+    "business": {
+        "cost": "<€500/month total investment",
+        "learning": "Validate demand before monetization",
+        "roadmap": "User feedback drives mid-state features"
+    }
+}
+```
+
 ---
 
-**Company**: Blinktank GmbH, Berlin | **Product**: 50Data EU Compliance Platform
-**Hosting**: Hetzner Cloud (EU data sovereignty) | **Domain**: 50data.eu
-**Next**: Detailed implementation roadmap with Hetzner deployment tasks.
+**Company**: Blinktank GmbH, Berlin | **Product**: 50Data MVP
+**Strategy**: Free MVP → Basic Monetization → Full Platform
+**Timeline**: 4 weeks to MVP launch | **Investment**: <€500/month
+**Domain**: 50data.eu | **Next**: Simple MVP development and user validation

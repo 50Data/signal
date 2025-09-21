@@ -2,178 +2,169 @@
 
 *Blinktank GmbH | Hetzner Cloud EU Deployment*
 
-## 🎯 8-Week MVP Development Plan
+## 🎯 4-Week MVP Development Plan (Free Version)
 
 ### Overview & Success Criteria
 
-**50Data MVP Goal**: Launch EU compliance platform with 10 pilot customers and €2K MRR
+**50Data MVP Goal**: Launch free EU compliance calendar with user adoption validation
 
 **50Data Technical Targets:**
-- 90% date extraction accuracy for eRechnung & AI Act
-- 80% EU compliance deadline coverage for target frameworks
-- 99% feed availability via 50data.eu and <2 second API response times
-- EU data sovereignty compliance (Hetzner hosting)
+- 80% date extraction accuracy (MVP threshold)
+- 50+ EU compliance deadlines captured
+- 99% website uptime via 50data.eu
+- Basic Hetzner hosting (€5/month)
 
-**50Data Business Targets:**
-- 10 paying EU pilot customers by Week 8
-- €2K monthly recurring revenue
-- 8/10 customer satisfaction score (German/English support)
+**50Data Adoption Targets:**
+- 100 calendar downloads by Month 3
+- 500 downloads by Month 6
+- User feedback collection for roadmap
+- No revenue target (free MVP)
 
 ---
 
-## 📅 Week-by-Week Implementation
+## 📅 Simplified 4-Week Implementation
 
-### Week 1: Foundation & Data Access
+### Week 1: Setup & Data Research
 
-**Primary Focus**: Project setup and data source access
+**Primary Focus**: Basic setup and manual deadline research
 
 #### Day 1-2: Project Foundation
-- [ ] Initialize Git repository with proper structure
-- [ ] Set up Python project with Poetry/pip-tools
-- [ ] Configure development environment (Docker, PostgreSQL, Redis)
-- [ ] Implement basic FastAPI application structure
-- [ ] Set up testing framework (pytest) and CI/CD (GitHub Actions)
-
-#### Day 3-4: Data Source Setup
+- [ ] Set up basic Python project structure
 - [ ] Register for EUR-Lex API access (free tier)
-- [ ] Set up France Légifrance OAuth 2.0 authentication
-- [ ] Test API connections and rate limiting
-- [ ] Implement basic API client classes for EUR-Lex
-- [ ] Create database schema for source documents
+- [ ] Register 50data.eu domain and basic Hetzner VPS
+- [ ] Create simple development environment
 
-#### Day 5-7: Basic Data Ingestion
-- [ ] Implement EUR-Lex document search and retrieval
-- [ ] Create document storage pipeline (PostgreSQL)
-- [ ] Add basic error handling and logging
-- [ ] Set up Celery for background task processing
-- [ ] Test data ingestion with sample documents
+#### Day 3-4: Manual Research
+- [ ] Research German eRechnung deadlines manually
+- [ ] Identify 20-30 key EU compliance deadlines
+- [ ] Test EUR-Lex API for specific documents (AI Act, etc.)
+- [ ] Create basic deadline database (SQLite or JSON)
+
+#### Day 5-7: Basic Processing
+- [ ] Create simple scripts for data processing
+- [ ] Basic regex date extraction from legal texts
+- [ ] Manual validation of extracted deadlines
+- [ ] Generate first test ICS calendar file
 
 **Week 1 Deliverables:**
-- Working development environment (Hetzner Cloud ready)
-- EUR-Lex API integration
-- Basic document ingestion pipeline for 50Data
-- ~100 test EU documents in database
-- 50data.eu domain setup and SSL configuration
+- 50data.eu domain with basic hosting
+- 30+ manually researched compliance deadlines
+- Basic EUR-Lex API integration
+- First test ICS calendar file
 
 ---
 
-### Week 2: Date Extraction Engine
+### Week 2: Calendar Generation
 
-**Primary Focus**: Core NLP processing for date extraction
+**Primary Focus**: ICS generation and basic website
 
-#### Day 1-2: NLP Pipeline Setup
-- [ ] Install and configure spaCy with language models (EN, FR, DE)
-- [ ] Implement document preprocessing (HTML/PDF cleaning)
-- [ ] Create text segmentation for compliance sections
-- [ ] Set up basic language detection
+#### Day 1-2: ICS Calendar Generation
+- [ ] Create simple ICS file generation script
+- [ ] Add proper RFC 5545 compliance
+- [ ] Include deadline reminders (7 days, 1 day)
+- [ ] Test calendar compatibility (Outlook, Google Calendar)
 
-#### Day 3-4: Date Extraction Implementation
-- [ ] Implement regex patterns for absolute dates
-- [ ] Add relative date parsing ("6 months after")
-- [ ] Create context-aware date extraction using spaCy
-- [ ] Implement date normalization and validation
+#### Day 3-4: Basic Website
+- [ ] Create simple Flask website
+- [ ] Basic HTML page with download link
+- [ ] Add SSL certificate to 50data.eu
+- [ ] Test file download functionality
 
-#### Day 5-7: Classification & Validation
-- [ ] Build rule-based deadline type classifier
-- [ ] Implement confidence scoring for extractions
-- [ ] Create manual validation interface for accuracy testing
-- [ ] Test extraction accuracy on known compliance deadlines
+#### Day 5-7: Content & Polish
+- [ ] Add 50+ compliance deadlines to calendar
+- [ ] Create basic website content (description, instructions)
+- [ ] Manual quality control of all deadlines
+- [ ] Basic analytics setup (download tracking)
 
 **Week 2 Deliverables:**
-- Date extraction engine with 80%+ accuracy
-- Support for EN/FR/DE legal documents
-- Classification of deadline types
-- Validation dataset with 100+ verified dates
+- Working ICS calendar with 50+ deadlines
+- Basic 50data.eu website
+- Download tracking functionality
+- Manual validation of all deadlines
 
 ---
 
-### Week 3: ICS Feed Generation
+### Week 3: Testing & Polish
 
-**Primary Focus**: Calendar feed generation and user management
+**Primary Focus**: Quality control and soft launch
 
-#### Day 1-2: Feed Generation Core
-- [ ] Implement RFC 5545 compliant ICS generation
-- [ ] Create VEVENT structure for compliance deadlines
-- [ ] Add VALARM for configurable reminders
-- [ ] Implement timezone handling (Europe/Brussels)
+#### Day 1-2: Testing & Validation
+- [ ] Test calendar in multiple applications (Outlook, Apple, Google)
+- [ ] Validate all deadline dates and descriptions
+- [ ] Check website functionality across browsers
+- [ ] Test download analytics and tracking
 
-#### Day 3-4: User Management
-- [ ] Create user registration and authentication
-- [ ] Implement subscription management (Basic/Professional tiers)
-- [ ] Add user preference storage (countries, sectors, lead time)
-- [ ] Create unique feed URL generation
+#### Day 3-4: Content Creation
+- [ ] Write clear website copy and instructions
+- [ ] Create user guide for calendar import
+- [ ] Add feedback collection form
+- [ ] Set up basic user support email
 
-#### Day 5-7: Feed Customization
-- [ ] Implement filtering by country and sector
-- [ ] Add deadline type filtering (implementation, compliance, reporting)
-- [ ] Create feed caching with Redis
-- [ ] Test feed generation performance (<5 seconds)
+#### Day 5-7: Soft Launch
+- [ ] Launch to small test group (friends, colleagues)
+- [ ] Collect initial feedback and fix issues
+- [ ] Monitor download patterns and usage
+- [ ] Prepare for public launch
 
 **Week 3 Deliverables:**
-- Working ICS feed generation
-- User registration and authentication
-- Basic subscription management
-- Personalized feed filtering
+- Fully tested and validated calendar
+- Complete website with clear instructions
+- Feedback collection system
+- Initial user testing completed
 
 ---
 
-### Week 4: API & Webhook System
+### Week 4: Launch & Marketing
 
-**Primary Focus**: REST API and real-time notifications
+**Primary Focus**: Public launch and user acquisition
 
-#### Day 1-2: REST API Development
-- [ ] Implement `/api/v1/deadlines` endpoint with filtering
-- [ ] Add pagination and response optimization
-- [ ] Create API key authentication for enterprise users
-- [ ] Implement rate limiting (100 requests/hour basic, 1000/hour pro)
+#### Day 1-2: Launch Preparation
+- [ ] Final quality check of all deadlines
+- [ ] Set up basic monitoring and uptime alerts
+- [ ] Prepare launch announcement content
+- [ ] Create social media accounts (LinkedIn, Twitter)
 
-#### Day 3-4: Webhook System
-- [ ] Create webhook registration endpoint
-- [ ] Implement webhook event queue (deadline updates)
-- [ ] Add webhook delivery with retry logic
-- [ ] Create webhook testing and validation
+#### Day 3-4: Public Launch
+- [ ] Announce on LinkedIn with compliance focus
+- [ ] Post in German compliance communities
+- [ ] Create basic SEO content for German eRechnung
+- [ ] Start collecting user emails for updates
 
-#### Day 5-7: Integration & Testing
-- [ ] Test API performance under load
-- [ ] Implement API documentation (Swagger/OpenAPI)
-- [ ] Create integration examples (Python, JavaScript)
-- [ ] Add monitoring and error tracking (Sentry)
+#### Day 5-7: Feedback & Iteration
+- [ ] Monitor downloads and user feedback
+- [ ] Fix any issues discovered post-launch
+- [ ] Plan next iteration based on user feedback
+- [ ] Document lessons learned for mid-state phase
 
 **Week 4 Deliverables:**
-- Complete REST API with documentation
-- Webhook notification system
-- API performance testing results
-- Integration examples and SDKs
+- Live 50data.eu with free calendar download
+- Initial marketing and user acquisition
+- User feedback collection system
+- MVP validation and next phase planning
 
----
+## 🛣️ Post-MVP Evolution
 
-### Week 5: Payment & Subscription System
+### Mid-state Phase (Months 3-8)
 
-**Primary Focus**: Monetization and billing infrastructure
+**Goal**: Monetization and country expansion
 
-#### Day 1-2: Stripe Integration
-- [ ] Set up Stripe account and test environment
-- [ ] Implement subscription creation and management
-- [ ] Add payment webhook handling for subscription updates
-- [ ] Create subscription status management
+**Key Milestones:**
+- Add user accounts and basic authentication
+- Implement Poland, Austria, Netherlands APIs
+- Create basic subscription tiers (€19-49/month)
+- Add deduplication and filtering features
+- Target: €2-5K MRR
 
-#### Day 3-4: Billing Logic
-- [ ] Implement usage tracking for API calls
-- [ ] Add subscription tier enforcement (feed limits, features)
-- [ ] Create billing portal for subscription management
-- [ ] Implement trial period and cancellation handling
+### End-state Phase (Year 2+)
 
-#### Day 5-7: Admin Dashboard
-- [ ] Create admin interface for user management
-- [ ] Add subscription analytics and metrics
-- [ ] Implement customer support tooling
-- [ ] Create billing and revenue reporting
+**Goal**: Full EU platform
 
-**Week 5 Deliverables:**
-- Working payment and subscription system
-- Usage tracking and enforcement
-- Admin dashboard for customer management
-- Billing and revenue analytics
+**Key Milestones:**
+- Complete EU-27 country coverage
+- Advanced API access and integrations
+- White-label solutions for consultancies
+- Manual deadline entry if APIs unavailable
+- Target: €20-50K MRR
 
 ---
 
@@ -424,7 +415,29 @@
 
 ---
 
+## 📊 MVP Success Metrics
+
+**Technical Goals:**
+- 50+ compliance deadlines in calendar
+- 80% date extraction accuracy
+- 99% website uptime
+- Compatible with all major calendar apps
+
+**Adoption Goals:**
+- 100 downloads by Month 3
+- 500 downloads by Month 6
+- 20+ user feedback responses
+- Clear user demand validation
+
+**Investment Goals:**
+- <€500/month operating costs
+- <€2K total development investment
+- Validate market before monetization
+
+---
+
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
-**Product**: 50Data EU Compliance Platform | **Domain**: 50data.eu
-**Hosting**: Hetzner Cloud (EU data sovereignty) | **Focus**: EU-27 market
-**Next Steps**: Begin Week 1 implementation with Hetzner setup and EUR-Lex API integration.
+**Product**: 50Data MVP (Free EU Compliance Calendar)
+**Strategy**: Free MVP → Basic Monetization → Full Platform
+**Timeline**: 4 weeks to launch | **Investment**: <€500/month
+**Next Steps**: Begin Week 1 with basic setup and deadline research

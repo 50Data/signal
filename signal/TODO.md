@@ -1,118 +1,98 @@
-# Development TODO List - 50Data EU Compliance Platform
+# MVP TODO List - 50Data Free EU Compliance Calendar
 
-*Blinktank GmbH, Berlin | Hetzner Cloud EU Deployment*
+*4-Week MVP Development | Free Version Only*
 
-## 🚀 IMMEDIATE ACTIONS (Week 1)
+## 🚀 WEEK 1: Setup & Research
 
-### Critical Path - Start Today
+### Critical MVP Tasks - Start Today
 
-**Priority 1: 50Data Project Foundation**
-- [ ] Create new Git repository for 50data-compliance project
-- [ ] Set up Python project structure with pyproject.toml for 50Data
-- [ ] Initialize FastAPI application with basic health check endpoint
-- [ ] Configure Docker development environment (app, postgres, redis)
-- [ ] Set up pytest testing framework and pre-commit hooks
-- [ ] Register 50data.eu domain and configure DNS
-- [ ] Set up Hetzner Cloud account and basic project
+**Priority 1: Basic Setup**
+- [ ] Register 50data.eu domain
+- [ ] Set up basic Hetzner VPS (€5/month)
+- [ ] Create simple Python project for MVP
+- [ ] Set up basic development environment
 
-**Priority 2: EUR-Lex API Access**
-- [ ] **URGENT**: Register for EUR-Lex API access at https://eur-lex.europa.eu/content/tools/webservices.html
-- [ ] Test EUR-Lex SPARQL endpoint with sample queries
-- [ ] Create EUR-Lex client class with authentication and rate limiting
-- [ ] Test document retrieval for eRechnung and AI Act directives
+**Priority 2: API Access & Research**
+- [ ] **URGENT**: Register for EUR-Lex API access (free tier)
+- [ ] Research German eRechnung deadlines manually
+- [ ] Identify 20-30 key EU compliance deadlines
+- [ ] Test EUR-Lex API for specific documents
 
-**Priority 3: Database Schema**
-- [ ] Create PostgreSQL database schema for source documents
-- [ ] Add compliance deadlines table with proper indexing
-- [ ] Implement basic CRUD operations for documents
-- [ ] Add database migrations with Alembic
+**Priority 3: Data Collection**
+- [ ] Create simple deadline database (JSON/SQLite)
+- [ ] Manual research of compliance dates
+- [ ] Basic validation of deadline accuracy
+- [ ] Document sources for each deadline
 
 ---
 
 ## 📋 WEEK 1 DETAILED TASKS
 
-### Day 1: Environment Setup
+### Day 1: Basic Setup
 ```bash
-# Commands to run today for 50Data:
-mkdir 50data-compliance && cd 50data-compliance
+# Simple MVP commands:
+mkdir 50data-mvp && cd 50data-mvp
 git init
-touch pyproject.toml requirements.txt Dockerfile docker-compose.yml
-mkdir app tests docs
-echo "# 50Data EU Compliance Platform" > README.md
+touch requirements.txt main.py
+mkdir data templates static
+echo "# 50Data MVP - Free EU Compliance Calendar" > README.md
 ```
 
-**Tasks:**
-- [ ] Initialize project repository with proper .gitignore
-- [ ] Create pyproject.toml with dependencies (fastapi, sqlalchemy, celery, spacy)
-- [ ] Write Dockerfile for development environment
-- [ ] Create docker-compose.yml with postgres and redis services
-- [ ] Set up GitHub repository and initial commit
+**Simple MVP Tasks:**
+- [ ] Register 50data.eu domain (Namecheap/Cloudflare)
+- [ ] Set up basic Hetzner Cloud VPS
+- [ ] Create simple Python project structure
+- [ ] Basic Git repository setup
 
-**Dependencies to add:**
-```toml
-[tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.104.0"
-uvicorn = "^0.24.0"
-sqlalchemy = "^2.0.0"
-asyncpg = "^0.29.0"
-redis = "^5.0.0"
-celery = "^5.3.0"
-spacy = "^3.7.0"
-pydantic = "^2.5.0"
-httpx = "^0.25.0"
-python-multipart = "^0.0.6"
+**Minimal Dependencies:**
+```python
+# requirements.txt for MVP
+flask
+requests
+icalendar
 ```
 
-### Day 2: Basic FastAPI Application
-**Tasks:**
-- [ ] Create `app/main.py` with FastAPI application
-- [ ] Add health check endpoint (`/health`)
-- [ ] Implement basic error handling and logging
-- [ ] Add CORS middleware for development
-- [ ] Create basic project structure (models, routers, services)
+### Day 2: EUR-Lex Registration & Testing
+**MVP Tasks:**
+- [ ] Register for EUR-Lex API at https://eur-lex.europa.eu/content/tools/webservices.html
+- [ ] Test basic API connectivity
+- [ ] Research specific document IDs (AI Act: 32024R1689)
+- [ ] Create simple API test script
 
-**File structure to create:**
+**Simple file structure:**
 ```
-app/
-├── __init__.py
-├── main.py
-├── models/
-│   ├── __init__.py
-│   └── documents.py
-├── routers/
-│   ├── __init__.py
-│   ├── health.py
-│   └── api_v1.py
-├── services/
-│   ├── __init__.py
-│   └── collectors/
-└── core/
-    ├── __init__.py
-    ├── config.py
-    └── database.py
+50data-mvp/
+├── main.py          # Flask app
+├── data.py          # Data collection
+├── calendar_gen.py  # ICS generation
+├── data/            # JSON deadline storage
+├── static/          # Website files
+└── templates/       # HTML templates
 ```
 
-### Day 3: EUR-Lex API Integration
-**Tasks:**
-- [ ] **CRITICAL**: Complete EUR-Lex API registration (allow 24-48 hours for approval)
-- [ ] Create EUR-Lex client in `app/services/collectors/eurlex.py`
-- [ ] Implement SPARQL query builder for compliance documents
-- [ ] Add rate limiting (10 requests/second max)
-- [ ] Test with sample CELEX numbers for AI Act and eRechnung
+### Day 3-7: Manual Research & Data Collection
+**MVP Tasks:**
+- [ ] Research German eRechnung B2G deadline (Jan 1, 2025)
+- [ ] Research German eRechnung B2B deadlines (2026-2028)
+- [ ] Research AI Act implementation phases
+- [ ] Collect 30+ EU compliance deadlines manually
+- [ ] Create simple JSON database structure
+- [ ] Validate all dates with official sources
 
-**Sample SPARQL query to implement:**
-```sparql
-SELECT ?work ?title ?date WHERE {
-  ?work cdm:work_has_subject-matter ?subject .
-  ?subject skos:prefLabel ?title .
-  ?work cdm:work_date_document ?date .
-  FILTER(CONTAINS(LCASE(?title), "artificial intelligence") ||
-         CONTAINS(LCASE(?title), "electronic invoicing"))
-  FILTER(?date >= "2020-01-01"^^xsd:date)
+**JSON Structure Example:**
+```json
+{
+  "deadlines": [
+    {
+      "date": "2025-01-01",
+      "title": "eRechnung B2G mandatory (Germany)",
+      "description": "Electronic invoicing mandatory for B2G transactions",
+      "source": "German government regulation",
+      "countries": ["DE"],
+      "type": "implementation"
+    }
+  ]
 }
-ORDER BY DESC(?date)
-LIMIT 100
 ```
 
 ### Day 4: Database Implementation
@@ -292,9 +272,47 @@ DATE_PATTERNS = {
 
 ---
 
+## 🗓️ WEEKS 2-4: MVP Development Schedule
+
+### Week 2: Calendar Generation & Basic Website
+- [ ] Create ICS calendar generation script
+- [ ] Build simple Flask website
+- [ ] Add 50+ compliance deadlines to calendar
+- [ ] Test calendar compatibility (Outlook, Google, Apple)
+
+### Week 3: Testing & Polish
+- [ ] Comprehensive testing across platforms
+- [ ] Website content and user instructions
+- [ ] Feedback collection system
+- [ ] Soft launch to test users
+
+### Week 4: Public Launch & Marketing
+- [ ] Final quality checks
+- [ ] Public launch on LinkedIn and German compliance communities
+- [ ] User acquisition and feedback collection
+- [ ] MVP validation and next phase planning
+
+## 📊 MVP Success Criteria
+
+**Technical:**
+- 50+ compliance deadlines captured
+- Compatible with major calendar applications
+- 99% website uptime
+
+**Adoption:**
+- 100 downloads by Month 3
+- User feedback for roadmap
+- Validate demand for paid features
+
+**Investment:**
+- <€500/month total costs
+- Validate market before monetization
+
+---
+
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
-**Product**: 50Data EU Compliance Platform | **Domain**: 50data.eu
-**Hosting**: Hetzner Cloud (EU data sovereignty)
-**Status**: Ready to begin 50Data implementation
-**Next Action**: Register for EUR-Lex API access and setup Hetzner Cloud immediately
-**Target**: Working 50Data document ingestion by end of Week 1
+**Product**: 50Data MVP (Free EU Compliance Calendar)
+**Strategy**: Free MVP → Basic Monetization → Full Platform
+**Timeline**: 4 weeks to launch | **Investment**: <€500/month
+**Next Action**: Register 50data.eu domain and EUR-Lex API access today
+**Target**: Live free calendar download by Week 4

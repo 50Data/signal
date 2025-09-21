@@ -10,54 +10,58 @@ EU businesses struggle to track compliance deadlines across 27+ jurisdictions. M
 
 ## 💡 Solution
 
-50Data provides an automated compliance intelligence platform that:
-- Ingests legal texts from official EU sources (EUR-Lex, national APIs)
-- Extracts compliance dates using advanced NLP processing
-- Generates personalized ICS calendar feeds via 50data.eu
-- Delivers real-time deadline updates to European businesses
+50Data provides automated EU compliance deadline tracking through three evolution phases:
+
+**MVP (Free)**: Static calendar downloads from EU + German sources
+**Mid-state**: Low-hanging fruit countries + basic tiers
+**End-state**: Full EU-27 coverage + advanced features
 
 ## 🏆 Market Opportunity
 
-- **EU Market Size**: €50B+ affected by eRechnung alone, 25M+ EU businesses
-- **Target Customers**: EU compliance consultancies, European legal tech companies, finance teams
-- **Revenue Model**: SaaS subscriptions (€29-299/month) + API access
-- **Competitive Advantage**: EU data sovereignty, automated extraction, real-time updates, 10x cost reduction
+**MVP Strategy**: Prove value with free offering before monetization
+- **Initial Focus**: Germany (largest EU economy, early eRechnung adopter)
+- **Target Users**: German compliance teams, EU businesses with German operations
+- **Value Proposition**: Free EU compliance calendar (no competitors offer this)
+- **Monetization Path**: Build user base → Add countries → Introduce tiers
 
-## 🚀 MVP Focus
+## 🚀 MVP Scope (Free Version)
 
-**Phase 1 Compliance Areas:**
-- **eRechnung**: E-invoicing mandates (2024-2028 rollout)
-- **AI Act**: Implementation phases (2024-2027)
-- **ViDA**: VAT modernization (2028 timeline)
-- **DORA**: Financial resilience (2025 application)
+**Compliance Focus:**
+- **eRechnung**: German B2G (Jan 2025) + B2B deadlines
+- **AI Act**: EU-wide implementation phases
+- **Key EU Directives**: From EUR-Lex only
 
-**Geographic Coverage:**
-- EU-wide directives (EUR-Lex)
-- Germany (largest EU economy + early eRechnung adopter)
-- France (sophisticated legal-tech market + Légifrance API)
-- Additional EU member states in pipeline
+**Sources:**
+- EUR-Lex API (EU-wide legislation)
+- German legal sources (eRechnung focus)
+- English UI only
 
-## 🏗️ Architecture
+**Delivery:**
+- Static ICS calendar download
+- Basic website at 50data.eu
+- No user accounts, no payments
+
+## 🏗️ MVP Architecture (Simplified)
 
 ```
 EUR-Lex API ──┐
-National APIs ─┼──▶ [NLP Processor] ──▶ [Compliance DB] ──▶ [ICS Generator]
-RSS Feeds ─────┘        │                      │                    ▼
-                        ▼                      ▼            [50data.eu Feeds]
-               [Hetzner Cloud]           [EU Data Centers]
+German Sources ─┼──▶ [Date Extraction] ──▶ [Static ICS] ──▶ [Download]
+                │                              │              ▼
+                ▼                              ▼       [50data.eu]
+        [Simple Backend]              [Hetzner Hosting]
 ```
 
-## 📈 Success Metrics
+## 📈 MVP Success Metrics
 
 **Technical:**
-- 90% date extraction accuracy
-- 80% compliance deadline coverage
-- 99% feed availability
+- 80% date extraction accuracy (MVP threshold)
+- 50+ compliance deadlines captured
+- 99% website uptime
 
-**Business:**
-- 10 pilot customers (Month 3)
-- $2K MRR (Month 3)
-- $15K MRR (Month 6)
+**Adoption:**
+- 100 calendar downloads (Month 3)
+- 500 downloads (Month 6)
+- User feedback collection for roadmap
 
 ## 🚦 Quick Start
 
@@ -74,17 +78,25 @@ RSS Feeds ─────┘        │                      │                
 - `data-sources.md` - API specifications & legal sources
 - `TODO.md` - Actionable development tasks
 
-## 🎯 Target Customers
+## 🎯 Target Users (MVP)
 
-**Primary**: EU compliance consultancies (€200-500/month)
-**Secondary**: European legal tech companies (€500-2000/month API)
-**Tertiary**: EU businesses with compliance teams (€50-200/month)
+**Primary**: German compliance teams and consultancies
+**Secondary**: EU businesses with German operations
+**Tertiary**: Anyone needing EU compliance deadline tracking
 
-*Focus: Germany, France, Netherlands initially - full EU-27 expansion planned*
+*MVP Strategy: Build user base with free value, monetize later*
+
+## 🛣️ Product Evolution
+
+**MVP** → **Mid-state** → **End-state**
+Free static → Basic tiers → Full platform
+EU+DE only → Easy countries → All EU-27
+No accounts → Deduplication → Advanced features
 
 ---
 
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
-**Status**: MVP Planning Complete | **Next**: Development Phase
-**Timeline**: 8 weeks to pilot launch | **Hosting**: Hetzner Cloud (EU)
-**Domain**: 50data.eu | **Investment**: Minimal (API + hosting costs)
+**Status**: MVP Planning Complete | **Next**: Free Version Development
+**Timeline**: 4 weeks to MVP launch | **Hosting**: Hetzner Cloud (EU)
+**Domain**: 50data.eu | **Investment**: Minimal (API + hosting only)
+**Revenue**: MVP is free - monetization in mid-state phase

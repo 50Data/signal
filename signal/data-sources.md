@@ -1,102 +1,90 @@
-# Data Sources & API Specifications - 50Data EU Platform
+# Data Sources - 50Data MVP (Free Version)
 
-*Blinktank GmbH | EU-focused compliance data ingestion*
+*Simplified data collection for MVP launch*
 
-## 🎯 Priority 1: EUR-Lex (EU-Level Legislation)
+## 🎯 MVP Data Strategy
 
-### Overview
-**EUR-Lex** is the official EU legal database containing all EU legislation, case law, and legislative proposals. Critical for EU-wide compliance deadlines.
+**Approach**: Manual research + basic API integration
+**Sources**: EUR-Lex + German government sources
+**Timeline**: 4 weeks to 50+ deadlines
+**Cost**: <€50/month for APIs
 
-### API Access Details
+## 📋 MVP Source 1: EUR-Lex (EU-Level)
 
-**Base URL**: `https://eur-lex.europa.eu/api`
-**Alternative**: SPARQL endpoint at `https://publications.europa.eu/webapi/rdf/sparql`
+### MVP Approach
 
-**Authentication**:
-- Free registration required at https://eur-lex.europa.eu/content/tools/webservices.html
-- API key provided after approval (24-48 hours)
-- Include in header: `Authorization: Bearer {api_key}`
+**Strategy**: Target specific high-value documents manually
+**Documents**: AI Act, eRechnung directives, key EU regulations
+**Method**: Direct document access via CELEX numbers
+**Scope**: 20-30 key EU deadlines for MVP
 
-**Rate Limits**:
-- 10 requests per second maximum
-- 1000 requests per hour recommended
-- Implement exponential backoff for 429 responses
+### Simple API Access
 
-### Key Endpoints
+**Registration**: https://eur-lex.europa.eu/content/tools/webservices.html
+**Cost**: Free tier (sufficient for MVP)
+**Timeline**: 24-48 hours approval
+**Rate Limit**: 10 requests/second (more than enough for MVP)
 
-#### Document Search
-```http
-GET /search
-Parameters:
-- qid: Query ID for specific search types
-- type: Document type (directive, regulation, decision)
-- DD-DT: Date range (YYYY-MM-DD TO YYYY-MM-DD)
-- DN: CELEX number pattern
-- DI: Director-general responsible
-- form: Response format (json, xml)
+### MVP Target Documents
+
+**Key CELEX Numbers for MVP:**
+- **32024R1689**: AI Act (main regulation)
+- **32014L0055**: eRechnung directive
+- **32019L0944**: Clean Energy directive
+- Additional directives as research identifies
+
+### Simple Implementation
+
+```python
+# MVP EUR-Lex integration
+import requests
+
+def get_document_text(celex_number):
+    """Simple document retrieval for MVP"""
+    url = f"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:{celex_number}"
+    response = requests.get(url)
+    return response.text
+
+# Target documents for MVP
+MVP_DOCUMENTS = [
+    "32024R1689",  # AI Act
+    "32014L0055",  # eRechnung
+    # Add more as needed
+]
 ```
 
-#### Document Content
-```http
-GET /content
-Parameters:
-- uri: Document URI from search results
-- language: Language code (EN, FR, DE, etc.)
-- format: Content format (html, pdf, xml)
+## 📋 MVP Source 2: German Sources (Manual Research)
+
+### eRechnung Deadlines (Known)
+
+**Manual Research Targets:**
+```python
+GERMAN_ERECHNUNG_DEADLINES = [
+    {
+        "date": "2025-01-01",
+        "title": "eRechnung B2G mandatory (Germany)",
+        "description": "Electronic invoicing mandatory for B2G transactions",
+        "source": "German ViF regulation",
+        "countries": ["DE"],
+        "type": "implementation"
+    },
+    {
+        "date": "2026-01-01",
+        "title": "eRechnung B2B preparation (Germany)",
+        "description": "Preparation phase for B2B electronic invoicing",
+        "source": "German eRechnung roadmap",
+        "countries": ["DE"],
+        "type": "preparation"
+    }
+    # Add more through manual research
+]
 ```
 
-### CELEX Number Patterns
-
-**Format**: `3{year}{type}{sequential_number}`
-
-**Document Types**:
-- **L**: Directive (e.g., 32019L0944 = Directive 2019/944)
-- **R**: Regulation (e.g., 32024R1689 = Regulation 2024/1689)
-- **D**: Decision
-- **H**: Recommendation
-- **A**: Opinion
-
-### Sample SPARQL Queries
-
-#### eRechnung Related Documents
-```sparql
-PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-
-SELECT ?work ?title ?date ?celex WHERE {
-  ?work cdm:work_has_subject-matter ?subject .
-  ?subject skos:prefLabel ?title .
-  ?work cdm:work_date_document ?date .
-  ?work cdm:resource_legal_id_celex ?celex .
-
-  FILTER(
-    CONTAINS(LCASE(?title), "electronic invoicing") ||
-    CONTAINS(LCASE(?title), "e-invoicing") ||
-    CONTAINS(LCASE(?title), "digital invoicing")
-  )
-  FILTER(?date >= "2020-01-01"^^xsd:date)
-}
-ORDER BY DESC(?date)
-LIMIT 100
-```
-
-#### AI Act Documents
-```sparql
-SELECT ?work ?title ?date ?celex WHERE {
-  ?work cdm:work_has_subject-matter ?subject .
-  ?subject skos:prefLabel ?title .
-  ?work cdm:work_date_document ?date .
-  ?work cdm:resource_legal_id_celex ?celex .
-
-  FILTER(
-    CONTAINS(LCASE(?title), "artificial intelligence") ||
-    CONTAINS(LCASE(?title), "ai act") ||
-    ?celex = "32024R1689"
-  )
-  FILTER(?date >= "2020-01-01"^^xsd:date)
-}
-ORDER BY DESC(?date)
-```
+### Research Sources
+- German Federal Ministry of Finance
+- ViF (Verband elektronische Rechnung)
+- Official German eRechnung portal
+- BMWi (Federal Ministry for Economic Affairs)
 
 ### Implementation Example
 
@@ -559,9 +547,43 @@ class RateLimiter:
             return True
 ```
 
+## 🔄 MVP Data Collection Workflow
+
+### Week 1: Manual Research
+1. **German eRechnung deadlines** - Manual research from official sources
+2. **EU AI Act phases** - Extract from CELEX:32024R1689
+3. **Key EU directives** - Manual identification of high-impact deadlines
+4. **Validation** - Cross-check dates with multiple sources
+
+### Week 2: Data Processing
+1. **JSON database creation** - Simple deadline storage
+2. **Data validation** - Manual verification of all dates
+3. **ICS generation** - Convert to calendar format
+4. **Quality control** - Test calendar compatibility
+
+### MVP Success Criteria
+- **50+ deadlines** captured manually and via API
+- **100% accuracy** through manual validation
+- **Zero automation** - focus on quality over quantity
+- **Immediate value** - working calendar for users
+
+## 📊 Expansion Path (Post-MVP)
+
+### Mid-state (Months 3-8)
+- Add Poland, Austria, Netherlands APIs
+- Automated extraction for high-volume sources
+- Basic deduplication and conflict resolution
+
+### End-state (Year 2+)
+- Complete EU-27 coverage
+- Advanced NLP processing
+- Real-time update systems
+- Manual entry for sources without APIs
+
 ---
 
-**Company**: Blinktank GmbH, Berlin | **Product**: 50Data EU Compliance Platform
-**Domain**: 50data.eu | **Focus**: EU-27 data sovereignty
-**Status**: Complete data source specifications for 50Data MVP implementation
-**Next**: Begin EUR-Lex API registration and basic integration testing for 50Data
+**Company**: Blinktank GmbH, Berlin | **Product**: 50Data MVP
+**Strategy**: Manual curation → Basic automation → Full platform
+**Timeline**: 4 weeks to 50+ validated deadlines
+**Investment**: <€100/month for MVP data collection
+**Next**: Begin manual German eRechnung research and EUR-Lex registration
