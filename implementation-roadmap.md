@@ -10,8 +10,8 @@
 
 **50Data Technical Targets:**
 - 90%+ deadline extraction accuracy from EU legal sources
-- Modern admin dashboard with shadcn/ui components
-- ICS calendar generation and download functionality
+- REST API for deadline data access and management
+- ICS calendar generation and export functionality
 - Kit/ConvertKit email integration for pure deadline notifications
 - Professional Hetzner hosting with PostgreSQL database
 
@@ -29,12 +29,12 @@
 
 **Primary Focus**: Basic setup and EU legal source integration
 
-#### Day 1-2: Project Foundation
-- [ ] Set up Next.js 14 project with shadcn/ui components and Tailwind CSS
-- [ ] Set up Python Flask API backend with proper CORS configuration
+#### Day 1-2: Backend Foundation
+- [ ] Set up Python Flask API project with proper structure
 - [ ] Configure PostgreSQL database schema for deadline storage and full-text search
 - [ ] Deploy enhanced Hetzner CX31 (€25/month) with EU hosting
 - [ ] Set up 50data.eu domain with Let's Encrypt SSL
+- [ ] Configure API CORS and basic endpoint structure
 
 #### Day 3-4: EU Data Source Integration
 - [ ] Register for EUR-Lex API access and test basic queries
@@ -72,22 +72,23 @@
 - [ ] Create simple email templates for deadline notifications
 - [ ] Build webhook system for subscriber management
 
-#### Day 5-7: Admin Dashboard Development
-- [ ] Build main dashboard layout with shadcn/ui components
-- [ ] Implement professional deadline data table with sorting and filtering
-- [ ] Create calendar view integration with deadline visualization
-- [ ] Add export functionality (ICS download, CSV export)
-- [ ] Implement email capture form for Kit/ConvertKit integration
-- [ ] Set up user authentication system for dashboard access
-- [ ] Add data source status indicators and real-time updates
+#### Day 5-7: API Development
+- [ ] Build REST API endpoints for deadline management
+- [ ] Implement deadline filtering and search functionality
+- [ ] Add export functionality (ICS generation, CSV export, JSON API)
+- [ ] Create API endpoints for Kit/ConvertKit integration
+- [ ] Set up API authentication and rate limiting
+- [ ] Add data source status API endpoints
+- [ ] Implement real-time data freshness monitoring
 
 **Week 2 Deliverables:**
-- Professional admin dashboard with shadcn/ui components
+- Complete REST API with deadline management endpoints
 - Working ICS calendar generation with 50+ deadlines
-- Advanced deadline data table with filtering and export capabilities
+- API filtering and search functionality
+- CSV/JSON export capabilities via API
 - Kit/ConvertKit integration for email notifications
-- Calendar view with deadline visualization
-- User authentication and email capture system for subscriber growth
+- API authentication and rate limiting system
+- Data source status monitoring API
 
 ---
 
@@ -95,14 +96,14 @@
 
 **Primary Focus**: Quality assurance and billing system setup
 
-#### Day 1-2: Dashboard & Calendar Testing
-- [ ] Test admin dashboard responsiveness across devices and browsers
-- [ ] Validate data table functionality (sorting, filtering, pagination)
-- [ ] Test ICS calendar compatibility across all major platforms
-- [ ] Validate deadline accuracy with manual verification
-- [ ] Test email delivery rates via Kit/ConvertKit
-- [ ] Check dashboard mobile responsiveness and touch interactions
-- [ ] Test user authentication flows and session management
+#### Day 1-2: API & Data Testing
+- [ ] Test all REST API endpoints with proper response formats
+- [ ] Validate API filtering, searching, and pagination functionality
+- [ ] Test ICS calendar generation and compatibility across platforms
+- [ ] Validate deadline data accuracy with manual verification
+- [ ] Test email delivery rates via Kit/ConvertKit integration
+- [ ] Test API authentication and rate limiting
+- [ ] Validate export functionality (CSV, JSON, ICS)
 
 #### Day 3-4: Paddle Billing Setup
 - [ ] Set up Paddle account for EU billing compliance
@@ -128,21 +129,21 @@
 
 **Primary Focus**: Simple launch and email-first growth
 
-#### Day 1-2: Launch Preparation
-- [ ] Final testing of admin dashboard and all user flows
-- [ ] Test calendar download and email systems integration
-- [ ] Set up SEO optimization for "EU compliance deadlines" keywords
-- [ ] Create professional marketing copy showcasing dashboard capabilities
+#### Day 1-2: API Launch Preparation
+- [ ] Final testing of all API endpoints and data flows
+- [ ] Test calendar export and email systems integration
+- [ ] Create API documentation for frontend integration
+- [ ] Set up API monitoring and logging systems
 - [ ] Prepare Kit/ConvertKit email sequences for new subscribers
-- [ ] Generate professional screenshots and demo videos of dashboard
+- [ ] Generate API usage examples and integration guides
 
-#### Day 3-4: Public Launch
-- [ ] Launch professional admin dashboard with free access
-- [ ] Deploy landing page showcasing dashboard capabilities
+#### Day 3-4: API & Service Launch
+- [ ] Deploy production API with full deadline data access
+- [ ] Deploy basic landing page with API documentation
 - [ ] Begin SEO content targeting compliance professionals
 - [ ] Start Kit/ConvertKit lead magnets for calendar downloads
-- [ ] Create social media presence with dashboard screenshots (LinkedIn focus)
-- [ ] Launch Product Hunt or similar platform for visibility
+- [ ] Create social media presence highlighting data quality (LinkedIn focus)
+- [ ] Provide API access for frontend development team
 
 #### Day 5-7: Initial User Acquisition
 - [ ] Monitor downloads and Kit/ConvertKit subscriber growth
@@ -151,12 +152,13 @@
 - [ ] Plan next iteration for additional EU countries
 
 **Week 4 Deliverables:**
-- Live 50data.eu with professional admin dashboard
-- Free access to deadline management tools and calendar downloads
-- Initial user base with dashboard usage and email subscribers
-- User feedback collection and dashboard usage analytics
-- Professional foundation for growth with Kit/ConvertKit and Paddle integration
-- Modern, scalable UI ready for premium feature additions
+- Live 50data.eu API with complete deadline data access
+- Production-ready REST API with authentication and rate limiting
+- ICS calendar export and email notification systems
+- Initial user base with API usage and email subscribers
+- User feedback collection and API usage analytics
+- Professional backend foundation for growth with Kit/ConvertKit and Paddle integration
+- Scalable API architecture ready for frontend integration and premium features
 
 ## 🛣️ Post-MVP Evolution
 

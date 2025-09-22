@@ -50,10 +50,9 @@
 
 **Claude Code Tasks (Technical):**
 - Set up Hetzner CX31 server with PostgreSQL and Flask API
-- Set up Next.js 14 project with shadcn/ui and Tailwind CSS
-- Create modern project structure and version control
-- Configure development environment for full-stack deployment
-- Build foundational application architecture (API + Dashboard)
+- Create backend project structure and version control
+- Configure development environment for API deployment
+- Build foundational API architecture for deadline data management
 
 ### Day 2: API Registrations & Research Strategy
 **Your Tasks (Business):**
@@ -67,7 +66,7 @@
 - Build German XML processing pipeline
 - Create deadline extraction algorithms
 - Set up PostgreSQL database schema with full-text search
-- Begin admin dashboard foundation with shadcn/ui components
+- Begin REST API endpoint development for deadline access
 
 ### Day 3-7: Content Strategy & Market Research
 **Your Tasks (Business Expertise):**
@@ -82,13 +81,13 @@
 **Claude Code Tasks (Technical Implementation):**
 - Build database schema for deadline storage with PostgreSQL
 - Create data validation systems and deadline extraction algorithms
-- Build professional admin dashboard with shadcn/ui components
-- Implement deadline data table with sorting, filtering, and pagination
-- Create calendar view with deadline visualization
+- Build REST API endpoints for deadline data access and management
+- Implement deadline filtering, searching, and pagination in API
+- Create ICS calendar generation and export functionality
 - Build Python scripts for deadline management and file-based workflow
 - Create YAML configuration system and CSV data processing
 - Set up automated backups and monitoring
-- Implement user authentication for dashboard access
+- Implement API authentication and rate limiting
 
 **Deadline Research Template (Your Format):**
 ```
@@ -120,14 +119,13 @@ Type: [implementation/compliance/reporting]
 ### Claude Code Tasks (Week 2)
 **Technical Implementation:**
 - Build deadline extraction and validation system
-- Complete professional admin dashboard with shadcn/ui components
-- Implement advanced deadline data table with filtering and export
-- Create calendar view integration with deadline visualization
+- Complete REST API with all deadline management endpoints
+- Implement API filtering, search, and pagination functionality
+- Create ICS calendar generation and CSV/JSON export endpoints
 - Create Python scripts for deadline management and approval via CSV/YAML
-- Implement ICS calendar generation script
-- Integrate Kit/ConvertKit with YAML configuration
-- Set up user authentication and session management
-- Set up automated testing and quality control
+- Integrate Kit/ConvertKit API with YAML configuration
+- Set up API authentication and rate limiting
+- Set up automated testing and quality control for API endpoints
 
 ---
 
@@ -135,12 +133,12 @@ Type: [implementation/compliance/reporting]
 
 ### Your Business Tasks (Week 3-4)
 **Launch Preparation:**
-- [ ] Test complete admin dashboard user experience and workflows
-- [ ] Test calendar download and email subscription flows
-- [ ] Create professional launch messaging showcasing dashboard capabilities
-- [ ] Generate dashboard screenshots and demo videos for marketing
+- [ ] Test complete API functionality and data workflows
+- [ ] Test calendar export and email subscription flows
+- [ ] Create professional launch messaging showcasing data quality and API capabilities
+- [ ] Generate API documentation and integration examples for developers
 - [ ] Set up LinkedIn presence for compliance professionals
-- [ ] Prepare PR strategy for "pure deadline data" positioning with professional UI
+- [ ] Prepare PR strategy for "pure deadline data" positioning
 
 **Customer Development:**
 - [ ] Reach out to compliance professionals for beta testing
@@ -151,12 +149,12 @@ Type: [implementation/compliance/reporting]
 ### Claude Code Tasks (Week 3-4)
 **Final Implementation:**
 - Complete Python scripts and file management system
-- Finalize admin dashboard with all components and user flows
-- Deploy production system to Hetzner (Next.js + Flask API + PostgreSQL)
+- Finalize REST API with all endpoints and data flows
+- Deploy production system to Hetzner (Flask API + PostgreSQL)
 - Set up monitoring and backup systems
-- Integrate Paddle for future billing
-- Final testing and quality assurance of dashboard functionality
-- Performance optimization for dashboard responsiveness
+- Integrate Paddle API for future billing
+- Final testing and quality assurance of API functionality
+- Performance optimization for API response times and data processing
 
 ---
 
@@ -170,23 +168,22 @@ Type: [implementation/compliance/reporting]
 - [ ] Initial user feedback collected
 
 ### Technical Success (Claude Code Responsibility)
-- [ ] Professional admin dashboard with shadcn/ui fully functional
-- [ ] Advanced deadline data table with sorting, filtering, and export
-- [ ] Calendar view integration with deadline visualization
-- [ ] User authentication and session management working
+- [ ] Complete REST API with all deadline management endpoints functional
+- [ ] API filtering, searching, and pagination working properly
+- [ ] ICS calendar generation and CSV/JSON export endpoints working
+- [ ] API authentication and rate limiting system working
 - [ ] Python scripts and file management system working properly
 - [ ] CSV/YAML workflow for deadline management functional
-- [ ] Calendar generation script and download functional
 - [ ] Email notifications via Kit/ConvertKit with YAML config
-- [ ] Hetzner hosting stable and monitored (Next.js + Flask + PostgreSQL)
-- [ ] All systems ready for user growth
-- [ ] Performance monitoring with basic metrics
+- [ ] Hetzner hosting stable and monitored (Flask API + PostgreSQL)
+- [ ] All backend systems ready for frontend integration and user growth
+- [ ] Performance monitoring with API metrics and response times
 
 ### Growth Metrics (Post-Launch)
-- [ ] 100 calendar downloads by Month 3
+- [ ] 100 API calendar exports by Month 3
 - [ ] 50 Kit/ConvertKit email subscribers by Month 3
-- [ ] User feedback collection for roadmap validation
-- [ ] Market validation for paid tier features
+- [ ] API usage analytics and user feedback collection
+- [ ] Market validation for paid tier API features
 
 ---
 
@@ -229,7 +226,7 @@ Type: [implementation/compliance/reporting]
 ### Next 4 Weeks (Business Focus)
 1. **Content creation and validation** of compliance deadlines
 2. **Market research and customer development**
-3. **Testing admin interface** built by Claude Code
+3. **Testing API functionality** built by Claude Code
 4. **Launch preparation and marketing strategy**
 
 ---
@@ -237,10 +234,10 @@ Type: [implementation/compliance/reporting]
 ## 🎯 SUCCESS SUMMARY
 
 **Your Role**: Business strategy, content expertise, file-based management (MD/YAML/CSV + Python scripts)
-**Claude Code Role**: 100% technical implementation and maintenance
-**Timeline**: 4 weeks to working deadline service
+**Claude Code Role**: 100% backend API development and data processing
+**Timeline**: 4 weeks to working deadline API and data collection system
 **Investment**: €50/month enhanced infrastructure
-**Target**: 100 downloads + 50 email subscribers by Month 3
+**Target**: 100 API exports + 50 email subscribers by Month 3
 
 ---
 
