@@ -486,7 +486,7 @@ ERROR_HANDLING = {
     },
     "parsing_error": {
         "strategy": "store_raw_and_flag",
-        "manual_review": True,
+        "ai_review": True,
         "alert_admin": True
     },
     "network_timeout": {
@@ -574,7 +574,7 @@ class RateLimiter:
 
 ### Week 2: Data Processing
 1. **JSON database creation** - Simple deadline storage
-2. **Data validation** - Manual verification of all dates
+2. **Data validation** - AI verification of all dates
 3. **ICS generation** - Convert to calendar format
 4. **Quality control** - Test calendar compatibility
 
@@ -592,10 +592,10 @@ class RateLimiter:
 - Basic deduplication and conflict resolution
 
 ### End-state (Year 2+)
-- Complete EU-27 coverage
+- End-state: EU-27 coverage
 - Advanced NLP processing
 - Real-time update systems
-- Manual entry for sources without APIs
+- AI entry for sources without APIs
 
 ---
 

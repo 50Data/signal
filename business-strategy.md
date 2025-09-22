@@ -32,13 +32,13 @@
 - Target: Professional compliance teams across multiple countries
 - Value Proposition: Multi-country coverage + premium notifications via Paddle
 - Market Size: 2M+ businesses across target EU countries
-- Success Metric: €10-50K MRR through Paddle billing
+- Success Metric: Proven user adoption and conversion
 
 **End-state Phase - API Platform**
 - Target: Legal tech companies and enterprise compliance systems
 - Value Proposition: Real-time deadline API + white-label solutions
 - Market Size: 25M+ EU businesses + legal tech ecosystem
-- Success Metric: €100K+ MRR with enterprise API customers
+- Success Metric: Enterprise API platform adoption
 
 ### EU Compliance Pain Points Analysis
 
@@ -87,7 +87,7 @@
 ### End-state Phase: API Platform
 
 **Target: Legal Tech Companies + Enterprise Compliance**
-- Complete EU-27 deadline coverage via API
+- End-state: EU-27 deadline coverage via API
 - White-label solutions for legal software providers
 - Real-time webhook notifications for system integrations
 - Enterprise contracts via Paddle billing platform
@@ -108,15 +108,15 @@
 - Introduce subscription tiers via Paddle billing
 - Enhanced Kit/ConvertKit notification features
 - Multi-country calendar filtering options
-- Success: €10-50K MRR with Paddle subscriptions
+- Success: Proven subscription model with Paddle
 
 ### Phase 3: API Platform (Enterprise) - 12+ Months
 **Goal**: Real-time deadline API for legal tech ecosystem
-- Complete EU-27 deadline coverage
+- End-state: EU-27 deadline coverage
 - Real-time API access for developers
 - Webhook notifications for system integrations
 - White-label solutions via Paddle marketplace
-- Success: €100K+ MRR with enterprise API customers
+- Success: Enterprise API customer adoption
 
 ## 💰 Revenue Evolution Model
 
@@ -146,7 +146,7 @@
 **Goal**: Platform pricing for legal tech ecosystem
 
 **Enterprise Plan - €199/month (via Paddle)**
-- Complete EU-27 deadline coverage
+- End-state: EU-27 deadline coverage
 - Full API access with high rate limits
 - White-label calendar embedding
 - Dedicated technical support
@@ -159,28 +159,28 @@
 
 ### Revenue Projections - Email-First Approach
 
-**MVP Phase (Months 1-4): €0 Revenue**
+**MVP Phase (Months 1-4): Free Service**
 - Focus: User adoption via Kit/ConvertKit growth
 - Target: 100 downloads, 50 email subscribers
 - Investment: €50/month (enhanced CX31 hosting + APIs)
 - Success metric: Email list growth and user feedback
 
-**Mid-state Phase (Months 5-12): €10-50K MRR**
+**Mid-state Phase (Months 5-12): Subscription Tiers**
 - Proven user base conversion via Paddle
-- Target: 200-500 subscribers across tiers
-- Investment: €2-5K/month (expanded coverage + Paddle fees)
-- Success metric: 10-20% conversion from free to paid
+- Target: Active subscriber base across tiers
+- Investment: Monthly fees for expanded coverage + Paddle fees
+- Success metric: Conversion from free to paid
 
-**End-state Phase (Year 2+): €100K+ MRR**
+**End-state Phase (Year 2+): Enterprise Platform**
 - Enterprise API adoption via Paddle marketplace
-- Target: 50+ enterprise customers + 500+ individual subscribers
-- Investment: €10K+/month (full platform + team)
+- Target: Enterprise customers + individual subscribers
+- Investment: Platform infrastructure + development
 - Success metric: Market leadership in pure deadline data
 
 **Investment Requirements:**
 - MVP: €50/month (enhanced CX31 hosting + API costs)
-- Mid-state: €2-5K/month (Paddle fees + expanded sources)
-- End-state: €10K+/month (full team + enterprise features)
+- Mid-state: Monthly fees for expanded coverage + Paddle fees
+- End-state: Platform infrastructure + development costs
 - Total Year 1 investment: €600 (€50/month hosting + APIs)
 
 ## 🚀 Go-to-Market Strategy - Email-First Growth
@@ -245,7 +245,7 @@
 - Local legal publishers: Country-specific compliance (€200-500/month)
 
 **Indirect Competition:**
-- Manual legal research (time-consuming, error-prone)
+- Traditional legal research (time-consuming, error-prone)
 - Generic legal newsletters (mixed with editorial content)
 - Government websites (fragmented, hard to track)
 - In-house legal monitoring (expensive, incomplete coverage)

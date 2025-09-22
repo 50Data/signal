@@ -42,7 +42,7 @@ EU businesses struggle to track compliance deadlines from EU directives and nati
 **Data Sources:**
 - EUR-Lex API (EU-wide legislation)
 - German legal sources (eRechnung focus)
-- Manual validation for accuracy
+- AI validation for accuracy
 - Pure deadline data only - no editorial content
 
 **Delivery:**
@@ -54,14 +54,8 @@ EU businesses struggle to track compliance deadlines from EU directives and nati
 ## 🏗️ MVP Architecture (Simple)
 
 ```
-EUR-Lex API ──┐
-German Sources ├──▶ [Deadline Extraction] ──▶ [Calendar Generation] ──▶ [Download + Email]
-Manual Sources ┘        │                           │                        │
-                        ▼                           ▼                        ▼
-              [Date Validation]           [ICS Generation]          [Kit/ConvertKit]
-                        │                           │                        │
-                        ▼                           ▼                        ▼
-              [Quality Control]          [Hetzner Hosting]             [Paddle Billing]
+**Simple Process:**
+EUR-Lex API + German XML → AI Extraction → Calendar Download + Email Alerts
 ```
 
 ## 📈 MVP Success Metrics

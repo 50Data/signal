@@ -19,7 +19,7 @@
 - Technical troubleshooting and system scaling
 - All DevOps and infrastructure management
 
-**User Interface:** File-based workflow with Python scripts, YAML configs, CSV data, and Markdown docs
+**User Interface:** Claude Code handles all technical implementation - user provides business direction only
 
 ## 🏗️ MVP System Overview
 
@@ -45,7 +45,7 @@
 │  │LAYER        │    │                     │    │    SYSTEM       │   │
 │  │             │    │ • Date Validation   │    │ • Email Alerts  │   │
 │  │• EUR-Lex API│    │ • Change Detection  │    │ • Calendar Sync │   │
-│  │• Manual     │    │ • Deadline Tracking │    │ • Pure Data     │   │
+│  │• AI         │    │ • Deadline Tracking │    │ • Pure Data     │   │
 │  │  Research   │    │ • No Commentary     │    │ • No Editorial  │   │
 │  │• RSS Parsing│    │ • Pure Dates Only   │    │ • Kit/ConvertKit│   │
 │  └─────────────┘    └─────────────────────┘    └─────────────────┘   │
@@ -64,17 +64,15 @@
 - **lxml**: XML processing for German deadline extraction (gesetze-im-internet.de)
 - **Automated extraction**: Both EUR-Lex JSON and German XML parsing
 
-**Database (Enhanced)**
-- **PostgreSQL**: Production database for deadlines, documents, and user info
-- **Full-text search**: Built-in search capabilities for deadline content
-- **Proper indexing**: Optimized queries for deadline lookups and filtering
-- **Automated backups**: PostgreSQL dump + Hetzner volume backup strategy
+**Database (Simple MVP)**
+- **PostgreSQL**: Basic database for deadline storage
+- **Simple queries**: Basic deadline lookups and calendar generation
+- **Daily backups**: Simple automated backup strategy
 
-**Processing (Basic)**
-- **Python NLP**: Simple date extraction with regex patterns
-- **Manual validation**: Quality control for extracted deadlines
-- **Cron jobs**: Scheduled updates from legal sources
-- **Basic logging**: Simple error tracking and monitoring
+**Processing (MVP Simple)**
+- **Basic regex**: Simple date extraction patterns
+- **AI validation**: Claude Code automated validation
+- **Daily updates**: Simple scheduled data collection
 
 **Email & Billing Integration**
 - **Kit/ConvertKit API**: Email list management and notifications
@@ -82,13 +80,11 @@
 - **Webhook handling**: Basic webhook receivers for Paddle events
 - **Email templates**: Pure deadline notifications (no commentary)
 
-**Infrastructure (EU-Compliant & Enhanced)**
-- **Hetzner CX31**: €25/month EU server (2 vCPU, 8GB RAM, 80GB SSD) - needed for German XML
-- **Enhanced hosting**: Flask API + PostgreSQL + German XML processing
-- **Domain**: 50data.eu with Let's Encrypt SSL
-- **Storage capacity**: 80GB for German XML (15GB) + EUR-Lex cache + processing space
-- **Deployment**: Git-based with database migrations
-- **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
+**Infrastructure (MVP Simple)**
+- **Hetzner CX31**: €25/month EU server - sufficient for German XML processing
+- **Basic hosting**: Flask API + PostgreSQL
+- **Domain**: 50data.eu with SSL
+- **Simple deployment**: Git-based updates
 
 ## 🔌 API Design (Frontend Integration)
 
@@ -246,7 +242,7 @@ class EURLexDeadlineExtractor:
         MVP approach for EUR-Lex:
         1. Fetch specific high-value documents
         2. Simple regex date extraction
-        3. Manual validation of results
+        3. AI validation of results
         4. Pure deadline data only - no analysis
         """
 
@@ -254,7 +250,7 @@ class EURLexDeadlineExtractor:
         "32024R1689",  # AI Act
         "32014L0055",  # eRechnung directive
         "32016R0679",  # GDPR
-        # Add more manually as needed
+        # Add more automatically as needed
     ]
 
     def simple_date_extraction(self, text: str):
@@ -310,8 +306,8 @@ class GermanDeadlineCollector:
     ]
 
     def validate_deadline_accuracy(self, deadline: dict):
-        """Manual validation workflow for quality control"""
-        # Always manual verification for MVP
+        """AI validation workflow for quality control"""
+        # Always AI verification for MVP
         # No automated acceptance of deadline data
         pass
 
@@ -334,7 +330,7 @@ class DeadlineProcessingPipeline:
         Simple MVP approach:
         1. Fetch data from EUR-Lex and German sources
         2. Extract dates using regex patterns
-        3. Manual validation for accuracy
+        3. AI validation for accuracy
         4. Generate calendar and email notifications
         """
 
@@ -624,13 +620,13 @@ claude_code_implementation = {
     "processing": "Claude Code builds Python scripts for deadline extraction + validation",
     "calendar": "Claude Code creates Python script for ICS calendar generation",
     "email": "Claude Code builds Python script for Kit/ConvertKit notifications",
-    "user_role": "Test Python scripts and edit CSV/YAML files for validation"
+    "user_role": "Business validation of deadline data generated by Claude Code"
   },
   "week3": {
     "billing": "Claude Code integrates Paddle for future subscriptions",
     "website": "Claude Code builds file management system + public site",
     "validation": "Claude Code creates Python scripts for deadline approval workflow",
-    "user_role": "Test file-based workflow and provide feedback on CSV/YAML structure"
+    "user_role": "Business feedback on automated workflow generated by Claude Code"
   },
   "week4": {
     "testing": "Claude Code tests calendar compatibility across platforms",
@@ -661,7 +657,7 @@ CREATE TABLE deadlines (
     document_id VARCHAR(100), -- CELEX number or German doc ID
 
     -- Processing metadata
-    extraction_method VARCHAR(50), -- manual, api, regex, xml_parser
+    extraction_method VARCHAR(50), -- ai, api, regex, xml_parser
     ai_validated BOOLEAN DEFAULT FALSE,
     confidence_score DECIMAL(3,2), -- 0.00 to 1.00
 
@@ -700,70 +696,38 @@ CREATE TABLE subscribers (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Performance indexes for enhanced queries
+-- Simple indexes for MVP
 CREATE INDEX idx_deadlines_date ON deadlines(deadline_date);
-CREATE INDEX idx_deadlines_country ON deadlines(country);
-CREATE INDEX idx_deadlines_type ON deadlines(deadline_type);
-CREATE INDEX idx_deadlines_validated ON deadlines(ai_validated);
 CREATE INDEX idx_subscribers_email ON subscribers(email);
-CREATE INDEX idx_source_docs_type ON source_documents(document_type);
-CREATE INDEX idx_source_docs_identifier ON source_documents(document_identifier);
-CREATE INDEX idx_source_docs_hash ON source_documents(content_hash);
-
--- Full-text search index for deadline content
-CREATE INDEX idx_deadlines_fts ON deadlines USING gin(to_tsvector('english', title || ' ' || description));
 ```
 
 ## 📊 MVP Success Metrics
 
-### Technical Performance Metrics
+### Simple MVP Success Criteria
 ```python
-technical_metrics = {
-  "deadline_processing": {
-    "extraction_accuracy": "90%+ AI validation success",
-    "calendar_generation": "Sub-10 second ICS file creation",
-    "email_delivery": "99%+ Kit/ConvertKit delivery rate",
-    "source_coverage": "EUR-Lex + German sources"
+mvp_success = {
+  "basic_functionality": {
+    "calendar_generation": "Working ICS file downloads",
+    "email_notifications": "Kit/ConvertKit integration working",
+    "data_extraction": "EUR-Lex + German XML processing"
   },
-
-  "website": {
-    "load_time": "Sub-3 second page loading",
-    "calendar_download": "One-click ICS download",
-    "mobile_responsive": "Works on all devices",
-    "uptime": "99%+ Hetzner hosting reliability"
-  },
-
-  "integrations": {
-    "kit_convertkit": "Real-time email notifications",
-    "paddle_billing": "EU-compliant subscription handling",
-    "calendar_compatibility": "Works with Outlook, Google, Apple",
-    "gdpr_compliance": "EU data residency + privacy"
+  "user_validation": {
+    "calendar_downloads": "100+ downloads by Month 3",
+    "email_subscribers": "50+ subscribers by Month 3"
   }
 }
 ```
 
-### Business Success Metrics
+### Simple MVP Goals
 ```python
-business_metrics = {
-  "mvp_phase": {
-    "calendar_downloads": "100 downloads in Month 3",
-    "email_subscribers": "50 Kit/ConvertKit subscribers",
-    "user_feedback": "Collect validation for monetization",
-    "deadline_accuracy": "90%+ user-reported accuracy"
+mvp_goals = {
+  "month_3_targets": {
+    "calendar_downloads": "100 downloads",
+    "email_subscribers": "50 Kit/ConvertKit subscribers"
   },
-
-  "growth": {
-    "seo_ranking": "Top 10 for 'EU compliance deadlines'",
-    "email_growth": "20% monthly Kit/ConvertKit growth",
-    "word_of_mouth": "Organic referrals from compliance teams",
-    "paddle_conversion": "10-20% free to paid conversion"
-  },
-
   "content_policy": {
     "pure_data_only": "Never publish commentary or analysis",
-    "deadline_changes": "Only dates/deadlines/changes notifications",
-    "no_editorial": "No blog posts, opinions, or market analysis",
-    "simple_messaging": "Basic deadline notifications via Kit/ConvertKit"
+    "deadline_changes": "Only dates/deadlines/changes notifications"
   }
 }
 ```

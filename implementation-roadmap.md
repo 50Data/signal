@@ -51,7 +51,7 @@
 **Week 1 Deliverables:**
 - Basic Flask application deployed on 50data.eu
 - EUR-Lex API integration with simple document fetching
-- Manual deadline database with 20+ validated deadlines
+- AI-validated deadline database with 20+ automated deadlines
 - Simple deadline extraction and validation workflow
 
 ---
@@ -100,7 +100,7 @@
 - [ ] Test all REST API endpoints with proper response formats
 - [ ] Validate API filtering, searching, and pagination functionality
 - [ ] Test ICS calendar generation and compatibility across platforms
-- [ ] Validate deadline data accuracy with manual verification
+- [ ] Validate deadline data accuracy with AI verification
 - [ ] Test email delivery rates via Kit/ConvertKit integration
 - [ ] Test API authentication and rate limiting
 - [ ] Validate export functionality (CSV, JSON, ICS)
@@ -112,7 +112,7 @@
 - [ ] Test Paddle checkout process and payment flows
 
 #### Day 5-7: Content & Quality Control
-- [ ] Manual validation of all 50+ deadlines in calendar
+- [ ] AI validation of all 50+ deadlines in calendar
 - [ ] Create pure deadline email templates (no commentary)
 - [ ] Set up basic monitoring and uptime alerts
 - [ ] Prepare user feedback collection system
@@ -171,18 +171,18 @@
 - Launch Paddle subscription tiers (€9-29/month)
 - Advanced Kit/ConvertKit segmentation by country
 - Basic API access for developers
-- Target: €10-50K MRR with 200+ subscribers
+- Target: Active subscriber base growth
 
 ### End-state Phase (Year 2+)
 
 **Goal**: Complete EU coverage and API platform
 
 **Key Milestones:**
-- Complete EU-27 deadline coverage
+- End-state: EU-27 deadline coverage
 - Enterprise API access via Paddle (€99-199/month)
 - White-label calendar embedding for legal software
 - Real-time webhook notifications for system integrations
-- Target: €100K+ MRR with enterprise API customers
+- Target: Enterprise API customer adoption
 
 ## 🚀 Month 2-6: Scaling Deadline Service Platform
 
@@ -224,7 +224,7 @@
 - Create developer documentation and pricing
 - Launch API access via Paddle (€99/month)
 - Partnership outreach to legal software companies
-- Target: €5K MRR, 10+ API customers, 4 countries covered
+- Target: API customer growth, 4 countries covered
 
 ### Month 6: Enterprise Features & White-label
 **Focus**: Enterprise calendar embedding and white-label solutions
@@ -234,7 +234,7 @@
 - Enterprise API plans with higher rate limits
 - Real-time webhook notifications for deadline changes
 - Partnership agreements with 2-3 legal tech companies
-- Target: €10K+ MRR, 50+ Paddle customers, enterprise traction
+- Target: Paddle customer growth, enterprise traction
 
 ---
 
@@ -269,10 +269,10 @@
 - Month 6: 500 downloads, 100 subscribers, 20 Paddle customers
 
 **Revenue Growth (Post-Monetization):**
-- Month 4: €200 MRR (first Paddle subscriptions)
-- Month 5: €1K MRR (basic tier adoption)
-- Month 6: €3K MRR (premium tier + API access)
-- Year 1: €10K+ MRR target
+- Month 4: First Paddle subscriptions
+- Month 5: Basic tier adoption
+- Month 6: Premium tier + API access
+- Year 1: Sustainable subscription growth
 
 **Content Quality:**
 - Pure deadline accuracy: >95% user-reported accuracy
@@ -302,18 +302,18 @@
 
 **Deadline Accuracy:**
 - Risk: Incorrect deadline data impacts compliance decisions
-- Mitigation: Manual validation workflow, multiple source verification
+- Mitigation: AI validation workflow, multiple source verification
 - Contingency: User feedback system, immediate correction process
 
 **Legal Source Access:**
 - Risk: EUR-Lex API access revoked or rate limited
 - Mitigation: Multiple source approach, RSS backup feeds
-- Contingency: Manual monitoring, direct government source relationships
+- Contingency: Automated monitoring, direct government source relationships
 
 **Kit/ConvertKit & Paddle Dependencies:**
 - Risk: Third-party service disruption affects core functionality
 - Mitigation: Service monitoring, backup email systems, alternative billing
-- Contingency: Direct email system, manual billing processes
+- Contingency: Direct email system, automated billing processes
 
 ### Business Risks
 
@@ -334,8 +334,8 @@
 
 ### Operational Risks
 
-**Manual Validation Scaling:**
-- Risk: Manual deadline validation becomes bottleneck as sources grow
+**AI Validation Scaling:**
+- Risk: AI deadline validation needs enhancement as sources grow
 - Mitigation: Systematic validation workflows, quality control processes
 - Contingency: Semi-automated validation tools, outsourced verification
 
