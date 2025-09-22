@@ -7,13 +7,13 @@
 **Your Role (Non-Technical Founder):**
 - Business strategy and market validation
 - Content direction and compliance expertise
-- Claude Code automation: Generate MD/YAML/CSV + create Python scripts
+- Automated workflows: Generate MD/YAML/CSV + create Python scripts
 - Customer feedback and growth decisions
 
-**Claude Code Role:**
-- 100% of Python script development and technical implementation
+**Technical Development:**
+- Python script development and implementation
 - Build automated data management system (YAML configs, CSV data processing)
-- All server setup, deployment, and maintenance
+- Server setup, deployment, and maintenance
 
 ## 🚀 Business Setup & Direction
 
@@ -116,7 +116,7 @@ Type: [implementation/compliance/reporting]
 - [ ] Test messaging with potential customers
 - [ ] Define service strategy
 
-### Claude Code Tasks
+### Technical Tasks
 **Technical Implementation:**
 - Build deadline extraction and validation system
 - Complete REST API with all deadline management endpoints
@@ -146,7 +146,7 @@ Type: [implementation/compliance/reporting]
 - [ ] Iterate messaging based on early user responses
 - [ ] Plan growth strategy
 
-### Claude Code Tasks
+### Technical Tasks
 **Final Implementation:**
 - Complete Python scripts and file management system
 - Finalize REST API with all endpoints and data flows
@@ -194,33 +194,30 @@ Type: [implementation/compliance/reporting]
 - **Account setup**: Hetzner, Email Service accounts
 - **Business research**: EU compliance deadline research (your expertise)
 
-### Claude Code Dependencies
+### Technical Dependencies
 - **API credentials**: Provide EUR-Lex keys when approved
 - **Business requirements**: Clear direction on deadline priorities
 - **Content validation**: Review extracted deadlines for accuracy
 - **User feedback**: Share user testing results for iteration
 
 ### Risk Mitigation
-- **Content accuracy**: AI validation of all deadlines automated by Claude Code
-- **Market validation**: Start with basic service to prove demand
+- **Content accuracy**: AI validation of all deadlines
+- **Market validation**: Start with service to prove demand
 - **Compliance liability**: Clear disclaimers about information accuracy
-- **Technical backup**: Claude Code handles all technical redundancy
+- **Technical backup**: Technical redundancy and backup systems
 
 ---
 
 ## 📞 YOUR IMMEDIATE NEXT ACTIONS
 
-### Today (Critical Path)
-1. **Register for EUR-Lex API** (most important - has approval delay)
+### Priority Actions
+1. **Register for EUR-Lex API** - Required for data access
 2. **Register 50data.eu domain**
-3. **Set up Hetzner Cloud account** (Claude Code will configure)
+3. **Set up Hetzner Cloud account**
 4. **Set up Email Service account** for notifications
-
-### This Week (Business Foundation)
-1. **Complete business setup tasks** (accounts, registrations)
-2. **Begin EU compliance deadline research** (your expertise area)
-3. **Define target messaging** for "pure deadline data" approach
-4. **Provide business requirements** to Claude Code for implementation
+5. **Complete business setup tasks** (accounts, registrations)
+6. **Begin EU compliance deadline research**
+7. **Define target messaging** for "pure deadline data" approach
 
 ### Ongoing (Business Focus)
 1. **Content creation and validation** of compliance deadlines
@@ -232,17 +229,15 @@ Type: [implementation/compliance/reporting]
 
 ## 🎯 SUCCESS SUMMARY
 
-**Your Role**: Business strategy, content expertise, direction to Claude Code (automated MD/YAML/CSV + Python scripts)
-**Claude Code Role**: 100% backend API development and data processing
-**Investment**: <€50/month enhanced infrastructure
+**Business Role**: Strategy, content expertise, requirements definition
+**Technical Role**: Backend API development and data processing
 **Target**: Working deadline service with password-protected ICS calendars
 
 ---
 
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf (Non-Technical)
 **Product**: 50Data (Free EU Compliance Calendar)
-**Implementation**: Claude Code handles 100% of technical development
+**Implementation**: Full technical development required
 **Strategy**: Business expertise + AI development = Rapid service delivery
 **Content Policy**: Pure deadline data only - collect, list, alert - no interpretation ever
-**Investment**: <€50/month
-**Next Action**: Register 50data.eu domain and EUR-Lex API access today
+**Next Action**: Register 50data.eu domain and EUR-Lex API access

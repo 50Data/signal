@@ -7,7 +7,7 @@
 **Smart Focus**: EU Brussels + Germany Only
 **Why This Works**: EU directives provide framework for national implementations
 **Sources**: EUR-Lex API (EU) + German XML processing (gesetze-im-internet.de)
-**Cost**: <€50/month for EUR-Lex API + server for XML processing
+**Cost**: EUR-Lex API access + server for XML processing
 
 **Maximum Impact Strategy:**
 - EUR-Lex = EU directive deadlines (framework for implementations)
@@ -392,5 +392,5 @@ class RateLimiter:
 
 **Company**: Blinktank GmbH, Berlin | **Product**: 50Data
 **Strategy**: Automated extraction → Enhanced automation → Full platform
-**Investment**: <€50/month for core deadline extraction
+**Target**: Automated deadline extraction from core EU sources
 **Next**: Begin automated German XML processing and EUR-Lex registration

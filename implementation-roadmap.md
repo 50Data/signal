@@ -6,7 +6,7 @@
 
 ### Overview & Success Criteria
 
-**50Data Service Goal**: Launch simple deadline service with pure compliance data
+**50Data Service Goal**: Launch deadline service with pure compliance data
 
 **50Data Technical Targets:**
 - 90%+ deadline extraction accuracy from EU legal sources
@@ -266,7 +266,7 @@
 - 90%+ deadline extraction accuracy from EU legal sources
 - ICS calendar generation and compatibility with all major platforms
 - Email integration with >99% delivery rate
-- Basic website with <3 second load time for calendar downloads
+- Website for calendar downloads
 
 **Service Goals:**
 - User feedback collection for service validation
@@ -289,5 +289,5 @@
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf (Non-Technical)
 **Product**: 50Data EU Compliance Deadline Service
 **Strategy**: Core service → Enhanced features → Platform growth
-**Investment**: <€50/month | **Next Steps**: Build simple deadline calendar with email integration
+**Next Steps**: Build deadline calendar with email integration
 **Content Policy**: Pure deadline data only - collect, list, alert - no interpretation ever

@@ -311,7 +311,7 @@ class GermanDeadlineCollector:
         pass
 ```
 
-## 🔄 Simple Processing Pipeline (Deadline-Focused)
+## 🔄 Processing Pipeline (Deadline-Focused)
 
 ### Deadline Data Processing
 
@@ -334,7 +334,7 @@ class DeadlineProcessingPipeline:
         """
 
     def extract_and_validate_deadlines(self, source_data: str):
-        # Step 1: Simple date extraction
+        # Step 1: Date extraction
         raw_deadlines = self.extract_dates(source_data)
 
         # Step 2: AI validation (always required)
@@ -380,7 +380,7 @@ class DeadlineProcessingPipeline:
         return []  # Return only AI verified deadlines
 ```
 
-## 📅 Calendar & Email System (Simple)
+## 📅 Calendar & Email System
 
 ### ICS Calendar Generation
 
@@ -482,16 +482,16 @@ Unsubscribe: [link]
 
   def add_subscriber(self, email: str):
     """Add subscriber to deadline notification list"""
-    # Simple email subscription
+    # Email subscription
 
   def segment_by_country(self, subscriber_email: str, countries: List[str]):
     """Tag subscribers by country interest for targeted notifications"""
     # Email tagging for segmentation
 ```
 
-## 🚀 Simple Deployment (EU Compliant)
+## 🚀 Deployment (EU Compliant)
 
-### Basic Infrastructure Setup
+### Infrastructure Setup
 
 ```bash
 # Hetzner VPS setup

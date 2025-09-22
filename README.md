@@ -14,17 +14,15 @@ EU businesses struggle to track compliance deadlines from EU directives and nati
 
 **Core Service**: ICS calendar files with password protection + email notifications for deadline changes
 
-## 🏆 Market Opportunity - Pure Deadline Service
+## 🏆 Market Opportunity
 
 - **Primary Market**: EU compliance teams needing pure deadline data
 - **Pain Points**: No source for clean deadline data without editorial commentary
 - **Value Proposition**: Only dates/deadlines/changes - no content, no opinions
-- **Go-to-Market**: Email campaigns to compliance professionals
-
-**Unique Positioning:**
+**Positioning:**
 - Pure deadline data without editorial content
 - Password-protected ICS calendar access
-- Email-first approach for notifications
+- Email notifications for deadline changes
 - Focus on deadline changes, not analysis
 
 ## 🚀 Core Service
