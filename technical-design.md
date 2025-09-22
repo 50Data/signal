@@ -1,7 +1,6 @@
 # Technical Architecture - 50Data EU Compliance Deadline Service
 
 *Blinktank GmbH | Non-Technical Founder + Claude Code Implementation*
-*Three-Phase Evolution: Free MVP → Paid Tiers → API Platform*
 
 ## 🎯 Implementation Reality
 
@@ -21,72 +20,58 @@
 
 **User Interface:** Claude Code handles all technical implementation - user provides business direction only
 
-## 🏗️ MVP System Overview
+## 🏗️ Core System Overview
 
-### Simple MVP Architecture
+### Core Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                   50DATA EU DEADLINE SERVICE MVP                     │
+│                   50DATA EU DEADLINE SERVICE                        │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  ┌─────────────┐    ┌─────────────────────┐    ┌─────────────────┐   │
-│  │DATA SOURCES │───▶│  DEADLINE EXTRACTION│───▶│  CALENDAR & EMAIL│   │
+│  │DATA SOURCES │───▶│  DEADLINE EXTRACTION│───▶│  ICS CALENDAR   │   │
 │  │             │    │                     │    │                 │   │
 │  │ • EUR-Lex   │    │ • Date Parsing      │    │ • ICS Generation│   │
-│  │ • German    │    │ • Legal Text NLP    │    │ • Kit/ConvertKit│   │
-│  │   Sources   │    │ • Manual Validation │    │   Integration   │   │
-│  │ • RSS Feeds │    │ • Quality Control   │    │ • Paddle Billing│   │
-│  └─────────────┘    └─────────────────────┘    └─────────────────┘   │
-│          │                      │                        │           │
-│          ▼                      ▼                        ▼           │
-│  ┌─────────────┐    ┌─────────────────────┐    ┌─────────────────┐   │
-│  │API ACCESS   │    │   DEADLINE ENGINE   │    │  NOTIFICATION   │   │
-│  │LAYER        │    │                     │    │    SYSTEM       │   │
-│  │             │    │ • Date Validation   │    │ • Email Alerts  │   │
-│  │• EUR-Lex API│    │ • Change Detection  │    │ • Calendar Sync │   │
-│  │• AI         │    │ • Deadline Tracking │    │ • Pure Data     │   │
-│  │  Research   │    │ • No Commentary     │    │ • No Editorial  │   │
-│  │• RSS Parsing│    │ • Pure Dates Only   │    │ • Kit/ConvertKit│   │
+│  │ • German    │    │ • AI Validation     │    │ • Password Protect│  │
+│  │   Sources   │    │ • Quality Control   │    │ • Email Alerts │   │
 │  └─────────────┘    └─────────────────────┘    └─────────────────┘   │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-**MVP Scope**: Deadline extraction, calendar generation, email notifications, simple billing
-**Goal**: Simple deadline service with Kit/ConvertKit + Paddle integration
+**Core Function**: Deadline extraction, ICS calendar generation with password protection, email notifications
+**Goal**: Pure deadline data service - collect, list, alert only
 
-### MVP Technology Stack (Backend Data Processing)
+### Technology Stack
 
-**Backend API & Data Processing - AUTOMATED**
-- **Python Flask**: Lightweight API backend for deadline processing
-- **PostgreSQL**: Database for deadline storage (EUR-Lex + German XML)
+**Backend API & Data Processing**
+- **Python Flask**: API backend for deadline processing
+- **PostgreSQL**: Database for deadline storage
 - **Requests**: HTTP client for EUR-Lex API calls
-- **lxml**: XML processing for German deadline extraction (gesetze-im-internet.de)
-- **Automated extraction**: Both EUR-Lex JSON and German XML parsing
+- **lxml**: XML processing for German deadline extraction
+- **Automated extraction**: EUR-Lex JSON and German XML parsing
 
-**Database (Simple MVP)**
-- **PostgreSQL**: Basic database for deadline storage
-- **Simple queries**: Basic deadline lookups and calendar generation
-- **Daily backups**: Simple automated backup strategy
+**Database**
+- **PostgreSQL**: Database for deadline storage
+- **Basic queries**: Deadline lookups and calendar generation
+- **Automated backups**: Backup strategy
 
-**Processing (MVP Simple)**
-- **Basic regex**: Simple date extraction patterns
-- **AI validation**: Claude Code automated validation
-- **Daily updates**: Simple scheduled data collection
+**Processing**
+- **Date extraction**: Regex patterns for date extraction
+- **AI validation**: Automated validation
+- **Scheduled updates**: Data collection
 
-**Email & Billing Integration**
-- **Kit/ConvertKit API**: Email list management and notifications
-- **Paddle API**: EU-compliant billing and subscription management
-- **Webhook handling**: Basic webhook receivers for Paddle events
-- **Email templates**: Pure deadline notifications (no commentary)
+**Email Integration**
+- **Email Service**: Email list management and notifications
+- **Email templates**: Pure deadline notifications (collect, list, alert only)
 
-**Infrastructure (MVP Simple)**
-- **Hetzner CX31**: €25/month EU server - sufficient for German XML processing
-- **Basic hosting**: Flask API + PostgreSQL
+**Infrastructure**
+- **Hetzner**: EU server hosting
+- **Hosting**: Flask API + PostgreSQL
 - **Domain**: 50data.eu with SSL
-- **Simple deployment**: Git-based updates
+- **Deployment**: Git-based updates
 
-## 🔌 API Design (Frontend Integration)
+## 🔌 API Design
 
 ### REST API Endpoints
 
@@ -95,11 +80,12 @@
 # Deadline Management API
 GET  /api/deadlines              # List deadlines with filtering
 GET  /api/deadlines/{id}         # Get specific deadline
-POST /api/deadlines              # Create deadline (admin)
-PUT  /api/deadlines/{id}         # Update deadline (admin)
+
+# ICS Calendar API
+GET  /ics                        # Password-protected ICS calendar
+GET  /ics/{password}             # ICS calendar with password
 
 # Export API
-GET  /api/export/ics             # Generate ICS calendar
 GET  /api/export/csv             # Export CSV data
 GET  /api/export/json            # Export JSON data
 
@@ -126,7 +112,37 @@ GET  /api/sources/stats          # Collection statistics
 }
 ```
 
-*Note: Frontend implementation handled separately (see frontend-reference.md)*
+## 📁 ICS Password Protection System
+
+### Password-Protected Calendar Access
+
+**Password-Protected Access:**
+- ICS calendar access with simple password
+- Essential EU deadlines
+- /ics/{password} endpoint
+
+**Password Distribution:**
+- Passwords shared via email
+- Simple token-based system
+
+**Implementation:**
+```python
+class ICSProtection:
+    """Password protection for ICS calendar downloads"""
+
+    def __init__(self):
+        self.valid_passwords = ["deadline2024", "compliance2024"]
+
+    def validate_access(self, password):
+        """Validate password for ICS calendar access"""
+        return password in self.valid_passwords
+
+    def generate_ics_calendar(self, password):
+        """Generate ICS calendar if password is valid"""
+        if self.validate_access(password):
+            return self.create_calendar()
+        return None
+```
 
 ## 📁 Claude Code Automated Workflow (MD/YAML/CSV/Python)
 
@@ -147,7 +163,7 @@ GET  /api/sources/stats          # Collection statistics
 │   ├── extract_deadlines.py      # Extract from EUR-Lex/German sources
 │   ├── approve_deadlines.py      # Approve pending deadlines
 │   ├── generate_calendar.py      # Create ICS calendar file
-│   ├── send_notifications.py     # Kit/ConvertKit email updates
+│   ├── send_notifications.py     # Email updates
 │   └── analytics.py              # Generate reports
 ├── docs/
 │   ├── README.md                 # Project documentation
@@ -170,7 +186,7 @@ python scripts/approve_deadlines.py   # AI validates and moves approved items
 
 # 3. Generate calendar and notify users (automated)
 python scripts/generate_calendar.py   # Creates calendar.ics
-python scripts/send_notifications.py  # Sends Kit/ConvertKit updates
+python scripts/send_notifications.py  # Sends email updates
 
 # 4. Generate analytics (automated)
 python scripts/analytics.py           # Generates reports in Markdown
@@ -183,8 +199,7 @@ python scripts/analytics.py           # Generates reports in Markdown
 # config/settings.yml
 api_keys:
   eur_lex: "your-api-key"
-  kit_convertkit: "your-api-key"
-  paddle: "your-api-key"
+  email_api: "your-api-key"
 
 extraction_settings:
   auto_approve_confidence: 0.85
@@ -203,22 +218,6 @@ date,title,description,source,country,confidence,status
 2025-01-01,eRechnung B2G mandatory,Electronic invoicing mandatory for B2G,German Ministry,DE,0.95,pending
 2025-06-01,AI Act compliance deadline,AI systems must comply with new regulations,EUR-Lex,EU,0.87,pending
 ```
-
-**Markdown Documentation (Claude Code Generates):**
-```markdown
-# docs/daily_notes.md
-## 2024-12-20
-- Reviewed 15 new deadline extractions
-- Approved 12, rejected 3 (low confidence scores)
-- Updated email template for clearer messaging
-- Need to research Italian eInvoicing requirements next week
-```
-
-**Python Script Execution (Claude Code Provides, You Run):**
-- No Python knowledge required - just execute scripts
-- All complex logic handled by Claude Code
-- Scripts are documented and safe to run
-- Configuration via YAML files (no code changes needed)
 
 **User Role:** Business direction + Claude Code handles all technical implementation
 
@@ -239,7 +238,7 @@ class EURLexDeadlineExtractor:
 
     def extract_deadlines_from_document(self, celex_number: str):
         """
-        MVP approach for EUR-Lex:
+        Approach for EUR-Lex:
         1. Fetch specific high-value documents
         2. Simple regex date extraction
         3. AI validation of results
@@ -254,7 +253,7 @@ class EURLexDeadlineExtractor:
     ]
 
     def simple_date_extraction(self, text: str):
-        """Basic regex patterns for MVP"""
+        """Basic regex patterns"""
         patterns = [
             r"shall apply from (\d{1,2} \w+ \d{4})",
             r"(\d{1,2} \w+ \d{4})",  # General date pattern
@@ -270,7 +269,7 @@ class EURLexDeadlineExtractor:
         return deadlines
 ```
 
-### Source 2: German Legal Sources (eRechnung Focus)
+### Source 2: German Legal Sources
 
 ```python
 class GermanDeadlineCollector:
@@ -280,7 +279,7 @@ class GermanDeadlineCollector:
 
     def collect_erechnung_deadlines(self):
         """
-        MVP approach for German deadlines:
+        Approach for German deadlines:
         1. Automated extraction of key dates
         2. Official government sources
         3. Simple deadline list - no commentary
@@ -307,9 +306,10 @@ class GermanDeadlineCollector:
 
     def validate_deadline_accuracy(self, deadline: dict):
         """AI validation workflow for quality control"""
-        # Always AI verification for MVP
+        # Always AI verification
         # No automated acceptance of deadline data
         pass
+```
 
 ## 🔄 Simple Processing Pipeline (Deadline-Focused)
 
@@ -322,12 +322,11 @@ class DeadlineProcessingPipeline:
     """
 
     def __init__(self):
-        self.kit_client = KitConvertKitClient()
-        self.paddle_client = PaddleClient()
+        self.email_service = EmailService()
 
     def process_legal_sources(self):
         """
-        Simple MVP approach:
+        Simple approach:
         1. Fetch data from EUR-Lex and German sources
         2. Extract dates using regex patterns
         3. AI validation for accuracy
@@ -338,7 +337,7 @@ class DeadlineProcessingPipeline:
         # Step 1: Simple date extraction
         raw_deadlines = self.extract_dates(source_data)
 
-        # Step 2: AI validation (always required for MVP)
+        # Step 2: AI validation (always required)
         validated_deadlines = self.ai_validation(raw_deadlines)
 
         # Step 3: Store validated deadlines
@@ -358,16 +357,16 @@ class DeadlineProcessingPipeline:
         """
         Generate calendar and email notifications
         - ICS calendar file generation
-        - Kit/ConvertKit email notifications
-        - Pure deadline data only - no commentary
+        - Email notifications
+        - Pure deadline data only - collect, list, alert only
         """
 
         # Generate ICS calendar
         ics_content = self.generate_ics_calendar(deadlines)
 
-        # Send Kit/ConvertKit notifications (pure data only)
+        # Send email notifications (pure data only)
         for deadline in deadlines:
-            self.kit_client.send_deadline_notification(
+            self.email_service.send_deadline_notification(
                 deadline_date=deadline['date'],
                 title=deadline['title'],
                 # NO commentary or analysis ever sent
@@ -376,9 +375,10 @@ class DeadlineProcessingPipeline:
 
     def ai_validation(self, deadlines: List[dict]):
         """Always require AI validation for deadline accuracy"""
-        # MVP: All deadlines must be AI verified
+        # All deadlines must be AI verified
         # Claude Code automated validation of extracted dates
         return []  # Return only AI verified deadlines
+```
 
 ## 📅 Calendar & Email System (Simple)
 
@@ -395,7 +395,7 @@ class SimpleCalendarGenerator:
 
   def generate_compliance_calendar(self, deadlines: List[dict]):
     """
-    Simple MVP approach:
+    Simple approach:
     1. Generate standard ICS calendar format
     2. Include all validated deadlines
     3. Add basic reminders (7 days, 1 day)
@@ -447,21 +447,20 @@ END:VALARM
 END:VEVENT"""
 ```
 
-### Kit/ConvertKit Email Integration
+### Email Integration
 
 ```python
-class KitConvertKitClient:
+class EmailService:
   """
-  Simple Kit/ConvertKit integration for deadline notifications
+  Simple Email Service integration for deadline notifications
   """
 
   def __init__(self, api_key: str):
     self.api_key = api_key
-    self.base_url = "https://api.convertkit.com/v3"
 
   def send_deadline_notification(self, deadline_date: str, title: str):
     """
-    Send pure deadline notification via Kit/ConvertKit
+    Send pure deadline notification
     - NO commentary or analysis ever
     - Pure deadline data only
     - Simple email template
@@ -478,169 +477,50 @@ Source: Official EU/German legal sources
 Unsubscribe: [link]
 """
 
-    # Kit/ConvertKit API call to send email
-    # Pure data delivery - no editorial content
+    # Email Service API call to send email
+    # Pure data delivery - collect, list, alert only
 
   def add_subscriber(self, email: str):
     """Add subscriber to deadline notification list"""
-    # Simple Kit/ConvertKit subscription
+    # Simple email subscription
 
   def segment_by_country(self, subscriber_email: str, countries: List[str]):
     """Tag subscribers by country interest for targeted notifications"""
-    # Kit/ConvertKit tagging for segmentation
+    # Email tagging for segmentation
+```
 
 ## 🚀 Simple Deployment (EU Compliant)
 
 ### Basic Infrastructure Setup
 
 ```bash
-# Hetzner VPS setup for MVP
-# €25/month CX31 instance (2 vCPU, 8GB RAM, 80GB SSD)
-
-# Server setup for CX31
+# Hetzner VPS setup
+# Server setup
 apt update && apt upgrade -y
 apt install python3 python3-pip nginx postgresql postgresql-contrib -y
 
 # Install Python dependencies
 pip3 install flask requests beautifulsoup4 icalendar pytz psycopg2-binary lxml
 
-# Enhanced Flask application structure
+# Application structure
 /var/www/50data/
 ├── app.py              # Main Flask application
 ├── deadline_extractor.py # EUR-Lex integration
 ├── german_xml_processor.py # German legal XML processing
 ├── calendar_generator.py # ICS generation
-├── kit_client.py       # Kit/ConvertKit integration
-├── paddle_client.py    # Paddle billing integration
+├── email_service.py    # Email Service integration
 ├── data/
-│   ├── german_xml/     # 15GB German legal XML storage
+│   ├── german_xml/     # German legal XML storage
 │   ├── eur_lex_cache/  # EUR-Lex document cache
 │   └── backups/        # Database and file backups
 ├── migrations/         # Database schema migrations
 └── static/            # Website assets
 ```
 
-### Paddle Billing Integration
-
-```python
-class PaddleBillingClient:
-  """
-  Simple Paddle integration for EU-compliant billing
-  """
-
-  def __init__(self, vendor_id: str, auth_code: str):
-    self.vendor_id = vendor_id
-    self.auth_code = auth_code
-    self.base_url = "https://vendors.paddle.com/api/2.0"
-
-  def create_subscription_checkout(self, plan_id: str, customer_email: str):
-    """
-    Create Paddle checkout for EU subscription
-    - Automatic VAT calculation
-    - EU payment methods
-    - GDPR compliant billing
-    """
-
-    checkout_data = {
-      "vendor_id": self.vendor_id,
-      "product_id": plan_id,
-      "customer_email": customer_email,
-      "marketing_consent": False,  # No marketing by default
-      "return_url": "https://50data.eu/success",
-      "webhook_url": "https://50data.eu/paddle-webhook"
-    }
-
-    # Paddle handles all EU compliance automatically
-
-  def handle_webhook(self, webhook_data: dict):
-    """
-    Handle Paddle subscription webhooks
-    - Subscription created/updated/cancelled
-    - Update Kit/ConvertKit subscription status
-    - Grant/revoke access to premium countries
-    """
-
-    if webhook_data['alert_name'] == 'subscription_created':
-      # Add to premium Kit/ConvertKit segment
-      # Enable multi-country calendar access
-      pass
-
-    elif webhook_data['alert_name'] == 'subscription_cancelled':
-      # Remove from premium segment
-      # Revert to basic calendar access
-      pass
-
-### Production Configuration (Enhanced & EU-Compliant)
-
-production_setup = {
-  "hosting": "Hetzner Cloud CX31 (Nuremberg, Germany - EU)",
-  "specs": "2 vCPU, 8GB RAM, 80GB SSD - €25/month",
-  "database": "PostgreSQL with full-text search and proper indexing",
-  "storage": "80GB SSD for 15GB German XML + EUR-Lex cache + backups",
-  "domain": "50data.eu with Let's Encrypt SSL",
-  "email": "Kit/ConvertKit (GDPR compliant email service)",
-  "billing": "Paddle (automatic EU VAT compliance)",
-  "monitoring": "PostgreSQL metrics + application logs + uptime monitoring",
-  "backup": "Automated PostgreSQL dumps + file system backups",
-  "deployment": "Git-based with database migrations and zero-downtime updates"
-}
-```
-
-## 🛣️ Evolution Roadmap
-
-### Mid-state Architecture (Months 6-12)
-- **Multi-Country APIs**: Poland, Austria, Netherlands legal sources
-- **Paddle Tiers**: Subscription billing for premium country coverage
-- **Advanced Kit/ConvertKit**: Segmented notifications by country/topic
-- **API Access**: Basic API for developers and legal tech companies
-- **Webhook System**: Real-time deadline change notifications
-
-### End-state Architecture (Year 2+)
-- **Extended EU Coverage**: Additional EU countries with deadline tracking
-- **Real-time Updates**: Live monitoring of legal source changes
-- **White-label Platform**: Calendar embedding for legal software
-- **Enterprise API**: High-volume access for legal tech ecosystem
-- **Advanced Filtering**: Granular deadline categorization and search
-- **Mobile Optimization**: Responsive design for mobile deadline alerts
-
-## 🔧 MVP Development Timeline (Claude Code Implementation)
-
-**Important**: All Python scripts and technical work by Claude Code. User manages via files (MD/YAML/CSV).
-
-### Claude Code Development Schedule (4 weeks)
-```python
-claude_code_implementation = {
-  "week1": {
-    "backend": "Claude Code builds Flask application + PostgreSQL setup",
-    "sources": "Claude Code integrates EUR-Lex API + German XML processing",
-    "infrastructure": "Claude Code deploys to Hetzner CX31 with 80GB storage",
-    "user_role": "Provide business requirements and feedback on progress"
-  },
-  "week2": {
-    "processing": "Claude Code builds Python scripts for deadline extraction + validation",
-    "calendar": "Claude Code creates Python script for ICS calendar generation",
-    "email": "Claude Code builds Python script for Kit/ConvertKit notifications",
-    "user_role": "Business validation of deadline data generated by Claude Code"
-  },
-  "week3": {
-    "billing": "Claude Code integrates Paddle for future subscriptions",
-    "website": "Claude Code builds file management system + public site",
-    "validation": "Claude Code creates Python scripts for deadline approval workflow",
-    "user_role": "Business feedback on automated workflow generated by Claude Code"
-  },
-  "week4": {
-    "testing": "Claude Code tests calendar compatibility across platforms",
-    "content": "Claude Code implements pure deadline data validation",
-    "launch": "Claude Code deploys to production + user begins marketing",
-    "user_role": "Launch marketing campaigns and collect user feedback"
-  }
-}
-```
-
-### Database Schema for Enhanced Deadline Service
+### Database Schema
 
 ```sql
--- PostgreSQL database for EU compliance deadlines with enhanced storage
+-- PostgreSQL database for EU compliance deadlines
 CREATE TABLE deadlines (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
@@ -653,7 +533,7 @@ CREATE TABLE deadlines (
     -- Source information
     source VARCHAR(200) NOT NULL, -- EUR-Lex, German Ministry, etc.
     source_url VARCHAR(500),
-    country VARCHAR(5), -- DE, EU, FR, etc.
+    country VARCHAR(5), -- DE, EU, etc.
     document_id VARCHAR(100), -- CELEX number or German doc ID
 
     -- Processing metadata
@@ -661,15 +541,15 @@ CREATE TABLE deadlines (
     ai_validated BOOLEAN DEFAULT FALSE,
     confidence_score DECIMAL(3,2), -- 0.00 to 1.00
 
-    -- No commentary fields - pure data only
+    -- Pure data only - no commentary fields
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Source documents table for storing large XML content
+-- Source documents table
 CREATE TABLE source_documents (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    document_type VARCHAR(50), -- eur_lex, german_xml, rss
+    document_type VARCHAR(50), -- eur_lex, german_xml
     document_identifier VARCHAR(200), -- CELEX, German law ID
     title VARCHAR(1000),
     publication_date DATE,
@@ -679,65 +559,48 @@ CREATE TABLE source_documents (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Kit/ConvertKit subscribers (minimal data)
+-- Email subscribers
 CREATE TABLE subscribers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(200) NOT NULL UNIQUE,
-
-    -- Subscription preferences
     countries JSONB, -- JSON array of country interests
-    kit_subscriber_id VARCHAR(50), -- Kit/ConvertKit ID
-
-    -- Paddle billing (when applicable)
-    paddle_subscription_id VARCHAR(50),
-    subscription_status VARCHAR(20) DEFAULT 'free', -- free, basic, premium
-
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Simple indexes for MVP
+-- ICS access tokens
+CREATE TABLE ics_tokens (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    token VARCHAR(100) NOT NULL UNIQUE,
+    access_type VARCHAR(20) DEFAULT 'standard',
+    expires_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX idx_deadlines_date ON deadlines(deadline_date);
 CREATE INDEX idx_subscribers_email ON subscribers(email);
+CREATE INDEX idx_ics_tokens ON ics_tokens(token);
 ```
 
-## 📊 MVP Success Metrics
+## 📊 Success Metrics
 
-### Simple MVP Success Criteria
+### Core Success Criteria
 ```python
-mvp_success = {
+success_criteria = {
   "basic_functionality": {
-    "calendar_generation": "Working ICS file downloads",
-    "email_notifications": "Kit/ConvertKit integration working",
+    "calendar_generation": "Working password-protected ICS downloads",
+    "email_notifications": "Email integration working",
     "data_extraction": "EUR-Lex + German XML processing"
-  },
-  "user_validation": {
-    "calendar_downloads": "100+ downloads by Month 3",
-    "email_subscribers": "50+ subscribers by Month 3"
-  }
-}
-```
-
-### Simple MVP Goals
-```python
-mvp_goals = {
-  "month_3_targets": {
-    "calendar_downloads": "100 downloads",
-    "email_subscribers": "50 Kit/ConvertKit subscribers"
   },
   "content_policy": {
     "pure_data_only": "Never publish commentary or analysis",
-    "deadline_changes": "Only dates/deadlines/changes notifications"
+    "deadline_changes": "Collect, list, alert only - no interpretation"
   }
 }
 ```
 
 ---
 
-**Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
+**Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf (Non-Technical)
 **Product**: 50Data EU Compliance Deadline Service | **Domain**: 50data.eu
-**Strategy**: Three-phase evolution (Free MVP → Paid Tiers → API Platform)
-**MVP**: Simple deadline service with Kit/ConvertKit + Paddle integration
-**Investment**: €50/month basic hosting + APIs | **Risk**: Low risk, proven approach
-**Next Steps**: Build simple deadline service in 4 weeks, target 100 downloads Month 3
-**Content Policy**: Pure deadline data only - never editorial content or commentary
+**Content Policy**: Pure deadline data only - collect, list, alert - no interpretation ever

@@ -1,65 +1,57 @@
-# Data Sources - 50Data MVP (EU + Germany Only)
+# Data Sources - 50Data EU Compliance Deadline Service
 
-*Ultra-simplified MVP: EU Brussels + Germany = Maximum Impact*
+*Focus: EU Brussels + Germany Only*
 
-## 🎯 MVP Data Strategy - SIMPLIFIED
+## 🎯 Core Data Strategy
 
-**Smart MVP Focus**: EU Brussels + Germany Only
+**Smart Focus**: EU Brussels + Germany Only
 **Why This Works**: EU directives provide framework for national implementations
 **Sources**: EUR-Lex API (EU) + German XML processing (gesetze-im-internet.de)
-**Timeline**: 4 weeks to 50+ EU+German deadlines
 **Cost**: <€50/month for EUR-Lex API + server for XML processing
 
 **Maximum Impact Strategy:**
 - EUR-Lex = EU directive deadlines (framework for implementations)
 - Germany = Largest EU economy implementation example
-- Proof of concept before expanding to other member states
+- Proof of concept with core sources
 
-## 📋 MVP Source 1: EUR-Lex (EU-Level)
+## 📋 Source 1: EUR-Lex (EU-Level)
 
-### MVP Approach
-
-**Strategy**: Target specific high-value documents manually
-**Documents**: AI Act, eRechnung directives, key EU regulations
-**Method**: Direct document access via CELEX numbers
-**Scope**: 20-30 key EU deadlines for MVP
-
-### Simple API Access
+### API Access
 
 **Registration**: https://eur-lex.europa.eu/content/tools/webservices.html
-**Cost**: Free tier (sufficient for MVP)
+**Cost**: Free tier (sufficient for core service)
 **Timeline**: 24-48 hours approval
-**Rate Limit**: 10 requests/second (more than enough for MVP)
+**Rate Limit**: 10 requests/second (more than enough)
 
-### MVP Target Documents
+### Target Documents
 
-**Key CELEX Numbers for MVP:**
+**Key CELEX Numbers:**
 - **32024R1689**: AI Act (main regulation)
 - **32014L0055**: eRechnung directive
 - **32019L0944**: Clean Energy directive
 - Additional directives as research identifies
 
-### Simple Implementation
+### Implementation
 
 ```python
-# MVP EUR-Lex integration
+# EUR-Lex integration
 import requests
 
 def get_document_text(celex_number):
-    """Simple document retrieval for MVP"""
+    """Simple document retrieval"""
     url = f"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:{celex_number}"
     response = requests.get(url)
     return response.text
 
-# Target documents for MVP
-MVP_DOCUMENTS = [
+# Target documents
+TARGET_DOCUMENTS = [
     "32024R1689",  # AI Act
     "32014L0055",  # eRechnung
     # Add more as needed
 ]
 ```
 
-## 📋 MVP Source 2: German XML Processing (Automated)
+## 📋 Source 2: German XML Processing (Automated)
 
 ### Gesetze im Internet XML Parser
 
@@ -165,147 +157,7 @@ class EURLexCollector:
 
 ---
 
-## 🎯 Priority 2: France - Légifrance API
-
-### Overview
-**Légifrance** is France's official legal information service with comprehensive API access to French legislation, including EU directive transpositions.
-
-### API Access Details
-
-**Base URL**: `https://api.piste.gouv.fr/dila/legifrance/v1`
-**Sandbox**: `https://sandbox-api.piste.gouv.fr/dila/legifrance/v1`
-
-**Authentication**: OAuth 2.0
-- Register at https://piste.gouv.fr
-- Client credentials flow
-- Token endpoint: `https://oauth.piste.gouv.fr/api/oauth/token`
-
-**Rate Limits**: 100 requests per minute
-
-### Key Endpoints
-
-#### Authentication
-```http
-POST /oauth/token
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=client_credentials
-&client_id={client_id}
-&client_secret={client_secret}
-&scope=openid
-```
-
-#### Search Laws
-```http
-POST /search
-Content-Type: application/json
-Authorization: Bearer {access_token}
-
-{
-  "recherche": {
-    "champRecherche": "ALL",
-    "pageSize": 100,
-    "pageNumber": 1,
-    "sort": "DATE_PUBLI",
-    "facettes": ["typeDocument", "datePubli"]
-  }
-}
-```
-
-#### Get Document
-```http
-GET /consult/jorf
-Parameters:
-- textId: Document identifier
-- format: json or xml
-```
-
-### Document Structure
-
-```json
-{
-  "id": "JORFTEXT000000000000",
-  "titre": "Document title",
-  "datePublication": "2024-01-15",
-  "texteConsolide": "Full consolidated text",
-  "versionEnVigueur": "Current version",
-  "liens": [
-    {
-      "type": "transposition",
-      "directive": "32019L0944"
-    }
-  ]
-}
-```
-
-### Implementation Example
-
-```python
-class LegifranCollector:
-    def __init__(self, client_id: str, client_secret: str):
-        self.auth_url = "https://oauth.piste.gouv.fr/api/oauth/token"
-        self.base_url = "https://api.piste.gouv.fr/dila/legifrance/v1"
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self.access_token = None
-
-    async def authenticate(self):
-        """Get OAuth 2.0 access token"""
-        data = {
-            "grant_type": "client_credentials",
-            "client_id": self.client_id,
-            "client_secret": self.client_secret,
-            "scope": "openid"
-        }
-
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                self.auth_url,
-                data=data,
-                headers={"Content-Type": "application/x-www-form-urlencoded"}
-            )
-
-            token_data = response.json()
-            self.access_token = token_data["access_token"]
-
-    async def search_transpositions(self, directive_number: str):
-        """Search for national transpositions of EU directives"""
-
-        search_payload = {
-            "recherche": {
-                "champRecherche": "ALL",
-                "operateur": "ET",
-                "pageSize": 50,
-                "sort": "DATE_PUBLI",
-                "typePagination": "DEFAUT",
-                "filters": [
-                    {
-                        "facette": "ALL",
-                        "sousOperateur": "ET",
-                        "valeurs": [f"transposition {directive_number}"]
-                    }
-                ]
-            }
-        }
-
-        headers = {
-            "Authorization": f"Bearer {self.access_token}",
-            "Content-Type": "application/json"
-        }
-
-        async with httpx.AsyncClient() as client:
-            response = await client.post(
-                f"{self.base_url}/search",
-                json=search_payload,
-                headers=headers
-            )
-
-            return response.json()
-```
-
----
-
-## 🎯 Priority 3: RSS/XML Feeds
+## 🎯 RSS Feeds (Monitoring)
 
 ### eRechnung Feed
 **URL**: `https://www.inoreader.com/stream/user/1005663366/tag/eRechnung`
@@ -388,61 +240,13 @@ class RSSMonitor:
 
 ---
 
-## 🎯 Secondary Sources (Post-MVP)
-
-### Germany - Gesetze im Internet
-**Base URL**: `https://www.gesetze-im-internet.de`
-**Format**: XML exports (bulk download)
-**Update**: Weekly
-**Access**: Open, no authentication required
-
-**XML Structure**:
-```xml
-<dokument>
-    <metadaten>
-        <jurabk>BGB</jurabk>
-        <amtabk>BGB</amtabk>
-        <ausfertigung-datum>1896-08-18</ausfertigung-datum>
-    </metadaten>
-    <textdaten>
-        <norm>
-            <metadaten/>
-            <textdaten>
-                <text>Deadline-related content</text>
-            </textdaten>
-        </norm>
-    </textdaten>
-</dokument>
-```
-
-### Spain - BOE (Boletín Oficial del Estado)
-**Base URL**: `https://www.boe.es`
-**RSS Feed**: `https://www.boe.es/rss/canal.php?c=l`
-**Open Data**: `https://www.boe.es/datosabiertos`
-**Format**: XML + PDF
-**Update**: Daily at 00:30 CET
-
-### Poland - ISAP/Sejm
-**Base URL**: `https://api.sejm.gov.pl`
-**ELI Endpoint**: `https://api.sejm.gov.pl/eli`
-**Authentication**: None required
-**Format**: JSON (default), XML available
-
-**ELI Pattern**: `/eli/acts/{year}/{position}`
-**Example**: `/eli/acts/2024/1234`
-
----
-
 ## 📊 Data Source Comparison Matrix
 
 | Source | Authentication | Rate Limit | Format | Coverage | Reliability | Priority |
 |--------|---------------|------------|---------|----------|-------------|----------|
 | EUR-Lex | API Key | 10/sec | JSON/XML | EU-wide | High | 1 |
-| Légifrance | OAuth 2.0 | 100/min | JSON | France | High | 2 |
-| RSS Feeds | None | None | RSS | EU updates | Medium | 3 |
-| Germany XML | None | None | XML | Germany | High | 4 |
-| Spain BOE | None | None | XML/PDF | Spain | Medium | 5 |
-| Poland ISAP | None | None | JSON | Poland | High | 6 |
+| RSS Feeds | None | None | RSS | EU updates | Medium | 2 |
+| Germany XML | None | None | XML | Germany | High | 3 |
 
 ---
 
@@ -453,7 +257,7 @@ class RSSMonitor:
 ```python
 COLLECTION_SCHEDULE = {
     "06:00": {
-        "sources": ["eur_lex", "legifrance"],
+        "sources": ["eur_lex"],
         "focus": "new_directives_regulations",
         "priority": "high"
     },
@@ -463,8 +267,8 @@ COLLECTION_SCHEDULE = {
         "priority": "medium"
     },
     "18:00": {
-        "sources": ["national_apis"],
-        "focus": "national_implementations",
+        "sources": ["german_xml"],
+        "focus": "german_implementations",
         "priority": "medium"
     }
 }
@@ -525,7 +329,7 @@ QUALITY_METRICS = {
 
 ### API Key Management
 - Store all credentials in environment variables
-- Use secret management services in production (AWS Parameter Store, Azure Key Vault)
+- Use secret management services in production
 - Rotate API keys regularly (quarterly)
 - Monitor for unauthorized usage
 
@@ -564,43 +368,29 @@ class RateLimiter:
             return True
 ```
 
-## 🔄 MVP Data Collection Workflow
+## 🔄 Core Data Collection Workflow
 
-### Week 1: Automated Data Collection
+### Data Collection Process
 1. **German XML processing** - Automated extraction from gesetze-im-internet.de
 2. **EU AI Act phases** - Extract from CELEX:32024R1689 via EUR-Lex API
 3. **Key EU directives** - Automated identification via EUR-Lex API
 4. **Validation** - Cross-check dates with multiple sources
 
-### Week 2: Data Processing
-1. **JSON database creation** - Simple deadline storage
+### Data Processing
+1. **Database creation** - Simple deadline storage
 2. **Data validation** - AI verification of all dates
 3. **ICS generation** - Convert to calendar format
 4. **Quality control** - Test calendar compatibility
 
-### MVP Success Criteria
+### Success Criteria
 - **50+ deadlines** captured automatically via AI and API
 - **100% accuracy** through AI validation
 - **Full automation** - focus on quality through AI
 - **Immediate value** - working calendar for users
 
-## 📊 Expansion Path (Post-MVP)
-
-### Mid-state (Months 3-8)
-- Add Poland, Austria, Netherlands APIs
-- Automated extraction for high-volume sources
-- Basic deduplication and conflict resolution
-
-### End-state (Year 2+)
-- End-state: EU-27 coverage
-- Advanced NLP processing
-- Real-time update systems
-- AI entry for sources without APIs
-
 ---
 
-**Company**: Blinktank GmbH, Berlin | **Product**: 50Data MVP
+**Company**: Blinktank GmbH, Berlin | **Product**: 50Data
 **Strategy**: Automated extraction → Enhanced automation → Full platform
-**Timeline**: 4 weeks to 50+ validated deadlines
-**Investment**: <€50/month for MVP deadline extraction
+**Investment**: <€50/month for core deadline extraction
 **Next**: Begin automated German XML processing and EUR-Lex registration

@@ -9,7 +9,9 @@
       "Bash(git add:*)",
       "Bash(git reset:*)",
       "Bash(rmdir:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []
