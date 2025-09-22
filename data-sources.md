@@ -6,9 +6,9 @@
 
 **Smart MVP Focus**: EU Brussels + Germany Only
 **Why This Works**: EU directives cover all 27 countries through Brussels legislation
-**Sources**: EUR-Lex API (EU) + German government research
+**Sources**: EUR-Lex API (EU) + German XML processing (gesetze-im-internet.de)
 **Timeline**: 4 weeks to 50+ EU+German deadlines
-**Cost**: <€50/month for EUR-Lex API only
+**Cost**: <€50/month for EUR-Lex API + server for XML processing
 
 **Maximum Impact Strategy:**
 - EUR-Lex = All EU directive deadlines (applies to all 27 countries)
@@ -59,38 +59,49 @@ MVP_DOCUMENTS = [
 ]
 ```
 
-## 📋 MVP Source 2: German Sources (Manual Research)
+## 📋 MVP Source 2: German XML Processing (Automated)
 
-### eRechnung Deadlines (Known)
+### Gesetze im Internet XML Parser
 
-**Manual Research Targets:**
+**Automated XML Processing:**
 ```python
-GERMAN_ERECHNUNG_DEADLINES = [
-    {
-        "date": "2025-01-01",
-        "title": "eRechnung B2G mandatory (Germany)",
-        "description": "Electronic invoicing mandatory for B2G transactions",
-        "source": "German ViF regulation",
-        "countries": ["DE"],
-        "type": "implementation"
-    },
-    {
-        "date": "2026-01-01",
-        "title": "eRechnung B2B preparation (Germany)",
-        "description": "Preparation phase for B2B electronic invoicing",
-        "source": "German eRechnung roadmap",
-        "countries": ["DE"],
-        "type": "preparation"
-    }
-    # Add more through manual research
-]
+class GermanyXMLParser:
+    """Automated German legal document processing"""
+
+    BASE_URL = "https://www.gesetze-im-internet.de"
+    XML_EXPORT = f"{BASE_URL}/xmlexport"
+
+    def collect_all_laws(self):
+        """
+        Automated German deadline extraction:
+        1. Download law index XML
+        2. Parse each law's XML file
+        3. Extract deadline dates with regex/NLP
+        4. Store structured deadline data
+        """
+
+    XML_STRUCTURE = """
+    <dokument>
+        <metadaten>
+            <jurabk>Law abbreviation</jurabk>
+            <ausfertigung-datum>Date</ausfertigung-datum>
+        </metadaten>
+        <textdaten>
+            <norm>
+                <textdaten>
+                    <text>Legal text with deadline dates</text>
+                </textdaten>
+            </norm>
+        </textdaten>
+    </dokument>
+    """
 ```
 
-### Research Sources
-- German Federal Ministry of Finance
-- ViF (Verband elektronische Rechnung)
-- Official German eRechnung portal
-- BMWi (Federal Ministry for Economic Affairs)
+### German Data Sources
+- gesetze-im-internet.de XML exports (~15GB)
+- Structured XML schema for all German laws
+- Weekly bulk download updates
+- Automated deadline date extraction from legal text
 
 ### Implementation Example
 

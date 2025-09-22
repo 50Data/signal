@@ -26,11 +26,11 @@
 - [ ] Register for Paddle account for future billing
 
 **Priority 2: Content & Research (Your Expertise) - EU + Germany Only**
-- [ ] Research German eRechnung deadlines from government sources
+- [ ] Identify target German laws for XML processing (eRechnung, compliance laws)
 - [ ] Identify 20-30 key EU directive deadlines from EUR-Lex (Brussels legislation)
 - [ ] Focus: EU directives apply to ALL 27 countries through Brussels
 - [ ] Define target audience and messaging for EU+German coverage
-- [ ] Create initial content strategy for pure deadline approach
+- [ ] Create initial content strategy for automated deadline extraction
 
 **Priority 3: API Registrations (You Handle, Claude Code Implements)**
 - [ ] **URGENT**: Register for EUR-Lex API access (free tier)

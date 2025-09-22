@@ -36,11 +36,11 @@
 - [ ] Set up 50data.eu domain with Let's Encrypt SSL
 - [ ] Configure API CORS and basic endpoint structure
 
-#### Day 3-4: EU Data Source Integration
+#### Day 3-4: EU + German Data Source Integration
 - [ ] Register for EUR-Lex API access and test basic queries
 - [ ] Implement simple EUR-Lex document fetching
-- [ ] Research and compile German eRechnung deadline data manually
-- [ ] Create basic legal source parsing with regex patterns
+- [ ] Set up German XML processing from gesetze-im-internet.de
+- [ ] Create basic XML parsing for German legal documents
 
 #### Day 5-7: Deadline Extraction Engine
 - [ ] Build simple date extraction from legal documents
