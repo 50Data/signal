@@ -5,13 +5,13 @@
 ## 🎯 MVP Data Strategy - SIMPLIFIED
 
 **Smart MVP Focus**: EU Brussels + Germany Only
-**Why This Works**: EU directives cover all 27 countries through Brussels legislation
+**Why This Works**: EU directives provide framework for national implementations
 **Sources**: EUR-Lex API (EU) + German XML processing (gesetze-im-internet.de)
 **Timeline**: 4 weeks to 50+ EU+German deadlines
 **Cost**: <€50/month for EUR-Lex API + server for XML processing
 
 **Maximum Impact Strategy:**
-- EUR-Lex = All EU directive deadlines (applies to all 27 countries)
+- EUR-Lex = EU directive deadlines (framework for implementations)
 - Germany = Largest EU economy implementation example
 - Proof of concept before expanding to other member states
 
@@ -66,7 +66,7 @@ MVP_DOCUMENTS = [
 **Automated XML Processing:**
 ```python
 class GermanyXMLParser:
-    """Automated German legal document processing"""
+    """Automated German deadline extraction processing"""
 
     BASE_URL = "https://www.gesetze-im-internet.de"
     XML_EXPORT = f"{BASE_URL}/xmlexport"
@@ -89,7 +89,7 @@ class GermanyXMLParser:
         <textdaten>
             <norm>
                 <textdaten>
-                    <text>Legal text with deadline dates</text>
+                    <text>Deadline dates and requirements</text>
                 </textdaten>
             </norm>
         </textdaten>
@@ -101,7 +101,7 @@ class GermanyXMLParser:
 - gesetze-im-internet.de XML exports (~15GB)
 - Structured XML schema for all German laws
 - Weekly bulk download updates
-- Automated deadline date extraction from legal text
+- Automated deadline date extraction from XML structure
 
 ### Implementation Example
 
@@ -149,7 +149,7 @@ class EURLexCollector:
         return response.json()
 
     async def get_document_content(self, celex: str, language: str = "EN"):
-        """Retrieve full document content by CELEX number"""
+        """Retrieve document content for deadline extraction by CELEX number"""
 
         response = await self.session.get(
             f"{self.base_url}/content",
@@ -408,7 +408,7 @@ class RSSMonitor:
         <norm>
             <metadaten/>
             <textdaten>
-                <text>Legal text content</text>
+                <text>Deadline-related content</text>
             </textdaten>
         </norm>
     </textdaten>
@@ -503,7 +503,7 @@ ERROR_HANDLING = {
 QUALITY_METRICS = {
     "extraction_accuracy": {
         "target": 0.90,
-        "measurement": "manual_validation_sample",
+        "measurement": "ai_validation_sample",
         "frequency": "weekly"
     },
     "data_freshness": {
@@ -531,7 +531,7 @@ QUALITY_METRICS = {
 
 ### Data Privacy
 - Store only necessary document metadata
-- Implement GDPR-compliant data retention (max 7 years for legal documents)
+- Implement GDPR-compliant data retention (max 7 years for deadline data)
 - Provide data export and deletion capabilities
 - Log access to sensitive compliance data
 
@@ -579,9 +579,9 @@ class RateLimiter:
 4. **Quality control** - Test calendar compatibility
 
 ### MVP Success Criteria
-- **50+ deadlines** captured manually and via API
-- **100% accuracy** through manual validation
-- **Zero automation** - focus on quality over quantity
+- **50+ deadlines** captured automatically via AI and API
+- **100% accuracy** through AI validation
+- **Full automation** - focus on quality through AI
 - **Immediate value** - working calendar for users
 
 ## 📊 Expansion Path (Post-MVP)
@@ -602,5 +602,5 @@ class RateLimiter:
 **Company**: Blinktank GmbH, Berlin | **Product**: 50Data MVP
 **Strategy**: Automated extraction → Enhanced automation → Full platform
 **Timeline**: 4 weeks to 50+ validated deadlines
-**Investment**: <€50/month for MVP data collection
+**Investment**: <€50/month for MVP deadline extraction
 **Next**: Begin automated German XML processing and EUR-Lex registration

@@ -6,7 +6,7 @@
 
 **This file is REFERENCE ONLY** for understanding what APIs and data structures the backend needs to provide.
 
-**Backend Project (This Repo)**: EU legal data collection, processing, and API provision
+**Backend Project (This Repo)**: EU deadline extraction, processing, and API provision
 **Frontend Project (Separate)**: Admin dashboard consuming the backend APIs
 
 ---
@@ -51,7 +51,7 @@ interface Deadline {
   source: string               // Source name
   source_url?: string          // Original source URL
   deadline_type: string        // implementation|compliance|reporting
-  manually_validated: boolean
+  ai_validated: boolean
   confidence_score: number     // 0.0 to 1.0
   created_at: string
   updated_at: string
@@ -88,7 +88,7 @@ interface ExportConfig {
 1. **Deadlines Table** - Advanced data table with filtering
 2. **Calendar View** - Visual deadline calendar
 3. **Export Center** - ICS/CSV download interface
-4. **Sources Status** - Data collection monitoring
+4. **Sources Status** - Deadline extraction monitoring
 
 ### Technology Stack (Frontend Team)
 - Next.js 14 with App Router

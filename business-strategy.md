@@ -9,7 +9,7 @@
 - **Domain Expertise**: Deep compliance knowledge without technical distraction
 - **Speed to Market**: Claude Code handles 100% development = faster execution
 - **Pure Business Focus**: No technical debt or engineering bias in decisions
-- **Customer-Centric**: CLI-based management keeps focus on user needs
+- **Customer-Centric**: 100% Claude Code development keeps focus on user needs
 - **Cost Efficiency**: No technical team overhead during validation phase
 
 **Why This Approach Wins:**
@@ -181,7 +181,7 @@
 - MVP: €50/month (enhanced CX31 hosting + API costs)
 - Mid-state: €2-5K/month (Paddle fees + expanded sources)
 - End-state: €10K+/month (full team + enterprise features)
-- Total Year 1 investment: €30-50K (low risk, proven approach with professional infrastructure)
+- Total Year 1 investment: €600 (€50/month hosting + APIs)
 
 ## 🚀 Go-to-Market Strategy - Email-First Growth
 

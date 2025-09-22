@@ -6,7 +6,7 @@
 
 ## 🎯 Problem
 
-EU businesses struggle to track compliance deadlines across 27+ jurisdictions. Manual monitoring of legal sources leads to missed deadlines, compliance failures, and regulatory penalties. No single source provides pure deadline data without editorial content.
+EU businesses struggle to track compliance deadlines from EU directives and national implementations. Automated monitoring prevents missed deadlines, compliance failures, and regulatory penalties. No single source provides pure deadline data without editorial content.
 
 ## 💡 Solution
 
@@ -14,7 +14,7 @@ EU businesses struggle to track compliance deadlines across 27+ jurisdictions. M
 
 **MVP (Simple)**: Calendar downloads + email notifications for deadline changes
 **Mid-state**: Multi-country coverage + subscription tiers via Paddle
-**End-state**: Complete EU-27 coverage + API access
+**End-state**: Extended EU country coverage + API access
 
 ## 🏆 Market Opportunity - Pure Deadline Service
 
@@ -81,7 +81,7 @@ Manual Sources ┘        │                           │                     
 ## 🚦 Quick Start
 
 1. **Setup Data Sources**: Register for EUR-Lex API access
-2. **Build Extraction**: Implement deadline parsing from legal texts
+2. **Build Extraction**: Implement deadline parsing from source documents
 3. **Generate Calendars**: Create ICS calendar generation
 4. **Email Integration**: Connect Kit/ConvertKit for notifications
 
@@ -105,8 +105,8 @@ Manual Sources ┘        │                           │                     
 
 **MVP** → **Mid-state** → **End-state**
 Free calendar → Paid tiers → API access
-EU+DE only → Easy countries → All EU-27
-Manual validation → Automated extraction → Real-time updates
+EU+DE only → Easy countries → Extended coverage
+AI validation → Automated extraction → Real-time updates
 
 ## 📧 Email-First Approach
 

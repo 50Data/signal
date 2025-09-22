@@ -40,11 +40,11 @@
 - [ ] Register for EUR-Lex API access and test basic queries
 - [ ] Implement simple EUR-Lex document fetching
 - [ ] Set up German XML processing from gesetze-im-internet.de
-- [ ] Create basic XML parsing for German legal documents
+- [ ] Create basic XML parsing for German deadline extraction
 
 #### Day 5-7: Deadline Extraction Engine
-- [ ] Build simple date extraction from legal documents
-- [ ] Implement manual validation workflow for deadline accuracy
+- [ ] Build simple date extraction from source documents
+- [ ] Implement AI validation workflow for deadline accuracy
 - [ ] Create basic deadline storage in PostgreSQL database
 - [ ] Set up simple logging and error handling
 
@@ -120,7 +120,7 @@
 **Week 3 Deliverables:**
 - Fully tested calendar compatibility across platforms
 - Paddle billing system ready for future monetization
-- 50+ manually validated deadlines with pure data approach
+- 50+ AI-validated deadlines with pure data approach
 - Basic monitoring and quality control processes
 
 ---
@@ -197,10 +197,10 @@
 - Target: 200+ calendar downloads, 100+ email subscribers
 
 ### Month 3: Multi-Country Expansion (Poland)
-**Focus**: Add first additional country with automated data collection
+**Focus**: Add first additional country with automated deadline extraction
 
 **Key Deliverables:**
-- Research and add Polish compliance deadlines manually
+- Research and add Polish compliance deadlines via automated tools
 - Create Poland-specific calendar filtering
 - Segment Kit/ConvertKit subscribers by country interest
 - Prepare Paddle subscription tiers for testing
@@ -243,7 +243,7 @@
 ### Technical Metrics
 
 **Deadline Processing:**
-- Deadline extraction accuracy: >90% manual validation success
+- Deadline extraction accuracy: >90% AI validation success
 - Calendar generation speed: <10 seconds for ICS file creation
 - Website load time: <3 seconds for calendar download
 - Email delivery rate: >99% via Kit/ConvertKit
@@ -285,7 +285,7 @@
 **Coverage:**
 - Countries covered: EU + Germany (MVP), Poland/Austria (Month 3-4)
 - Deadline sources: EUR-Lex + German government sources
-- Update frequency: Weekly manual validation + monthly source checks
+- Update frequency: Weekly AI validation + monthly source checks
 - Language support: English only (MVP), German/Polish (future)
 
 **Integration Success:**
@@ -361,10 +361,10 @@
 - SEO ranking for "EU compliance deadlines" keywords
 
 **Content Goals:**
-- 50+ manually validated EU compliance deadlines in calendar
+- 50+ AI-validated EU compliance deadlines in calendar
 - Pure deadline data approach (no commentary or analysis ever)
 - Email notifications focused only on deadline changes
-- Quality control with manual verification of all deadline data
+- Quality control with AI verification of all deadline data
 
 **Platform Goals:**
 - Works with Outlook, Google Calendar, Apple Calendar

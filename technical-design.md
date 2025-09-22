@@ -8,7 +8,7 @@
 **Founder Role (Andreas Dahrendorf):**
 - Business strategy and market validation
 - Content direction and compliance expertise
-- File-based management: MD/YAML/CSV editing + Python script execution
+- Claude Code handles: MD/YAML/CSV generation + Python script creation
 - Customer feedback and growth decisions
 - No Python coding - executes scripts Claude Code provides
 
@@ -61,12 +61,12 @@
 - **Python Flask**: Lightweight API backend for deadline processing
 - **PostgreSQL**: Database for deadline storage (EUR-Lex + German XML)
 - **Requests**: HTTP client for EUR-Lex API calls
-- **lxml**: XML processing for German legal documents (gesetze-im-internet.de)
+- **lxml**: XML processing for German deadline extraction (gesetze-im-internet.de)
 - **Automated extraction**: Both EUR-Lex JSON and German XML parsing
 
 **Database (Enhanced)**
 - **PostgreSQL**: Production database for deadlines, documents, and user info
-- **Full-text search**: Built-in search capabilities for legal document content
+- **Full-text search**: Built-in search capabilities for deadline content
 - **Proper indexing**: Optimized queries for deadline lookups and filtering
 - **Automated backups**: PostgreSQL dump + Hetzner volume backup strategy
 
@@ -123,7 +123,7 @@ GET  /api/sources/stats          # Collection statistics
   "country": "DE",
   "source": "German Federal Ministry",
   "deadline_type": "implementation",
-  "manually_validated": true,
+  "ai_validated": true,
   "confidence_score": 0.95,
   "created_at": "2024-12-20T10:00:00Z",
   "updated_at": "2024-12-20T10:00:00Z"
@@ -132,9 +132,9 @@ GET  /api/sources/stats          # Collection statistics
 
 *Note: Frontend implementation handled separately (see frontend-reference.md)*
 
-## 📁 File-Based Management Workflow (MD/YAML/CSV/Python)
+## 📁 Claude Code Automated Workflow (MD/YAML/CSV/Python)
 
-**Claude Code Will Build:** Python scripts + file-based management system
+**Claude Code Will Build:** Python scripts + automated data management system
 
 ### Project File Structure
 ```
@@ -162,31 +162,27 @@ GET  /api/sources/stats          # Collection statistics
     └── reports/                  # Analytics and reports
 ```
 
-### Your Daily Workflow
+### Claude Code Automated Workflow
 ```bash
-# 1. Review new extractions
+# 1. Extract new deadlines automatically
 python scripts/extract_deadlines.py    # Claude Code script extracts new deadlines
 # Creates: data/pending_review.csv
 
-# 2. Edit pending deadlines (your work)
-nano data/pending_review.csv          # Review and edit in CSV format
-# OR: Open in Excel/LibreOffice for easier editing
-
-# 3. Approve validated deadlines
-python scripts/approve_deadlines.py   # Moves approved items to main dataset
+# 2. AI validation and approval (automated)
+python scripts/approve_deadlines.py   # AI validates and moves approved items
 # Updates: data/deadlines.csv
 
-# 4. Generate calendar and notify users
+# 3. Generate calendar and notify users (automated)
 python scripts/generate_calendar.py   # Creates calendar.ics
 python scripts/send_notifications.py  # Sends Kit/ConvertKit updates
 
-# 5. Check analytics
+# 4. Generate analytics (automated)
 python scripts/analytics.py           # Generates reports in Markdown
 ```
 
 ### File-Based Management Components
 
-**YAML Configuration (You Edit):**
+**YAML Configuration (Claude Code Manages):**
 ```yaml
 # config/settings.yml
 api_keys:
@@ -204,7 +200,7 @@ email_settings:
   template: "pure_deadline_update"
 ```
 
-**CSV Data Management (You Edit):**
+**CSV Data Management (Claude Code Manages):**
 ```csv
 # data/pending_review.csv
 date,title,description,source,country,confidence,status
@@ -212,7 +208,7 @@ date,title,description,source,country,confidence,status
 2025-06-01,AI Act compliance deadline,AI systems must comply with new regulations,EUR-Lex,EU,0.87,pending
 ```
 
-**Markdown Documentation (You Write):**
+**Markdown Documentation (Claude Code Generates):**
 ```markdown
 # docs/daily_notes.md
 ## 2024-12-20
@@ -228,7 +224,7 @@ date,title,description,source,country,confidence,status
 - Scripts are documented and safe to run
 - Configuration via YAML files (no code changes needed)
 
-**Your Comfort Zone:** Editing files (MD/YAML/CSV) + running Python scripts Claude Code provides
+**User Role:** Business direction + Claude Code handles all technical implementation
 
 ## 📥 EU Legal Data Sources (Claude Code Implementation)
 
@@ -346,8 +342,8 @@ class DeadlineProcessingPipeline:
         # Step 1: Simple date extraction
         raw_deadlines = self.extract_dates(source_data)
 
-        # Step 2: Manual validation (always required for MVP)
-        validated_deadlines = self.manual_validation(raw_deadlines)
+        # Step 2: AI validation (always required for MVP)
+        validated_deadlines = self.ai_validation(raw_deadlines)
 
         # Step 3: Store validated deadlines
         self.store_deadlines(validated_deadlines)
@@ -382,11 +378,11 @@ class DeadlineProcessingPipeline:
                 pure_data_only=True
             )
 
-    def manual_validation(self, deadlines: List[dict]):
-        """Always require manual validation for deadline accuracy"""
-        # MVP: All deadlines must be manually verified
-        # No automated acceptance of extracted dates
-        return []  # Return only manually verified deadlines
+    def ai_validation(self, deadlines: List[dict]):
+        """Always require AI validation for deadline accuracy"""
+        # MVP: All deadlines must be AI verified
+        # Claude Code automated validation of extracted dates
+        return []  # Return only AI verified deadlines
 
 ## 📅 Calendar & Email System (Simple)
 
@@ -604,7 +600,7 @@ production_setup = {
 - **Webhook System**: Real-time deadline change notifications
 
 ### End-state Architecture (Year 2+)
-- **Complete EU Coverage**: All EU-27 countries with deadline tracking
+- **Extended EU Coverage**: Additional EU countries with deadline tracking
 - **Real-time Updates**: Live monitoring of legal source changes
 - **White-label Platform**: Calendar embedding for legal software
 - **Enterprise API**: High-volume access for legal tech ecosystem
@@ -666,7 +662,7 @@ CREATE TABLE deadlines (
 
     -- Processing metadata
     extraction_method VARCHAR(50), -- manual, api, regex, xml_parser
-    manually_validated BOOLEAN DEFAULT FALSE,
+    ai_validated BOOLEAN DEFAULT FALSE,
     confidence_score DECIMAL(3,2), -- 0.00 to 1.00
 
     -- No commentary fields - pure data only
@@ -708,7 +704,7 @@ CREATE TABLE subscribers (
 CREATE INDEX idx_deadlines_date ON deadlines(deadline_date);
 CREATE INDEX idx_deadlines_country ON deadlines(country);
 CREATE INDEX idx_deadlines_type ON deadlines(deadline_type);
-CREATE INDEX idx_deadlines_validated ON deadlines(manually_validated);
+CREATE INDEX idx_deadlines_validated ON deadlines(ai_validated);
 CREATE INDEX idx_subscribers_email ON subscribers(email);
 CREATE INDEX idx_source_docs_type ON source_documents(document_type);
 CREATE INDEX idx_source_docs_identifier ON source_documents(document_identifier);
@@ -724,7 +720,7 @@ CREATE INDEX idx_deadlines_fts ON deadlines USING gin(to_tsvector('english', tit
 ```python
 technical_metrics = {
   "deadline_processing": {
-    "extraction_accuracy": "90%+ manual validation success",
+    "extraction_accuracy": "90%+ AI validation success",
     "calendar_generation": "Sub-10 second ICS file creation",
     "email_delivery": "99%+ Kit/ConvertKit delivery rate",
     "source_coverage": "EUR-Lex + German sources"
