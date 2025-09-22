@@ -8,9 +8,9 @@
 **Founder Role (Andreas Dahrendorf):**
 - Business strategy and market validation
 - Content direction and compliance expertise
-- CLI-based system management (SSH + simple commands)
+- File-based management: MD/YAML/CSV editing + Python script execution
 - Customer feedback and growth decisions
-- No coding or technical implementation required
+- No Python coding - executes scripts Claude Code provides
 
 **Claude Code Role:**
 - 100% of technical development and implementation
@@ -19,7 +19,7 @@
 - Technical troubleshooting and system scaling
 - All DevOps and infrastructure management
 
-**User Interface:** CLI-based management tools for system administration
+**User Interface:** File-based workflow with Python scripts, YAML configs, CSV data, and Markdown docs
 
 ## 🏗️ MVP System Overview
 
@@ -90,58 +90,103 @@
 - **Deployment**: Git-based with database migrations
 - **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
 
-## 🖥️ CLI-Based Management Tools (Non-Coder Friendly)
+## 📁 File-Based Management Workflow (MD/YAML/CSV/Python)
 
-**Claude Code Will Build:** Simple command-line tools for deadline management
+**Claude Code Will Build:** Python scripts + file-based management system
 
-### CLI Management Commands
-```bash
-# Deadline management (simple commands)
-./deadlines list                          # View all deadlines
-./deadlines approve 123                   # Approve extracted deadline
-./deadlines add "2025-01-01" "Title"     # Add deadline manually
-./deadlines edit 123                     # Edit deadline in text editor
-./deadlines export calendar.ics          # Generate calendar file
-
-# Content validation
-./deadlines validate                      # Check all deadlines for errors
-./deadlines preview                       # Preview what users will see
-./deadlines backup                        # Create backup file
-
-# Email and notifications
-./emails send-update                      # Send Kit/ConvertKit update
-./emails preview-template                 # Preview email template
-./analytics show                          # Display download/subscriber stats
+### Project File Structure
+```
+50data/
+├── config/
+│   ├── settings.yml              # Main configuration
+│   ├── sources.yml               # Data source settings
+│   └── email_templates.yml       # Email configuration
+├── data/
+│   ├── deadlines.csv             # All compliance deadlines
+│   ├── pending_review.csv        # Extracted deadlines awaiting approval
+│   └── approved_deadlines.csv    # Validated deadlines
+├── scripts/                      # Python scripts (Claude Code writes)
+│   ├── extract_deadlines.py      # Extract from EUR-Lex/German sources
+│   ├── approve_deadlines.py      # Approve pending deadlines
+│   ├── generate_calendar.py      # Create ICS calendar file
+│   ├── send_notifications.py     # Kit/ConvertKit email updates
+│   └── analytics.py              # Generate reports
+├── docs/
+│   ├── README.md                 # Project documentation
+│   ├── deadline_sources.md       # Source documentation
+│   └── daily_notes.md            # Your daily notes/observations
+└── output/
+    ├── calendar.ics              # Generated calendar file
+    └── reports/                  # Analytics and reports
 ```
 
-### File-Based Management
-- **Deadline editing**: Simple text files (YAML/JSON format)
-- **Configuration**: Edit config files with text editor
-- **Email templates**: HTML files you can edit directly
-- **Import/Export**: CSV files for bulk operations
-- **Logs**: Plain text log files for monitoring
-
-### User Workflow (CLI-Comfortable)
-1. **SSH into server** → Access via terminal
-2. **Run commands** → Use simple CLI tools to manage deadlines
-3. **Edit files** → Update configurations with nano/vim
-4. **Execute** → Run commands to publish updates
-5. **Monitor** → Check logs and analytics via CLI
-
-### Example Management Session
+### Your Daily Workflow
 ```bash
-# Daily deadline management workflow
-ssh user@50data.eu
-cd /var/www/50data
-./deadlines list --pending              # See new extractions
-./deadlines approve 124 125 126         # Approve good ones
-./deadlines edit 127                    # Fix deadline description
-./deadlines export                       # Generate new calendar
-./emails send-update                     # Notify subscribers
-./analytics show --today                # Check daily stats
+# 1. Review new extractions
+python scripts/extract_deadlines.py    # Claude Code script extracts new deadlines
+# Creates: data/pending_review.csv
+
+# 2. Edit pending deadlines (your work)
+nano data/pending_review.csv          # Review and edit in CSV format
+# OR: Open in Excel/LibreOffice for easier editing
+
+# 3. Approve validated deadlines
+python scripts/approve_deadlines.py   # Moves approved items to main dataset
+# Updates: data/deadlines.csv
+
+# 4. Generate calendar and notify users
+python scripts/generate_calendar.py   # Creates calendar.ics
+python scripts/send_notifications.py  # Sends Kit/ConvertKit updates
+
+# 5. Check analytics
+python scripts/analytics.py           # Generates reports in Markdown
 ```
 
-**All Complex Code Handled by Claude Code - You Just Run Simple Commands**
+### File-Based Management Components
+
+**YAML Configuration (You Edit):**
+```yaml
+# config/settings.yml
+api_keys:
+  eur_lex: "your-api-key"
+  kit_convertkit: "your-api-key"
+  paddle: "your-api-key"
+
+extraction_settings:
+  auto_approve_confidence: 0.85
+  countries: ["DE", "EU"]
+  deadline_types: ["implementation", "compliance", "reporting"]
+
+email_settings:
+  send_frequency: "weekly"
+  template: "pure_deadline_update"
+```
+
+**CSV Data Management (You Edit):**
+```csv
+# data/pending_review.csv
+date,title,description,source,country,confidence,status
+2025-01-01,eRechnung B2G mandatory,Electronic invoicing mandatory for B2G,German Ministry,DE,0.95,pending
+2025-06-01,AI Act compliance deadline,AI systems must comply with new regulations,EUR-Lex,EU,0.87,pending
+```
+
+**Markdown Documentation (You Write):**
+```markdown
+# docs/daily_notes.md
+## 2024-12-20
+- Reviewed 15 new deadline extractions
+- Approved 12, rejected 3 (low confidence scores)
+- Updated email template for clearer messaging
+- Need to research Italian eInvoicing requirements next week
+```
+
+**Python Script Execution (Claude Code Provides, You Run):**
+- No Python knowledge required - just execute scripts
+- All complex logic handled by Claude Code
+- Scripts are documented and safe to run
+- Configuration via YAML files (no code changes needed)
+
+**Your Comfort Zone:** Editing files (MD/YAML/CSV) + running Python scripts Claude Code provides
 
 ## 📥 EU Legal Data Sources (Claude Code Implementation)
 
@@ -526,7 +571,7 @@ production_setup = {
 
 ## 🔧 MVP Development Timeline (Claude Code Implementation)
 
-**Important**: All technical work performed by Claude Code. User provides business direction only.
+**Important**: All Python scripts and technical work by Claude Code. User manages via files (MD/YAML/CSV).
 
 ### Claude Code Development Schedule (4 weeks)
 ```python
@@ -538,16 +583,16 @@ claude_code_implementation = {
     "user_role": "Provide business requirements and feedback on progress"
   },
   "week2": {
-    "processing": "Claude Code builds deadline extraction + validation system",
-    "calendar": "Claude Code creates ICS calendar generation + download system",
-    "email": "Claude Code integrates Kit/ConvertKit for notifications",
-    "user_role": "Test deadline accuracy and provide content validation"
+    "processing": "Claude Code builds Python scripts for deadline extraction + validation",
+    "calendar": "Claude Code creates Python script for ICS calendar generation",
+    "email": "Claude Code builds Python script for Kit/ConvertKit notifications",
+    "user_role": "Test Python scripts and edit CSV/YAML files for validation"
   },
   "week3": {
     "billing": "Claude Code integrates Paddle for future subscriptions",
-    "website": "Claude Code builds CLI management tools + public site",
-    "validation": "Claude Code creates CLI commands for deadline approval",
-    "user_role": "Test CLI tools and provide workflow feedback"
+    "website": "Claude Code builds file management system + public site",
+    "validation": "Claude Code creates Python scripts for deadline approval workflow",
+    "user_role": "Test file-based workflow and provide feedback on CSV/YAML structure"
   },
   "week4": {
     "testing": "Claude Code tests calendar compatibility across platforms",

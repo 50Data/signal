@@ -7,12 +7,13 @@
 **Your Role (Non-Technical Founder):**
 - Business strategy and market validation
 - Content direction and compliance expertise
-- CLI-based system management (SSH + simple commands)
+- File-based management: Edit MD/YAML/CSV + execute Python scripts
 - Customer feedback and growth decisions
 
 **Claude Code Role:**
-- 100% of technical development and implementation
-- All coding, server setup, deployment, and maintenance
+- 100% of Python script development and technical implementation
+- Build file management system (YAML configs, CSV data processing)
+- All server setup, deployment, and maintenance
 
 ## 🚀 WEEK 1: Business Setup & Direction
 
@@ -80,7 +81,8 @@
 - Build database schema for deadline storage
 - Create data validation systems
 - Implement deadline extraction algorithms
-- Build CLI management tools for deadline approval and editing
+- Build Python scripts for deadline management and file-based workflow
+- Create YAML configuration system and CSV data processing
 - Set up automated backups and monitoring
 
 **Deadline Research Template (Your Format):**
@@ -98,11 +100,11 @@ Type: [implementation/compliance/reporting]
 
 ### Your Business Tasks (Week 2)
 **Content Validation & Quality Control:**
-- [ ] Review and approve auto-extracted deadlines via CLI commands
-- [ ] Test CLI management tools built by Claude Code
+- [ ] Review and approve auto-extracted deadlines via CSV file editing
+- [ ] Test Python scripts and file-based workflow built by Claude Code
 - [ ] Validate deadline accuracy against original sources
 - [ ] Define quality standards for deadline descriptions
-- [ ] Create email notification templates for Kit/ConvertKit
+- [ ] Edit YAML email templates for Kit/ConvertKit notifications
 
 **Market Research & Competition:**
 - [ ] Research existing compliance calendar solutions
@@ -113,9 +115,9 @@ Type: [implementation/compliance/reporting]
 ### Claude Code Tasks (Week 2)
 **Technical Implementation:**
 - Build deadline extraction and validation system
-- Create CLI tools for deadline management and approval
-- Implement ICS calendar generation
-- Integrate Kit/ConvertKit for email notifications
+- Create Python scripts for deadline management and approval via CSV/YAML
+- Implement ICS calendar generation script
+- Integrate Kit/ConvertKit with YAML configuration
 - Set up automated testing and quality control
 
 ---
@@ -137,7 +139,7 @@ Type: [implementation/compliance/reporting]
 
 ### Claude Code Tasks (Week 3-4)
 **Final Implementation:**
-- Complete CLI management tools and commands
+- Complete Python scripts and file management system
 - Deploy production system to Hetzner
 - Set up monitoring and backup systems
 - Integrate Paddle for future billing
@@ -155,9 +157,10 @@ Type: [implementation/compliance/reporting]
 - [ ] Initial user feedback collected
 
 ### Technical Success (Claude Code Responsibility)
-- [ ] CLI management tools working properly
-- [ ] Calendar generation and download functional
-- [ ] Email notifications via Kit/ConvertKit
+- [ ] Python scripts and file management system working properly
+- [ ] CSV/YAML workflow for deadline management functional
+- [ ] Calendar generation script and download functional
+- [ ] Email notifications via Kit/ConvertKit with YAML config
 - [ ] Hetzner hosting stable and monitored
 - [ ] All systems ready for user growth
 - [ ] Performance monitoring with basic metrics
@@ -216,7 +219,7 @@ Type: [implementation/compliance/reporting]
 
 ## 🎯 SUCCESS SUMMARY
 
-**Your Role**: Business strategy, content expertise, CLI-based management
+**Your Role**: Business strategy, content expertise, file-based management (MD/YAML/CSV + Python scripts)
 **Claude Code Role**: 100% technical implementation and maintenance
 **Timeline**: 4 weeks to working deadline service
 **Investment**: €50/month enhanced infrastructure
