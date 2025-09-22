@@ -9,7 +9,7 @@
 - **Domain Expertise**: Deep compliance knowledge without technical distraction
 - **Speed to Market**: Claude Code handles 100% development = faster execution
 - **Pure Business Focus**: No technical debt or engineering bias in decisions
-- **Customer-Centric**: WordPress-style management keeps focus on user needs
+- **Customer-Centric**: CLI-based management keeps focus on user needs
 - **Cost Efficiency**: No technical team overhead during validation phase
 
 **Why This Approach Wins:**

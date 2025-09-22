@@ -8,7 +8,7 @@
 **Founder Role (Andreas Dahrendorf):**
 - Business strategy and market validation
 - Content direction and compliance expertise
-- WordPress-style admin management
+- CLI-based system management (SSH + simple commands)
 - Customer feedback and growth decisions
 - No coding or technical implementation required
 
@@ -19,7 +19,7 @@
 - Technical troubleshooting and system scaling
 - All DevOps and infrastructure management
 
-**User Interface:** WordPress-style admin panel for non-technical management
+**User Interface:** CLI-based management tools for system administration
 
 ## 🏗️ MVP System Overview
 
@@ -90,42 +90,58 @@
 - **Deployment**: Git-based with database migrations
 - **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
 
-## 🖥️ Non-Technical User Interface (WordPress-Style Admin)
+## 🖥️ CLI-Based Management Tools (Non-Coder Friendly)
 
-**Claude Code Will Build:** Complete admin interface for non-technical management
+**Claude Code Will Build:** Simple command-line tools for deadline management
 
-### Admin Dashboard Features
+### CLI Management Commands
+```bash
+# Deadline management (simple commands)
+./deadlines list                          # View all deadlines
+./deadlines approve 123                   # Approve extracted deadline
+./deadlines add "2025-01-01" "Title"     # Add deadline manually
+./deadlines edit 123                     # Edit deadline in text editor
+./deadlines export calendar.ics          # Generate calendar file
+
+# Content validation
+./deadlines validate                      # Check all deadlines for errors
+./deadlines preview                       # Preview what users will see
+./deadlines backup                        # Create backup file
+
+# Email and notifications
+./emails send-update                      # Send Kit/ConvertKit update
+./emails preview-template                 # Preview email template
+./analytics show                          # Display download/subscriber stats
 ```
-📊 DEADLINE MANAGEMENT DASHBOARD
-├── 📅 Calendar Overview (visual deadline timeline)
-├── ➕ Add Deadline (simple form - no coding)
-├── ✏️  Edit Deadlines (WordPress-style editor)
-├── ✅ Approve Extracted Deadlines (click to validate)
-├── 📧 Email Templates (drag-and-drop editor)
-├── 👥 Subscriber Management (Kit/ConvertKit integration)
-├── 💰 Billing Overview (Paddle dashboard embed)
-├── 📈 Analytics (download counts, growth metrics)
-└── ⚙️  Settings (domain, integrations, preferences)
+
+### File-Based Management
+- **Deadline editing**: Simple text files (YAML/JSON format)
+- **Configuration**: Edit config files with text editor
+- **Email templates**: HTML files you can edit directly
+- **Import/Export**: CSV files for bulk operations
+- **Logs**: Plain text log files for monitoring
+
+### User Workflow (CLI-Comfortable)
+1. **SSH into server** → Access via terminal
+2. **Run commands** → Use simple CLI tools to manage deadlines
+3. **Edit files** → Update configurations with nano/vim
+4. **Execute** → Run commands to publish updates
+5. **Monitor** → Check logs and analytics via CLI
+
+### Example Management Session
+```bash
+# Daily deadline management workflow
+ssh user@50data.eu
+cd /var/www/50data
+./deadlines list --pending              # See new extractions
+./deadlines approve 124 125 126         # Approve good ones
+./deadlines edit 127                    # Fix deadline description
+./deadlines export                       # Generate new calendar
+./emails send-update                     # Notify subscribers
+./analytics show --today                # Check daily stats
 ```
 
-### Key Non-Technical Features
-- **Visual Deadline Editor**: WordPress-style WYSIWYG interface
-- **One-Click Actions**: Approve/reject extracted deadlines
-- **Template Management**: Drag-and-drop email template builder
-- **Import/Export**: CSV upload for bulk deadline management
-- **Preview Mode**: See exactly what users will download
-- **Error Handling**: Clear English error messages (no technical jargon)
-- **Backup/Restore**: One-click backup download and restore
-- **Mobile Responsive**: Manage from phone/tablet
-
-### User Workflow (Non-Technical)
-1. **Login** → WordPress-style admin dashboard
-2. **Review** → Approve/edit auto-extracted deadlines
-3. **Publish** → One-click calendar generation and email sending
-4. **Monitor** → Growth metrics and user feedback
-5. **Manage** → Subscriber lists and billing via integrated panels
-
-**All Technical Work Handled by Claude Code Behind the Scenes**
+**All Complex Code Handled by Claude Code - You Just Run Simple Commands**
 
 ## 📥 EU Legal Data Sources (Claude Code Implementation)
 
@@ -529,9 +545,9 @@ claude_code_implementation = {
   },
   "week3": {
     "billing": "Claude Code integrates Paddle for future subscriptions",
-    "website": "Claude Code builds WordPress-style admin + public site",
-    "validation": "Claude Code creates admin interface for deadline approval",
-    "user_role": "Review admin interface and provide UX feedback"
+    "website": "Claude Code builds CLI management tools + public site",
+    "validation": "Claude Code creates CLI commands for deadline approval",
+    "user_role": "Test CLI tools and provide workflow feedback"
   },
   "week4": {
     "testing": "Claude Code tests calendar compatibility across platforms",

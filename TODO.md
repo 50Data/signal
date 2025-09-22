@@ -7,7 +7,7 @@
 **Your Role (Non-Technical Founder):**
 - Business strategy and market validation
 - Content direction and compliance expertise
-- WordPress-style admin management
+- CLI-based system management (SSH + simple commands)
 - Customer feedback and growth decisions
 
 **Claude Code Role:**
@@ -80,7 +80,7 @@
 - Build database schema for deadline storage
 - Create data validation systems
 - Implement deadline extraction algorithms
-- Build WordPress-style admin interface for deadline management
+- Build CLI management tools for deadline approval and editing
 - Set up automated backups and monitoring
 
 **Deadline Research Template (Your Format):**
@@ -98,8 +98,8 @@ Type: [implementation/compliance/reporting]
 
 ### Your Business Tasks (Week 2)
 **Content Validation & Quality Control:**
-- [ ] Review and approve auto-extracted deadlines via admin interface
-- [ ] Test WordPress-style admin dashboard built by Claude Code
+- [ ] Review and approve auto-extracted deadlines via CLI commands
+- [ ] Test CLI management tools built by Claude Code
 - [ ] Validate deadline accuracy against original sources
 - [ ] Define quality standards for deadline descriptions
 - [ ] Create email notification templates for Kit/ConvertKit
@@ -113,7 +113,7 @@ Type: [implementation/compliance/reporting]
 ### Claude Code Tasks (Week 2)
 **Technical Implementation:**
 - Build deadline extraction and validation system
-- Create WordPress-style admin interface for deadline management
+- Create CLI tools for deadline management and approval
 - Implement ICS calendar generation
 - Integrate Kit/ConvertKit for email notifications
 - Set up automated testing and quality control
@@ -137,7 +137,7 @@ Type: [implementation/compliance/reporting]
 
 ### Claude Code Tasks (Week 3-4)
 **Final Implementation:**
-- Complete WordPress-style admin interface
+- Complete CLI management tools and commands
 - Deploy production system to Hetzner
 - Set up monitoring and backup systems
 - Integrate Paddle for future billing
@@ -155,7 +155,7 @@ Type: [implementation/compliance/reporting]
 - [ ] Initial user feedback collected
 
 ### Technical Success (Claude Code Responsibility)
-- [ ] WordPress-style admin interface working
+- [ ] CLI management tools working properly
 - [ ] Calendar generation and download functional
 - [ ] Email notifications via Kit/ConvertKit
 - [ ] Hetzner hosting stable and monitored
@@ -216,7 +216,7 @@ Type: [implementation/compliance/reporting]
 
 ## 🎯 SUCCESS SUMMARY
 
-**Your Role**: Business strategy, content expertise, WordPress-style management
+**Your Role**: Business strategy, content expertise, CLI-based management
 **Claude Code Role**: 100% technical implementation and maintenance
 **Timeline**: 4 weeks to working deadline service
 **Investment**: €50/month enhanced infrastructure
