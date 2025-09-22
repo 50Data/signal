@@ -1,7 +1,25 @@
 # Technical Architecture - 50Data EU Compliance Deadline Service
 
-*Blinktank GmbH | Simple MVP Architecture*
+*Blinktank GmbH | Non-Technical Founder + Claude Code Implementation*
 *Three-Phase Evolution: Free MVP → Paid Tiers → API Platform*
+
+## 🎯 Implementation Reality
+
+**Founder Role (Andreas Dahrendorf):**
+- Business strategy and market validation
+- Content direction and compliance expertise
+- WordPress-style admin management
+- Customer feedback and growth decisions
+- No coding or technical implementation required
+
+**Claude Code Role:**
+- 100% of technical development and implementation
+- Server setup, database design, API integrations
+- Code writing, testing, deployment, and maintenance
+- Technical troubleshooting and system scaling
+- All DevOps and infrastructure management
+
+**User Interface:** WordPress-style admin panel for non-technical management
 
 ## 🏗️ MVP System Overview
 
@@ -72,7 +90,44 @@
 - **Deployment**: Git-based with database migrations
 - **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
 
-## 📥 EU Legal Data Sources (Deadline-Focused)
+## 🖥️ Non-Technical User Interface (WordPress-Style Admin)
+
+**Claude Code Will Build:** Complete admin interface for non-technical management
+
+### Admin Dashboard Features
+```
+📊 DEADLINE MANAGEMENT DASHBOARD
+├── 📅 Calendar Overview (visual deadline timeline)
+├── ➕ Add Deadline (simple form - no coding)
+├── ✏️  Edit Deadlines (WordPress-style editor)
+├── ✅ Approve Extracted Deadlines (click to validate)
+├── 📧 Email Templates (drag-and-drop editor)
+├── 👥 Subscriber Management (Kit/ConvertKit integration)
+├── 💰 Billing Overview (Paddle dashboard embed)
+├── 📈 Analytics (download counts, growth metrics)
+└── ⚙️  Settings (domain, integrations, preferences)
+```
+
+### Key Non-Technical Features
+- **Visual Deadline Editor**: WordPress-style WYSIWYG interface
+- **One-Click Actions**: Approve/reject extracted deadlines
+- **Template Management**: Drag-and-drop email template builder
+- **Import/Export**: CSV upload for bulk deadline management
+- **Preview Mode**: See exactly what users will download
+- **Error Handling**: Clear English error messages (no technical jargon)
+- **Backup/Restore**: One-click backup download and restore
+- **Mobile Responsive**: Manage from phone/tablet
+
+### User Workflow (Non-Technical)
+1. **Login** → WordPress-style admin dashboard
+2. **Review** → Approve/edit auto-extracted deadlines
+3. **Publish** → One-click calendar generation and email sending
+4. **Monitor** → Growth metrics and user feedback
+5. **Manage** → Subscriber lists and billing via integrated panels
+
+**All Technical Work Handled by Claude Code Behind the Scenes**
+
+## 📥 EU Legal Data Sources (Claude Code Implementation)
 
 ### Source 1: EUR-Lex API (EU-wide)
 
@@ -453,30 +508,36 @@ production_setup = {
 - **Advanced Filtering**: Granular deadline categorization and search
 - **Mobile Optimization**: Responsive design for mobile deadline alerts
 
-## 🔧 MVP Development Requirements
+## 🔧 MVP Development Timeline (Claude Code Implementation)
 
-### Simple MVP Tasks (4 weeks)
+**Important**: All technical work performed by Claude Code. User provides business direction only.
+
+### Claude Code Development Schedule (4 weeks)
 ```python
-mvp_implementation = {
+claude_code_implementation = {
   "week1": {
-    "backend": "Flask application + PostgreSQL database setup",
-    "sources": "EUR-Lex API integration + German XML processing",
-    "infrastructure": "Hetzner CX31 deployment with 80GB storage"
+    "backend": "Claude Code builds Flask application + PostgreSQL setup",
+    "sources": "Claude Code integrates EUR-Lex API + German XML processing",
+    "infrastructure": "Claude Code deploys to Hetzner CX31 with 80GB storage",
+    "user_role": "Provide business requirements and feedback on progress"
   },
   "week2": {
-    "processing": "Simple deadline extraction + manual validation",
-    "calendar": "ICS calendar generation + download system",
-    "email": "Kit/ConvertKit integration for notifications"
+    "processing": "Claude Code builds deadline extraction + validation system",
+    "calendar": "Claude Code creates ICS calendar generation + download system",
+    "email": "Claude Code integrates Kit/ConvertKit for notifications",
+    "user_role": "Test deadline accuracy and provide content validation"
   },
   "week3": {
-    "billing": "Paddle integration for future subscriptions",
-    "website": "Simple website with download functionality",
-    "validation": "Manual quality control of all deadlines"
+    "billing": "Claude Code integrates Paddle for future subscriptions",
+    "website": "Claude Code builds WordPress-style admin + public site",
+    "validation": "Claude Code creates admin interface for deadline approval",
+    "user_role": "Review admin interface and provide UX feedback"
   },
   "week4": {
-    "testing": "Calendar compatibility testing across platforms",
-    "content": "Pure deadline data validation (no commentary)",
-    "launch": "Production deployment + initial user acquisition"
+    "testing": "Claude Code tests calendar compatibility across platforms",
+    "content": "Claude Code implements pure deadline data validation",
+    "launch": "Claude Code deploys to production + user begins marketing",
+    "user_role": "Launch marketing campaigns and collect user feedback"
   }
 }
 ```

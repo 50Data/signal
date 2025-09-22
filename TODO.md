@@ -1,322 +1,234 @@
 # MVP TODO List - 50Data Free EU Compliance Calendar
 
-*4-Week MVP Development | Free Version Only*
+*4-Week MVP Development | Non-Technical Founder + Claude Code Implementation*
 
-## 🚀 WEEK 1: Setup & Research
+## 🎯 Role Clarification
 
-### Critical MVP Tasks - Start Today
+**Your Role (Non-Technical Founder):**
+- Business strategy and market validation
+- Content direction and compliance expertise
+- WordPress-style admin management
+- Customer feedback and growth decisions
 
-**Priority 1: Basic Setup**
-- [ ] Register 50data.eu domain
-- [ ] Set up enhanced Hetzner CX31 VPS (€25/month, 80GB storage)
-- [ ] Create simple Python project for MVP
-- [ ] Set up basic development environment
+**Claude Code Role:**
+- 100% of technical development and implementation
+- All coding, server setup, deployment, and maintenance
 
-**Priority 2: API Access & Research**
+## 🚀 WEEK 1: Business Setup & Direction
+
+### Business Tasks (Your Responsibility)
+
+**Priority 1: Business Setup**
+- [ ] Register 50data.eu domain (you can do this via Namecheap/Cloudflare)
+- [ ] Create Hetzner Cloud account (Claude Code will configure server)
+- [ ] Set up Kit/ConvertKit account for email marketing
+- [ ] Register for Paddle account for future billing
+
+**Priority 2: Content & Research (Your Expertise)**
+- [ ] Research German eRechnung deadlines from government sources
+- [ ] Identify 20-30 key EU compliance deadlines (your compliance knowledge)
+- [ ] Define target audience and messaging
+- [ ] Create initial content strategy for pure deadline approach
+
+**Priority 3: API Registrations (You Handle, Claude Code Implements)**
 - [ ] **URGENT**: Register for EUR-Lex API access (free tier)
-- [ ] Research German eRechnung deadlines manually
-- [ ] Identify 20-30 key EU compliance deadlines
-- [ ] Test EUR-Lex API for specific documents
-
-**Priority 3: Data Collection**
-- [ ] Create enhanced deadline database (PostgreSQL with full-text search)
-- [ ] Manual research of compliance dates
-- [ ] Basic validation of deadline accuracy
-- [ ] Document sources for each deadline
+- [ ] Get Kit/ConvertKit API credentials
+- [ ] Get Paddle API credentials (when ready for billing)
+- [ ] Provide all credentials to Claude Code for implementation
 
 ---
 
-## 📋 WEEK 1 DETAILED TASKS
+## 📋 WEEK 1 DETAILED BUSINESS TASKS
 
-### Day 1: Basic Setup
-```bash
-# Simple MVP commands:
-mkdir 50data-mvp && cd 50data-mvp
-git init
-touch requirements.txt main.py
-mkdir data templates static
-echo "# 50Data MVP - Free EU Compliance Calendar" > README.md
-```
+### Day 1: Business Foundation
+**Your Tasks (Non-Technical):**
+- [ ] Register 50data.eu domain via Namecheap or Cloudflare
+- [ ] Create Hetzner Cloud account (€25/month CX31 plan)
+- [ ] Set up Kit/ConvertKit account for email marketing
+- [ ] Define initial target audience (EU compliance professionals)
 
-**Simple MVP Tasks:**
-- [ ] Register 50data.eu domain (Namecheap/Cloudflare)
-- [ ] Set up basic Hetzner Cloud VPS
-- [ ] Create simple Python project structure
-- [ ] Basic Git repository setup
+**Claude Code Tasks (Technical):**
+- Set up Hetzner server with PostgreSQL and Flask
+- Create project structure and version control
+- Configure development environment
+- Build foundational application architecture
 
-**Enhanced Dependencies:**
-```python
-# requirements.txt for enhanced MVP
-flask
-requests
-icalendar
-psycopg2-binary
-lxml
-sqlalchemy
-alembic
-```
-
-### Day 2: EUR-Lex Registration & Testing
-**MVP Tasks:**
+### Day 2: API Registrations & Research Strategy
+**Your Tasks (Business):**
 - [ ] Register for EUR-Lex API at https://eur-lex.europa.eu/content/tools/webservices.html
-- [ ] Test basic API connectivity
-- [ ] Research specific document IDs (AI Act: 32024R1689)
-- [ ] Create simple API test script
+- [ ] Research German eRechnung compliance requirements
+- [ ] Identify high-priority EU directives (AI Act, GDPR updates, etc.)
+- [ ] Create initial messaging strategy for "pure deadline data"
 
-**Simple file structure:**
-```
-50data-mvp/
-├── main.py          # Flask app
-├── data.py          # Data collection
-├── calendar_gen.py  # ICS generation
-├── data/            # JSON deadline storage
-├── static/          # Website files
-└── templates/       # HTML templates
-```
+**Claude Code Tasks (Technical):**
+- Integrate EUR-Lex API when credentials provided
+- Build German XML processing pipeline
+- Create deadline extraction algorithms
+- Set up PostgreSQL database schema
 
-### Day 3-7: Manual Research & Data Collection
-**MVP Tasks:**
+### Day 3-7: Content Strategy & Market Research
+**Your Tasks (Business Expertise):**
 - [ ] Research German eRechnung B2G deadline (Jan 1, 2025)
 - [ ] Research German eRechnung B2B deadlines (2026-2028)
-- [ ] Research AI Act implementation phases
-- [ ] Collect 30+ EU compliance deadlines manually
-- [ ] Create simple JSON database structure
-- [ ] Validate all dates with official sources
+- [ ] Research AI Act implementation phases and key dates
+- [ ] Collect 30+ EU compliance deadlines from official sources
+- [ ] Validate all dates with government websites
+- [ ] Create initial messaging for "pure deadline data" approach
+- [ ] Define competitive positioning vs commentary-heavy publishers
 
-**JSON Structure Example:**
-```json
-{
-  "deadlines": [
-    {
-      "date": "2025-01-01",
-      "title": "eRechnung B2G mandatory (Germany)",
-      "description": "Electronic invoicing mandatory for B2G transactions",
-      "source": "German government regulation",
-      "countries": ["DE"],
-      "type": "implementation"
-    }
-  ]
-}
+**Claude Code Tasks (Technical Implementation):**
+- Build database schema for deadline storage
+- Create data validation systems
+- Implement deadline extraction algorithms
+- Build WordPress-style admin interface for deadline management
+- Set up automated backups and monitoring
+
+**Deadline Research Template (Your Format):**
 ```
-
-### Day 4: Database Implementation
-**Tasks:**
-- [ ] Create SQLAlchemy models for source documents and deadlines
-- [ ] Implement database connection and session management
-- [ ] Add Alembic for database migrations
-- [ ] Create initial migration for base schema
-- [ ] Test database operations with sample data
-
-**Critical database models:**
-```python
-# app/models/documents.py
-class SourceDocument(Base):
-    __tablename__ = "source_documents"
-
-    id = Column(UUID, primary_key=True, default=uuid4)
-    source_type = Column(String(50), nullable=False)  # "eur_lex"
-    document_identifier = Column(String(200))  # CELEX number
-    title = Column(String(1000))
-    publication_date = Column(Date)
-    raw_content = Column(Text)
-    created_at = Column(DateTime, default=datetime.utcnow)
-
-class ComplianceDeadline(Base):
-    __tablename__ = "compliance_deadlines"
-
-    id = Column(UUID, primary_key=True, default=uuid4)
-    source_document_id = Column(UUID, ForeignKey("source_documents.id"))
-    extracted_date = Column(Date, nullable=False)
-    deadline_type = Column(String(50))  # "implementation", "compliance"
-    title = Column(String(500))
-    confidence_score = Column(Float)
-```
-
-### Day 5: Basic Document Ingestion
-**Tasks:**
-- [ ] Create document ingestion service
-- [ ] Implement EUR-Lex document retrieval and storage
-- [ ] Add error handling for API failures and rate limits
-- [ ] Create Celery task for background document processing
-- [ ] Test ingestion with 10-20 sample documents
-
-### Day 6-7: Testing & Validation
-**Tasks:**
-- [ ] Write unit tests for EUR-Lex client
-- [ ] Add integration tests for database operations
-- [ ] Create test fixtures with sample legal documents
-- [ ] Implement logging and monitoring for ingestion pipeline
-- [ ] Document API endpoints and setup procedures
+Date: YYYY-MM-DD
+Title: [Clear description]
+Description: [Brief explanation]
+Source: [Official government source]
+Countries: [Affected countries]
+Type: [implementation/compliance/reporting]
 
 ---
 
-## 📅 WEEK 2 PRIORITIES
+## 📅 WEEK 2: Product Development & Testing
 
-### Date Extraction Engine
-- [ ] Install spaCy language models (en_core_web_lg, fr_core_news_lg, de_core_news_lg)
-- [ ] Implement regex-based date extraction patterns
-- [ ] Create NLP pipeline for contextual date extraction
-- [ ] Build rule-based deadline type classifier
-- [ ] Create manual validation interface for accuracy testing
+### Your Business Tasks (Week 2)
+**Content Validation & Quality Control:**
+- [ ] Review and approve auto-extracted deadlines via admin interface
+- [ ] Test WordPress-style admin dashboard built by Claude Code
+- [ ] Validate deadline accuracy against original sources
+- [ ] Define quality standards for deadline descriptions
+- [ ] Create email notification templates for Kit/ConvertKit
 
-### Key regex patterns to implement:
-```python
-DATE_PATTERNS = {
-    "absolute": [
-        r"(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})",
-        r"(\d{4}-\d{2}-\d{2})",
-        r"(\d{1,2}/\d{1,2}/\d{4})"
-    ],
-    "relative": [
-        r"(\d+)\s+months?\s+after\s+(.+)",
-        r"not\s+later\s+than\s+(\d+\s+\w+\s+\d{4})",
-        r"(\d+)\s+days?\s+from\s+(.+)"
-    ],
-    "contextual": [
-        r"shall\s+apply\s+from\s+(\d+\s+\w+\s+\d{4})",
-        r"comes?\s+into\s+force\s+on\s+(\d+\s+\w+\s+\d{4})"
-    ]
-}
-```
+**Market Research & Competition:**
+- [ ] Research existing compliance calendar solutions
+- [ ] Identify target customer segments (compliance teams, consultants)
+- [ ] Test messaging with potential customers
+- [ ] Define pricing strategy for future monetization
+
+### Claude Code Tasks (Week 2)
+**Technical Implementation:**
+- Build deadline extraction and validation system
+- Create WordPress-style admin interface for deadline management
+- Implement ICS calendar generation
+- Integrate Kit/ConvertKit for email notifications
+- Set up automated testing and quality control
 
 ---
 
-## 🔧 TECHNICAL SETUP CHECKLIST
+## 📅 WEEK 3-4: Launch Preparation & Go-to-Market
 
-### Development Environment
-- [ ] Python 3.11+ installed
-- [ ] Docker and Docker Compose installed
-- [ ] PostgreSQL client tools
-- [ ] Redis client tools
-- [ ] Git configured with proper credentials
+### Your Business Tasks (Week 3-4)
+**Launch Preparation:**
+- [ ] Test complete user experience (download calendar, subscribe to emails)
+- [ ] Create launch messaging and social media content
+- [ ] Set up LinkedIn presence for compliance professionals
+- [ ] Prepare PR strategy for "pure deadline data" positioning
 
-### External Services Registration (50Data EU)
-- [ ] **EUR-Lex API** - Register at https://eur-lex.europa.eu/content/tools/webservices.html
-- [ ] **GitHub** - Create repository for version control
-- [ ] **Hetzner Cloud** - Account for EU hosting (start with €5/month)
-- [ ] **50data.eu Domain** - Register and configure DNS
-- [ ] **Sentry EU** - Error monitoring (EU instance)
+**Customer Development:**
+- [ ] Reach out to compliance professionals for beta testing
+- [ ] Collect user feedback via Kit/ConvertKit surveys
+- [ ] Iterate messaging based on early user responses
+- [ ] Plan growth strategy for Month 2-3
 
-### Required API Keys (Obtain ASAP)
-- [ ] EUR-Lex API key (free, 24-48 hour approval)
-- [ ] Sentry DSN for error tracking
-- [ ] (Later) Stripe keys for payment processing
-- [ ] (Later) SendGrid/Mailgun for email notifications
-
-### Development Tools
-- [ ] IDE/Editor with Python support (VS Code, PyCharm)
-- [ ] Postman/Insomnia for API testing
-- [ ] DBeaver/pgAdmin for database management
-- [ ] Browser extensions for API testing
+### Claude Code Tasks (Week 3-4)
+**Final Implementation:**
+- Complete WordPress-style admin interface
+- Deploy production system to Hetzner
+- Set up monitoring and backup systems
+- Integrate Paddle for future billing
+- Final testing and quality assurance
 
 ---
 
-## 🎯 SUCCESS CRITERIA - WEEK 1
+## 🎯 SUCCESS CRITERIA - MVP LAUNCH
 
-### Must Have (Critical)
-- [ ] EUR-Lex API access approved and working
-- [ ] Basic FastAPI application running with health check
-- [ ] PostgreSQL database with initial schema
-- [ ] Document ingestion pipeline storing 50+ EUR-Lex documents
-- [ ] Docker development environment fully operational
+### Business Success (Your Responsibility)
+- [ ] 50+ manually validated EU compliance deadlines
+- [ ] Working calendar download at 50data.eu
+- [ ] Kit/ConvertKit email system operational
+- [ ] Clear messaging for target audience
+- [ ] Initial user feedback collected
 
-### Should Have (Important)
-- [ ] Unit tests covering core functionality
-- [ ] Error handling and logging infrastructure
-- [ ] Basic CI/CD pipeline with GitHub Actions
-- [ ] Documentation for setup and API endpoints
+### Technical Success (Claude Code Responsibility)
+- [ ] WordPress-style admin interface working
+- [ ] Calendar generation and download functional
+- [ ] Email notifications via Kit/ConvertKit
+- [ ] Hetzner hosting stable and monitored
+- [ ] All systems ready for user growth
 - [ ] Performance monitoring with basic metrics
 
-### Nice to Have (Bonus)
-- [ ] Basic admin interface for viewing documents
-- [ ] Integration with external monitoring (Sentry)
-- [ ] Performance optimization for document retrieval
-- [ ] Backup and recovery procedures
+### Growth Metrics (Post-Launch)
+- [ ] 100 calendar downloads by Month 3
+- [ ] 50 Kit/ConvertKit email subscribers by Month 3
+- [ ] User feedback collection for roadmap validation
+- [ ] Market validation for paid tier features
 
 ---
 
-## 🚨 BLOCKERS & DEPENDENCIES
+## 🚨 CRITICAL DEPENDENCIES & BLOCKERS
 
-### External Dependencies
-- **EUR-Lex API approval**: Critical path dependency, apply immediately
-- **Development environment**: Ensure Docker/PostgreSQL working locally
-- **Domain knowledge**: Research EU compliance frameworks and deadline types
+### Your Immediate Actions Required
+- **EUR-Lex API registration**: Must apply today (24-48h approval time)
+- **Domain registration**: Register 50data.eu immediately
+- **Account setup**: Hetzner, Kit/ConvertKit, Paddle accounts
+- **Business research**: EU compliance deadline research (your expertise)
 
-### Technical Risks
-- **API rate limits**: EUR-Lex limits to 10 req/sec, plan accordingly
-- **Document formats**: Legal documents may be in PDF/XML, need parsing
-- **Language complexity**: Multi-language support requires careful NLP setup
+### Claude Code Dependencies
+- **API credentials**: Provide EUR-Lex keys when approved
+- **Business requirements**: Clear direction on deadline priorities
+- **Content validation**: Review extracted deadlines for accuracy
+- **User feedback**: Share user testing results for iteration
 
-### Mitigation Strategies
-- **Parallel development**: Work on database and basic app while waiting for API approval
-- **Fallback data sources**: Prepare RSS/scraping as backup to APIs
-- **Incremental testing**: Test with small document sets before scaling
+### Risk Mitigation
+- **Content accuracy**: Manual validation of all deadlines required
+- **Market validation**: Start with free MVP to prove demand
+- **Compliance liability**: Clear disclaimers about information accuracy
+- **Technical backup**: Claude Code handles all technical redundancy
 
 ---
 
-## 📞 NEXT ACTIONS
+## 📞 YOUR IMMEDIATE NEXT ACTIONS
 
-### Today (Immediate)
+### Today (Critical Path)
 1. **Register for EUR-Lex API** (most important - has approval delay)
-2. **Create GitHub repository** and initialize project structure
-3. **Set up development environment** with Docker
-4. **Install core dependencies** and test basic FastAPI app
+2. **Register 50data.eu domain** (Namecheap or Cloudflare)
+3. **Set up Hetzner Cloud account** (Claude Code will configure)
+4. **Set up Kit/ConvertKit account** for email marketing
 
-### This Week
-1. **Complete Week 1 tasks** as outlined in implementation roadmap
-2. **Test EUR-Lex integration** once API access is approved
-3. **Build basic document ingestion** pipeline
-4. **Create database schema** and initial data storage
+### This Week (Business Foundation)
+1. **Complete business setup tasks** (accounts, registrations)
+2. **Begin EU compliance deadline research** (your expertise area)
+3. **Define target messaging** for "pure deadline data" approach
+4. **Provide business requirements** to Claude Code for implementation
 
-### Week 2 Preparation
-1. **Download spaCy language models** (large files, download ahead)
-2. **Research compliance deadline patterns** in legal documents
-3. **Plan date extraction testing** with known compliance deadlines
-4. **Prepare sample documents** for NLP training and validation
-
----
-
-## 🗓️ WEEKS 2-4: MVP Development Schedule
-
-### Week 2: Calendar Generation & Basic Website
-- [ ] Create ICS calendar generation script
-- [ ] Build simple Flask website
-- [ ] Add 50+ compliance deadlines to calendar
-- [ ] Test calendar compatibility (Outlook, Google, Apple)
-
-### Week 3: Testing & Polish
-- [ ] Comprehensive testing across platforms
-- [ ] Website content and user instructions
-- [ ] Feedback collection system
-- [ ] Soft launch to test users
-
-### Week 4: Public Launch & Marketing
-- [ ] Final quality checks
-- [ ] Public launch on LinkedIn and German compliance communities
-- [ ] User acquisition and feedback collection
-- [ ] MVP validation and next phase planning
-
-## 📊 MVP Success Criteria
-
-**Technical:**
-- 50+ compliance deadlines captured
-- Compatible with major calendar applications
-- 99% website uptime
-
-**Adoption:**
-- 100 downloads by Month 3
-- User feedback for roadmap
-- Validate demand for paid features
-
-**Investment:**
-- <€50/month total costs
-- Validate market before monetization
+### Next 4 Weeks (Business Focus)
+1. **Content creation and validation** of compliance deadlines
+2. **Market research and customer development**
+3. **Testing admin interface** built by Claude Code
+4. **Launch preparation and marketing strategy**
 
 ---
 
-**Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
+## 🎯 SUCCESS SUMMARY
+
+**Your Role**: Business strategy, content expertise, WordPress-style management
+**Claude Code Role**: 100% technical implementation and maintenance
+**Timeline**: 4 weeks to working deadline service
+**Investment**: €50/month enhanced infrastructure
+**Target**: 100 downloads + 50 email subscribers by Month 3
+
+---
+
+**Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf (Non-Technical)
 **Product**: 50Data MVP (Free EU Compliance Calendar)
-**Strategy**: Free MVP → Basic Monetization → Full Platform
+**Implementation**: Claude Code handles 100% of technical development
+**Strategy**: Business expertise + AI development = Rapid MVP delivery
+**Content Policy**: Pure deadline data only - never editorial content or commentary
 **Timeline**: 4 weeks to launch | **Investment**: <€50/month
 **Next Action**: Register 50data.eu domain and EUR-Lex API access today
 **Target**: Live free calendar download by Week 4
