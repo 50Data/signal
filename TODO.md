@@ -25,10 +25,11 @@
 - [ ] Set up Kit/ConvertKit account for email marketing
 - [ ] Register for Paddle account for future billing
 
-**Priority 2: Content & Research (Your Expertise)**
+**Priority 2: Content & Research (Your Expertise) - EU + Germany Only**
 - [ ] Research German eRechnung deadlines from government sources
-- [ ] Identify 20-30 key EU compliance deadlines (your compliance knowledge)
-- [ ] Define target audience and messaging
+- [ ] Identify 20-30 key EU directive deadlines from EUR-Lex (Brussels legislation)
+- [ ] Focus: EU directives apply to ALL 27 countries through Brussels
+- [ ] Define target audience and messaging for EU+German coverage
 - [ ] Create initial content strategy for pure deadline approach
 
 **Priority 3: API Registrations (You Handle, Claude Code Implements)**

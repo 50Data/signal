@@ -57,12 +57,12 @@
 
 ### MVP Technology Stack (Backend Data Processing)
 
-**Backend API & Data Processing**
-- **Python Flask**: Lightweight API backend for data processing
-- **PostgreSQL**: Robust database for deadline storage and large datasets
-- **BeautifulSoup**: HTML parsing for legal documents
-- **Requests**: HTTP client for EUR-Lex API calls
-- **lxml**: Efficient XML processing for 15GB German legal data
+**Backend API & Data Processing - SIMPLIFIED**
+- **Python Flask**: Lightweight API backend for deadline processing
+- **PostgreSQL**: Database for deadline storage (EUR-Lex + German)
+- **Requests**: HTTP client for EUR-Lex API calls only
+- **Manual Research**: German eRechnung deadlines from government sources
+- **No complex XML processing**: Simple API + manual research approach
 
 **Database (Enhanced)**
 - **PostgreSQL**: Production database for deadlines, documents, and user info
@@ -82,11 +82,11 @@
 - **Webhook handling**: Basic webhook receivers for Paddle events
 - **Email templates**: Pure deadline notifications (no commentary)
 
-**Infrastructure (EU-Compliant & Enhanced)**
-- **Hetzner CX31**: €25/month EU server (2 vCPU, 8GB RAM, 80GB SSD)
-- **Enhanced hosting**: Flask API + PostgreSQL + document storage
+**Infrastructure (EU-Compliant & Simplified)**
+- **Hetzner CX21**: €10/month EU server (2 vCPU, 4GB RAM, 40GB SSD) - sufficient for MVP
+- **Simple hosting**: Flask API + PostgreSQL for deadline storage
 - **Domain**: 50data.eu with Let's Encrypt SSL
-- **Storage capacity**: 80GB for German XML (15GB) + EUR-Lex cache + backups
+- **Storage capacity**: 40GB sufficient for EUR-Lex cache + backups (no complex XML processing)
 - **Deployment**: Git-based with database migrations
 - **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
 

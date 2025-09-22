@@ -27,7 +27,7 @@
 
 ### Week 1: Foundation & Data Sources
 
-**Primary Focus**: Basic setup and EU legal source integration
+**Primary Focus**: EUR-Lex (EU Brussels) + Germany Only - Maximum Impact MVP
 
 #### Day 1-2: Backend Foundation
 - [ ] Set up Python Flask API project with proper structure
