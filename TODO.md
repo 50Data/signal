@@ -8,7 +8,7 @@
 
 **Priority 1: Basic Setup**
 - [ ] Register 50data.eu domain
-- [ ] Set up basic Hetzner VPS (€5/month)
+- [ ] Set up enhanced Hetzner CX31 VPS (€25/month, 80GB storage)
 - [ ] Create simple Python project for MVP
 - [ ] Set up basic development environment
 
@@ -19,7 +19,7 @@
 - [ ] Test EUR-Lex API for specific documents
 
 **Priority 3: Data Collection**
-- [ ] Create simple deadline database (JSON/SQLite)
+- [ ] Create enhanced deadline database (PostgreSQL with full-text search)
 - [ ] Manual research of compliance dates
 - [ ] Basic validation of deadline accuracy
 - [ ] Document sources for each deadline
@@ -44,12 +44,16 @@ echo "# 50Data MVP - Free EU Compliance Calendar" > README.md
 - [ ] Create simple Python project structure
 - [ ] Basic Git repository setup
 
-**Minimal Dependencies:**
+**Enhanced Dependencies:**
 ```python
-# requirements.txt for MVP
+# requirements.txt for enhanced MVP
 flask
 requests
 icalendar
+psycopg2-binary
+lxml
+sqlalchemy
+alembic
 ```
 
 ### Day 2: EUR-Lex Registration & Testing
@@ -305,7 +309,7 @@ DATE_PATTERNS = {
 - Validate demand for paid features
 
 **Investment:**
-- <€500/month total costs
+- <€50/month total costs
 - Validate market before monetization
 
 ---
@@ -313,6 +317,6 @@ DATE_PATTERNS = {
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
 **Product**: 50Data MVP (Free EU Compliance Calendar)
 **Strategy**: Free MVP → Basic Monetization → Full Platform
-**Timeline**: 4 weeks to launch | **Investment**: <€500/month
+**Timeline**: 4 weeks to launch | **Investment**: <€50/month
 **Next Action**: Register 50data.eu domain and EUR-Lex API access today
 **Target**: Live free calendar download by Week 4

@@ -147,7 +147,7 @@
 **MVP Phase (Months 1-4): €0 Revenue**
 - Focus: User adoption via Kit/ConvertKit growth
 - Target: 100 downloads, 50 email subscribers
-- Investment: €500/month (basic Hetzner + APIs)
+- Investment: €50/month (enhanced CX31 hosting + APIs)
 - Success metric: Email list growth and user feedback
 
 **Mid-state Phase (Months 5-12): €10-50K MRR**
@@ -163,10 +163,10 @@
 - Success metric: Market leadership in pure deadline data
 
 **Investment Requirements:**
-- MVP: €500/month (basic hosting + API costs)
+- MVP: €50/month (enhanced CX31 hosting + API costs)
 - Mid-state: €2-5K/month (Paddle fees + expanded sources)
 - End-state: €10K+/month (full team + enterprise features)
-- Total Year 1 investment: €30-50K (low risk, proven approach)
+- Total Year 1 investment: €30-50K (low risk, proven approach with professional infrastructure)
 
 ## 🚀 Go-to-Market Strategy - Email-First Growth
 

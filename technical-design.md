@@ -39,17 +39,18 @@
 
 ### MVP Technology Stack (Simple)
 
-**Backend (Simple & Reliable)**
+**Backend (Enhanced & Reliable)**
 - **Python Flask**: Lightweight web framework for API and website
-- **SQLite**: Simple database for deadline storage
+- **PostgreSQL**: Robust database for deadline storage and large datasets
 - **BeautifulSoup**: HTML parsing for legal documents
 - **Requests**: HTTP client for EUR-Lex API calls
+- **lxml**: Efficient XML processing for 15GB German legal data
 
-**Database (Minimal)**
-- **SQLite**: Local database for deadlines and user info
-- **JSON files**: Configuration and simple data storage
-- **No complex schemas**: Basic deadline tracking only
-- **Manual backups**: Simple file-based backup strategy
+**Database (Enhanced)**
+- **PostgreSQL**: Production database for deadlines, documents, and user info
+- **Full-text search**: Built-in search capabilities for legal document content
+- **Proper indexing**: Optimized queries for deadline lookups and filtering
+- **Automated backups**: PostgreSQL dump + Hetzner volume backup strategy
 
 **Processing (Basic)**
 - **Python NLP**: Simple date extraction with regex patterns
@@ -63,12 +64,13 @@
 - **Webhook handling**: Basic webhook receivers for Paddle events
 - **Email templates**: Pure deadline notifications (no commentary)
 
-**Infrastructure (EU-Compliant)**
-- **Hetzner VPS**: €10/month basic EU server
-- **Simple hosting**: Static website + Flask API
-- **Domain**: 50data.eu with basic SSL
-- **Manual deployment**: Simple git-based deployment
-- **Basic monitoring**: Uptime checks + log files
+**Infrastructure (EU-Compliant & Enhanced)**
+- **Hetzner CX31**: €25/month EU server (2 vCPU, 8GB RAM, 80GB SSD)
+- **Enhanced hosting**: Flask API + PostgreSQL + document storage
+- **Domain**: 50data.eu with Let's Encrypt SSL
+- **Storage capacity**: 80GB for German XML (15GB) + EUR-Lex cache + backups
+- **Deployment**: Git-based with database migrations
+- **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
 
 ## 📥 EU Legal Data Sources (Deadline-Focused)
 
@@ -345,21 +347,26 @@ Unsubscribe: [link]
 # Simple Hetzner VPS setup for MVP
 # €10/month CX11 instance (EU region)
 
-# Basic server setup
+# Enhanced server setup for CX31
 apt update && apt upgrade -y
-apt install python3 python3-pip nginx sqlite3 -y
+apt install python3 python3-pip nginx postgresql postgresql-contrib -y
 
 # Install Python dependencies
-pip3 install flask requests beautifulsoup4 icalendar pytz
+pip3 install flask requests beautifulsoup4 icalendar pytz psycopg2-binary lxml
 
-# Simple Flask application structure
+# Enhanced Flask application structure
 /var/www/50data/
 ├── app.py              # Main Flask application
 ├── deadline_extractor.py # EUR-Lex integration
+├── german_xml_processor.py # German legal XML processing
 ├── calendar_generator.py # ICS generation
 ├── kit_client.py       # Kit/ConvertKit integration
 ├── paddle_client.py    # Paddle billing integration
-├── deadlines.db       # SQLite database
+├── data/
+│   ├── german_xml/     # 15GB German legal XML storage
+│   ├── eur_lex_cache/  # EUR-Lex document cache
+│   └── backups/        # Database and file backups
+├── migrations/         # Database schema migrations
 └── static/            # Website assets
 ```
 
@@ -413,17 +420,19 @@ class PaddleBillingClient:
       # Revert to basic calendar access
       pass
 
-### Production Configuration (Simple & EU-Compliant)
+### Production Configuration (Enhanced & EU-Compliant)
 
 production_setup = {
-  "hosting": "Hetzner Cloud VPS (Nuremberg, Germany - EU)",
-  "database": "SQLite (simple file-based database)",
+  "hosting": "Hetzner Cloud CX31 (Nuremberg, Germany - EU)",
+  "specs": "2 vCPU, 8GB RAM, 80GB SSD - €25/month",
+  "database": "PostgreSQL with full-text search and proper indexing",
+  "storage": "80GB SSD for 15GB German XML + EUR-Lex cache + backups",
   "domain": "50data.eu with Let's Encrypt SSL",
   "email": "Kit/ConvertKit (GDPR compliant email service)",
   "billing": "Paddle (automatic EU VAT compliance)",
-  "monitoring": "Basic log files + uptime monitoring",
-  "backup": "Daily SQLite backup to Hetzner storage",
-  "deployment": "Simple git-based deployment"
+  "monitoring": "PostgreSQL metrics + application logs + uptime monitoring",
+  "backup": "Automated PostgreSQL dumps + file system backups",
+  "deployment": "Git-based with database migrations and zero-downtime updates"
 }
 ```
 
@@ -450,9 +459,9 @@ production_setup = {
 ```python
 mvp_implementation = {
   "week1": {
-    "backend": "Flask application + SQLite database setup",
-    "sources": "EUR-Lex API integration + German manual research",
-    "infrastructure": "Hetzner VPS deployment"
+    "backend": "Flask application + PostgreSQL database setup",
+    "sources": "EUR-Lex API integration + German XML processing",
+    "infrastructure": "Hetzner CX31 deployment with 80GB storage"
   },
   "week2": {
     "processing": "Simple deadline extraction + manual validation",
@@ -472,12 +481,12 @@ mvp_implementation = {
 }
 ```
 
-### Database Schema for Deadline Service
+### Database Schema for Enhanced Deadline Service
 
 ```sql
--- Simple SQLite database for EU compliance deadlines
+-- PostgreSQL database for EU compliance deadlines with enhanced storage
 CREATE TABLE deadlines (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
     -- Deadline information
     deadline_date DATE NOT NULL,
@@ -489,23 +498,38 @@ CREATE TABLE deadlines (
     source VARCHAR(200) NOT NULL, -- EUR-Lex, German Ministry, etc.
     source_url VARCHAR(500),
     country VARCHAR(5), -- DE, EU, FR, etc.
+    document_id VARCHAR(100), -- CELEX number or German doc ID
 
     -- Processing metadata
-    extraction_method VARCHAR(50), -- manual, api, regex
+    extraction_method VARCHAR(50), -- manual, api, regex, xml_parser
     manually_validated BOOLEAN DEFAULT FALSE,
+    confidence_score DECIMAL(3,2), -- 0.00 to 1.00
 
     -- No commentary fields - pure data only
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Source documents table for storing large XML content
+CREATE TABLE source_documents (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    document_type VARCHAR(50), -- eur_lex, german_xml, rss
+    document_identifier VARCHAR(200), -- CELEX, German law ID
+    title VARCHAR(1000),
+    publication_date DATE,
+    content_hash VARCHAR(64), -- SHA256 for change detection
+    raw_content TEXT, -- Full document content
+    processing_status VARCHAR(20) DEFAULT 'pending', -- pending, processed, failed
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Kit/ConvertKit subscribers (minimal data)
 CREATE TABLE subscribers (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     email VARCHAR(200) NOT NULL UNIQUE,
 
     -- Subscription preferences
-    countries TEXT, -- JSON array of country interests
+    countries JSONB, -- JSON array of country interests
     kit_subscriber_id VARCHAR(50), -- Kit/ConvertKit ID
 
     -- Paddle billing (when applicable)
@@ -516,10 +540,18 @@ CREATE TABLE subscribers (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Simple indexes for basic queries
+-- Performance indexes for enhanced queries
 CREATE INDEX idx_deadlines_date ON deadlines(deadline_date);
 CREATE INDEX idx_deadlines_country ON deadlines(country);
+CREATE INDEX idx_deadlines_type ON deadlines(deadline_type);
+CREATE INDEX idx_deadlines_validated ON deadlines(manually_validated);
 CREATE INDEX idx_subscribers_email ON subscribers(email);
+CREATE INDEX idx_source_docs_type ON source_documents(document_type);
+CREATE INDEX idx_source_docs_identifier ON source_documents(document_identifier);
+CREATE INDEX idx_source_docs_hash ON source_documents(content_hash);
+
+-- Full-text search index for deadline content
+CREATE INDEX idx_deadlines_fts ON deadlines USING gin(to_tsvector('english', title || ' ' || description));
 ```
 
 ## 📊 MVP Success Metrics

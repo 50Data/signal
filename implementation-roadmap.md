@@ -359,6 +359,6 @@
 **Company**: Blinktank GmbH, Berlin | **Founder**: Andreas Dahrendorf
 **Product**: 50Data EU Compliance Deadline Service
 **Strategy**: Free MVP → Paid Tiers → API Platform
-**Timeline**: 4 weeks to simple deadline service | **Investment**: €500/month
+**Timeline**: 4 weeks to simple deadline service | **Investment**: €50/month
 **Next Steps**: Build simple deadline calendar with Kit/ConvertKit + Paddle integration
 **Content Policy**: Pure deadline data only - never editorial content or commentary
