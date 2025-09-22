@@ -1,6 +1,14 @@
-# Legal Collection System Implementation Briefing
+# 🚨 ARCHIVED - Legal Collection System Implementation Briefing (BACKUP)
 
-_For Claude Code - Building EU Legal Text Collection Infrastructure_
+**⚠️ THIS DOCUMENT IS OUTDATED AND OUT OF SCOPE ⚠️**
+
+**Current Project Scope**: Simple EU compliance deadline service (see README.md, TODO.md, technical-design.md)
+**This Document**: Archived backup - represents old, abandoned comprehensive legal collection approach
+**Decision**: Project was deliberately scaled down per git history (commit 6e2e40d: "Simplify MVP to EU Brussels + Germany only")
+
+---
+
+_ARCHIVED BACKUP: For Claude Code - Building EU Legal Text Collection Infrastructure_
 
 ## System Requirements
 

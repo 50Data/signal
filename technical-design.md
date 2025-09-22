@@ -289,7 +289,7 @@ class GermanDeadlineCollector:
     def collect_erechnung_deadlines(self):
         """
         MVP approach for German deadlines:
-        1. Manual research of key dates
+        1. Automated extraction of key dates
         2. Official government sources
         3. Simple deadline list - no commentary
         4. Focus on eRechnung B2G/B2B deadlines
@@ -310,7 +310,7 @@ class GermanDeadlineCollector:
             "source": "German Federal Ministry of Finance",
             "type": "implementation_deadline"
         }
-        # Add more manually researched deadlines
+        # Add more automatically extracted deadlines
     ]
 
     def validate_deadline_accuracy(self, deadline: dict):
@@ -502,10 +502,10 @@ Unsubscribe: [link]
 ### Basic Infrastructure Setup
 
 ```bash
-# Simple Hetzner VPS setup for MVP
-# €10/month CX11 instance (EU region)
+# Hetzner VPS setup for MVP
+# €25/month CX31 instance (2 vCPU, 8GB RAM, 80GB SSD)
 
-# Enhanced server setup for CX31
+# Server setup for CX31
 apt update && apt upgrade -y
 apt install python3 python3-pip nginx postgresql postgresql-contrib -y
 
@@ -778,6 +778,6 @@ business_metrics = {
 **Product**: 50Data EU Compliance Deadline Service | **Domain**: 50data.eu
 **Strategy**: Three-phase evolution (Free MVP → Paid Tiers → API Platform)
 **MVP**: Simple deadline service with Kit/ConvertKit + Paddle integration
-**Investment**: €500/month basic hosting + APIs | **Risk**: Low risk, proven approach
+**Investment**: €50/month basic hosting + APIs | **Risk**: Low risk, proven approach
 **Next Steps**: Build simple deadline service in 4 weeks, target 100 downloads Month 3
 **Content Policy**: Pure deadline data only - never editorial content or commentary

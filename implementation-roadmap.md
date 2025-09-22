@@ -197,7 +197,7 @@
 - Target: 200+ calendar downloads, 100+ email subscribers
 
 ### Month 3: Multi-Country Expansion (Poland)
-**Focus**: Add first additional country with manual research
+**Focus**: Add first additional country with automated data collection
 
 **Key Deliverables:**
 - Research and add Polish compliance deadlines manually
@@ -341,7 +341,7 @@
 
 **EU Legal Complexity:**
 - Risk: Complex legal language makes deadline extraction difficult
-- Mitigation: Legal expertise consultation, manual research approach
+- Mitigation: Legal expertise consultation, automated extraction with validation
 - Contingency: Partnership with legal research services, expert validation
 
 ---

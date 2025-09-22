@@ -566,10 +566,10 @@ class RateLimiter:
 
 ## 🔄 MVP Data Collection Workflow
 
-### Week 1: Manual Research
-1. **German eRechnung deadlines** - Manual research from official sources
-2. **EU AI Act phases** - Extract from CELEX:32024R1689
-3. **Key EU directives** - Manual identification of high-impact deadlines
+### Week 1: Automated Data Collection
+1. **German XML processing** - Automated extraction from gesetze-im-internet.de
+2. **EU AI Act phases** - Extract from CELEX:32024R1689 via EUR-Lex API
+3. **Key EU directives** - Automated identification via EUR-Lex API
 4. **Validation** - Cross-check dates with multiple sources
 
 ### Week 2: Data Processing
@@ -600,7 +600,7 @@ class RateLimiter:
 ---
 
 **Company**: Blinktank GmbH, Berlin | **Product**: 50Data MVP
-**Strategy**: Manual curation → Basic automation → Full platform
+**Strategy**: Automated extraction → Enhanced automation → Full platform
 **Timeline**: 4 weeks to 50+ validated deadlines
-**Investment**: <€100/month for MVP data collection
-**Next**: Begin manual German eRechnung research and EUR-Lex registration
+**Investment**: <€50/month for MVP data collection
+**Next**: Begin automated German XML processing and EUR-Lex registration
