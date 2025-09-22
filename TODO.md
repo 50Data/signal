@@ -49,10 +49,11 @@
 - [ ] Define initial target audience (EU compliance professionals)
 
 **Claude Code Tasks (Technical):**
-- Set up Hetzner server with PostgreSQL and Flask
-- Create project structure and version control
-- Configure development environment
-- Build foundational application architecture
+- Set up Hetzner CX31 server with PostgreSQL and Flask API
+- Set up Next.js 14 project with shadcn/ui and Tailwind CSS
+- Create modern project structure and version control
+- Configure development environment for full-stack deployment
+- Build foundational application architecture (API + Dashboard)
 
 ### Day 2: API Registrations & Research Strategy
 **Your Tasks (Business):**
@@ -65,7 +66,8 @@
 - Integrate EUR-Lex API when credentials provided
 - Build German XML processing pipeline
 - Create deadline extraction algorithms
-- Set up PostgreSQL database schema
+- Set up PostgreSQL database schema with full-text search
+- Begin admin dashboard foundation with shadcn/ui components
 
 ### Day 3-7: Content Strategy & Market Research
 **Your Tasks (Business Expertise):**
@@ -78,12 +80,15 @@
 - [ ] Define competitive positioning vs commentary-heavy publishers
 
 **Claude Code Tasks (Technical Implementation):**
-- Build database schema for deadline storage
-- Create data validation systems
-- Implement deadline extraction algorithms
+- Build database schema for deadline storage with PostgreSQL
+- Create data validation systems and deadline extraction algorithms
+- Build professional admin dashboard with shadcn/ui components
+- Implement deadline data table with sorting, filtering, and pagination
+- Create calendar view with deadline visualization
 - Build Python scripts for deadline management and file-based workflow
 - Create YAML configuration system and CSV data processing
 - Set up automated backups and monitoring
+- Implement user authentication for dashboard access
 
 **Deadline Research Template (Your Format):**
 ```
@@ -115,9 +120,13 @@ Type: [implementation/compliance/reporting]
 ### Claude Code Tasks (Week 2)
 **Technical Implementation:**
 - Build deadline extraction and validation system
+- Complete professional admin dashboard with shadcn/ui components
+- Implement advanced deadline data table with filtering and export
+- Create calendar view integration with deadline visualization
 - Create Python scripts for deadline management and approval via CSV/YAML
 - Implement ICS calendar generation script
 - Integrate Kit/ConvertKit with YAML configuration
+- Set up user authentication and session management
 - Set up automated testing and quality control
 
 ---
@@ -126,10 +135,12 @@ Type: [implementation/compliance/reporting]
 
 ### Your Business Tasks (Week 3-4)
 **Launch Preparation:**
-- [ ] Test complete user experience (download calendar, subscribe to emails)
-- [ ] Create launch messaging and social media content
+- [ ] Test complete admin dashboard user experience and workflows
+- [ ] Test calendar download and email subscription flows
+- [ ] Create professional launch messaging showcasing dashboard capabilities
+- [ ] Generate dashboard screenshots and demo videos for marketing
 - [ ] Set up LinkedIn presence for compliance professionals
-- [ ] Prepare PR strategy for "pure deadline data" positioning
+- [ ] Prepare PR strategy for "pure deadline data" positioning with professional UI
 
 **Customer Development:**
 - [ ] Reach out to compliance professionals for beta testing
@@ -140,10 +151,12 @@ Type: [implementation/compliance/reporting]
 ### Claude Code Tasks (Week 3-4)
 **Final Implementation:**
 - Complete Python scripts and file management system
-- Deploy production system to Hetzner
+- Finalize admin dashboard with all components and user flows
+- Deploy production system to Hetzner (Next.js + Flask API + PostgreSQL)
 - Set up monitoring and backup systems
 - Integrate Paddle for future billing
-- Final testing and quality assurance
+- Final testing and quality assurance of dashboard functionality
+- Performance optimization for dashboard responsiveness
 
 ---
 
@@ -157,11 +170,15 @@ Type: [implementation/compliance/reporting]
 - [ ] Initial user feedback collected
 
 ### Technical Success (Claude Code Responsibility)
+- [ ] Professional admin dashboard with shadcn/ui fully functional
+- [ ] Advanced deadline data table with sorting, filtering, and export
+- [ ] Calendar view integration with deadline visualization
+- [ ] User authentication and session management working
 - [ ] Python scripts and file management system working properly
 - [ ] CSV/YAML workflow for deadline management functional
 - [ ] Calendar generation script and download functional
 - [ ] Email notifications via Kit/ConvertKit with YAML config
-- [ ] Hetzner hosting stable and monitored
+- [ ] Hetzner hosting stable and monitored (Next.js + Flask + PostgreSQL)
 - [ ] All systems ready for user growth
 - [ ] Performance monitoring with basic metrics
 

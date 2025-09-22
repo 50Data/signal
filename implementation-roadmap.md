@@ -10,9 +10,10 @@
 
 **50Data Technical Targets:**
 - 90%+ deadline extraction accuracy from EU legal sources
+- Modern admin dashboard with shadcn/ui components
 - ICS calendar generation and download functionality
 - Kit/ConvertKit email integration for pure deadline notifications
-- Basic Hetzner hosting with SQLite database
+- Professional Hetzner hosting with PostgreSQL database
 
 **50Data Business Targets:**
 - 100 calendar downloads by Month 3
@@ -29,9 +30,10 @@
 **Primary Focus**: Basic setup and EU legal source integration
 
 #### Day 1-2: Project Foundation
-- [ ] Set up basic Python Flask project with simple architecture
-- [ ] Configure SQLite database schema for deadline storage
-- [ ] Deploy basic Hetzner VPS (€10/month) with EU hosting
+- [ ] Set up Next.js 14 project with shadcn/ui components and Tailwind CSS
+- [ ] Set up Python Flask API backend with proper CORS configuration
+- [ ] Configure PostgreSQL database schema for deadline storage and full-text search
+- [ ] Deploy enhanced Hetzner CX31 (€25/month) with EU hosting
 - [ ] Set up 50data.eu domain with Let's Encrypt SSL
 
 #### Day 3-4: EU Data Source Integration
@@ -43,7 +45,7 @@
 #### Day 5-7: Deadline Extraction Engine
 - [ ] Build simple date extraction from legal documents
 - [ ] Implement manual validation workflow for deadline accuracy
-- [ ] Create basic deadline storage in SQLite database
+- [ ] Create basic deadline storage in PostgreSQL database
 - [ ] Set up simple logging and error handling
 
 **Week 1 Deliverables:**
@@ -70,17 +72,22 @@
 - [ ] Create simple email templates for deadline notifications
 - [ ] Build webhook system for subscriber management
 
-#### Day 5-7: Website & Download System
-- [ ] Create simple website with calendar download functionality
-- [ ] Implement one-click ICS file download
-- [ ] Add basic email capture form for Kit/ConvertKit
-- [ ] Set up simple analytics for download tracking
+#### Day 5-7: Admin Dashboard Development
+- [ ] Build main dashboard layout with shadcn/ui components
+- [ ] Implement professional deadline data table with sorting and filtering
+- [ ] Create calendar view integration with deadline visualization
+- [ ] Add export functionality (ICS download, CSV export)
+- [ ] Implement email capture form for Kit/ConvertKit integration
+- [ ] Set up user authentication system for dashboard access
+- [ ] Add data source status indicators and real-time updates
 
 **Week 2 Deliverables:**
+- Professional admin dashboard with shadcn/ui components
 - Working ICS calendar generation with 50+ deadlines
+- Advanced deadline data table with filtering and export capabilities
 - Kit/ConvertKit integration for email notifications
-- Basic website with download functionality
-- Email capture system for subscriber growth
+- Calendar view with deadline visualization
+- User authentication and email capture system for subscriber growth
 
 ---
 
@@ -88,11 +95,14 @@
 
 **Primary Focus**: Quality assurance and billing system setup
 
-#### Day 1-2: Calendar Testing
+#### Day 1-2: Dashboard & Calendar Testing
+- [ ] Test admin dashboard responsiveness across devices and browsers
+- [ ] Validate data table functionality (sorting, filtering, pagination)
 - [ ] Test ICS calendar compatibility across all major platforms
 - [ ] Validate deadline accuracy with manual verification
 - [ ] Test email delivery rates via Kit/ConvertKit
-- [ ] Check mobile responsiveness and download functionality
+- [ ] Check dashboard mobile responsiveness and touch interactions
+- [ ] Test user authentication flows and session management
 
 #### Day 3-4: Paddle Billing Setup
 - [ ] Set up Paddle account for EU billing compliance
@@ -119,16 +129,20 @@
 **Primary Focus**: Simple launch and email-first growth
 
 #### Day 1-2: Launch Preparation
-- [ ] Final testing of calendar download and email systems
-- [ ] Set up basic SEO for "EU compliance deadlines" keywords
-- [ ] Create simple marketing copy focused on pure deadline data
+- [ ] Final testing of admin dashboard and all user flows
+- [ ] Test calendar download and email systems integration
+- [ ] Set up SEO optimization for "EU compliance deadlines" keywords
+- [ ] Create professional marketing copy showcasing dashboard capabilities
 - [ ] Prepare Kit/ConvertKit email sequences for new subscribers
+- [ ] Generate professional screenshots and demo videos of dashboard
 
 #### Day 3-4: Public Launch
-- [ ] Launch basic website with free calendar download
+- [ ] Launch professional admin dashboard with free access
+- [ ] Deploy landing page showcasing dashboard capabilities
 - [ ] Begin SEO content targeting compliance professionals
 - [ ] Start Kit/ConvertKit lead magnets for calendar downloads
-- [ ] Create social media presence (LinkedIn focus)
+- [ ] Create social media presence with dashboard screenshots (LinkedIn focus)
+- [ ] Launch Product Hunt or similar platform for visibility
 
 #### Day 5-7: Initial User Acquisition
 - [ ] Monitor downloads and Kit/ConvertKit subscriber growth
@@ -137,10 +151,12 @@
 - [ ] Plan next iteration for additional EU countries
 
 **Week 4 Deliverables:**
-- Live 50data.eu with free calendar download
-- Initial user base with calendar downloads and email subscribers
-- User feedback collection and validation
-- Foundation for growth with Kit/ConvertKit and Paddle integration
+- Live 50data.eu with professional admin dashboard
+- Free access to deadline management tools and calendar downloads
+- Initial user base with dashboard usage and email subscribers
+- User feedback collection and dashboard usage analytics
+- Professional foundation for growth with Kit/ConvertKit and Paddle integration
+- Modern, scalable UI ready for premium feature additions
 
 ## 🛣️ Post-MVP Evolution
 

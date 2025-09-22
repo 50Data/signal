@@ -55,10 +55,19 @@
 **MVP Scope**: Deadline extraction, calendar generation, email notifications, simple billing
 **Goal**: Simple deadline service with Kit/ConvertKit + Paddle integration
 
-### MVP Technology Stack (Simple)
+### MVP Technology Stack (Modern & Professional)
+
+**Frontend (Modern Admin Dashboard)**
+- **Next.js 14**: React framework with App Router for optimal performance
+- **shadcn/ui**: Professional component library for admin dashboard styling
+- **Tailwind CSS**: Utility-first CSS framework for responsive design
+- **Lucide Icons**: Clean, professional icon set for dashboard UI
+- **React Hook Form**: Form handling for settings and preferences
+- **Tanstack Table**: Advanced data table with sorting, filtering, pagination
+- **Recharts**: Clean charts for deadline analytics and insights
 
 **Backend (Enhanced & Reliable)**
-- **Python Flask**: Lightweight web framework for API and website
+- **Python Flask**: Lightweight API backend for data processing
 - **PostgreSQL**: Robust database for deadline storage and large datasets
 - **BeautifulSoup**: HTML parsing for legal documents
 - **Requests**: HTTP client for EUR-Lex API calls
@@ -84,11 +93,121 @@
 
 **Infrastructure (EU-Compliant & Enhanced)**
 - **Hetzner CX31**: €25/month EU server (2 vCPU, 8GB RAM, 80GB SSD)
-- **Enhanced hosting**: Flask API + PostgreSQL + document storage
+- **Enhanced hosting**: Next.js frontend + Flask API + PostgreSQL
 - **Domain**: 50data.eu with Let's Encrypt SSL
 - **Storage capacity**: 80GB for German XML (15GB) + EUR-Lex cache + backups
-- **Deployment**: Git-based with database migrations
+- **Deployment**: Git-based with database migrations + Vercel frontend
 - **Monitoring**: PostgreSQL metrics + application logs + uptime monitoring
+
+## 🎨 Admin Dashboard UI Design (shadcn/ui)
+
+### Professional Dashboard Layout
+
+**Modern Interface Components:**
+```typescript
+// Main Dashboard Structure
+<DashboardLayout>
+  <Sidebar navigation={navigationItems} />
+  <Header user={user} breadcrumbs={breadcrumbs} />
+  <MainContent>
+    <PageHeader title="EU Compliance Deadlines" />
+    <DeadlineTable data={deadlines} />
+    <CalendarView deadlines={deadlines} />
+  </MainContent>
+</DashboardLayout>
+```
+
+### Core Dashboard Views
+
+**1. Deadlines Table (Primary View)**
+```typescript
+// Advanced data table with shadcn components
+<DataTable
+  columns={[
+    { id: "date", header: "Deadline", sortable: true },
+    { id: "title", header: "Title", filterable: true },
+    { id: "country", header: "Country", filterable: true },
+    { id: "type", header: "Type", filterable: true },
+    { id: "source", header: "Source", sortable: true }
+  ]}
+  data={deadlines}
+  filtering={true}
+  pagination={true}
+  export={["csv", "ics"]}
+/>
+```
+
+**2. Calendar Integration**
+```typescript
+// Clean calendar view with deadline overlays
+<CalendarView
+  deadlines={filteredDeadlines}
+  view="month"
+  highlightUpcoming={true}
+  exportICS={true}
+  emailReminders={true}
+/>
+```
+
+**3. Data Source Status**
+```typescript
+// Real-time source monitoring
+<SourceStatusCard>
+  <Badge variant="success">EUR-Lex API: Connected</Badge>
+  <Badge variant="warning">German Sources: Last update 2h ago</Badge>
+  <Progress value={85} label="Data freshness: 85%" />
+</SourceStatusCard>
+```
+
+**4. Export & Settings**
+```typescript
+// Professional export center
+<ExportCenter>
+  <Button onClick={downloadICS}>Download Calendar (.ics)</Button>
+  <Button onClick={exportCSV}>Export Data (.csv)</Button>
+  <EmailSettings user={user} />
+  <FilterPreferences />
+</ExportCenter>
+```
+
+### Dashboard Components Breakdown
+
+**Navigation Sidebar:**
+- 📅 Deadlines (main table view)
+- 🗓️ Calendar (visual calendar view)
+- 📊 Analytics (deadline insights)
+- 🔗 Sources (data source status)
+- ⚙️ Settings (email preferences, export)
+- 💳 Account (Paddle billing, future)
+
+**Header Bar:**
+- Logo + breadcrumb navigation
+- Search across all deadlines
+- User menu + notifications
+- Export quick actions
+
+**Main Content Area:**
+- Responsive grid layout
+- Filtering sidebar for large datasets
+- Action buttons for common tasks
+- Status indicators for data freshness
+
+### Professional Design Principles
+
+**shadcn/ui Styling:**
+- Clean, minimal design with proper spacing
+- Professional color scheme (blues/grays for compliance feel)
+- Consistent typography and component sizing
+- Responsive design for mobile/tablet access
+- Loading states and error handling
+- Accessibility compliance (WCAG standards)
+
+**Trust & Authority Signals:**
+- Source attribution badges for each deadline
+- Last updated timestamps visible
+- Data validation status indicators
+- Official government source links
+- Manual verification checkmarks
 
 ## 📁 File-Based Management Workflow (MD/YAML/CSV/Python)
 
